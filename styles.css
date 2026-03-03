@@ -54,6 +54,7 @@
   --weight-semibold: 600;
   --weight-bold: 700;
   --color-accent: #539BF5;
+  --color-accent-rgb: 83, 155, 245;
   --color-accent-dim: rgba(83,155,245,0.15);
   --color-accent-glow: rgba(83,155,245,0.08);
 }
@@ -549,9 +550,9 @@ body, html {
   transition: all 0.2s ease;
 }
 .feature-card:hover {
-  border-color: rgba(83,155,245,0.4);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
   background: var(--color-accent-glow);
-  box-shadow: 0 0 28px rgba(83,155,245,0.08);
+  box-shadow: 0 0 28px rgba(var(--color-accent-rgb), 0.08);
 }
 .feature-icon {
   color: var(--color-accent);
@@ -733,8 +734,8 @@ body, html {
   transition: all 0.2s ease;
 }
 .capability-card:hover {
-  border-color: rgba(83,155,245,0.35);
-  box-shadow: 0 0 16px rgba(83,155,245,0.06);
+  border-color: rgba(var(--color-accent-rgb), 0.35);
+  box-shadow: 0 0 16px rgba(var(--color-accent-rgb), 0.06);
 }
 @media (prefers-color-scheme: dark) {
   .capability-card {
@@ -841,6 +842,10 @@ body, html {
   flex-shrink: 0;
   border-radius: 9999px;
   margin-top: 0.25rem;
+}
+.checklist-icon-wrapper--border {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid currentColor;
 }
 .check-icon {
   height: 1rem;
