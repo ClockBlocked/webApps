@@ -10,7 +10,7 @@
   <meta name="author" content="Dorian Baffier">
   <meta name="keywords" content="your keywords">
   <meta name="creator" content="Dorian Baffier">
-  <meta name="ro8 jbots" content="index, follow">
+  <meta name="robots" content="index, follow">
   <meta property="og:title" content="Eyewear">
   <meta property="og:description" content="KokonutUI - Pro">
   <meta property="og:url" content="https://kokonutui.pro">
@@ -20,1809 +20,48 @@
   <meta name="twitter:title" content="Eyewear">
   <meta name="twitter:description" content="KokonutUI - Pro">
   <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16">
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eyewear - KokonutUI - Pro</title>
-  <style>
-    /* ===== FONTS (WF Visual Sans only) ===== */
-    @font-face {
-      font-family: "WF Visual Sans Text";
-      src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6f9f50f2d876a4f384_WFVisualSans-RegularText.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "WF Visual Sans Text";
-      src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6ffaf4654a99eceefd_WFVisualSans-SemiBoldText.woff2") format("woff2");
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "WF Visual Sans";
-      src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6fd096dfcb63d84a7d_WFVisualSans-Regular.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "WF Visual Sans";
-      src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6fb4479820549d1044_WFVisualSans-Medium.woff2") format("woff2");
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "WF Visual Sans";
-      src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6f74892e61c00dc42e_WFVisualSans-SemiBold.woff2") format("woff2");
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    /* ===== VARIABLES (from fonts.css) ===== */
-    :root {
-      --font-text: "WF Visual Sans Text", sans-serif;
-      --font-headings: "WF Visual Sans", sans-serif;
-      --font-mono: Inconsolata, monospace;
-      --text-xs: 0.75rem;
-      --text-sm: 0.875rem;
-      --text-md: 1rem;
-      --text-lg: 1.125rem;
-      --text-xl: 1.25rem;
-      --text-2xl: 1.5rem;
-      --text-3xl: 1.875rem;
-      --h1: 2.5rem;
-      --h2: 3rem;
-      --h3: 1.75rem;
-      --h4: 1.5rem;
-      --weight-light: 300;
-      --weight-normal: 400;
-      --weight-medium: 500;
-      --weight-semibold: 600;
-      --weight-bold: 700;
-    }
-
-    /* ===== BASE STYLES ===== */
-    body, html {
-      font-family: var(--font-text) !important;
-      font-size: var(--text-md);
-      font-weight: var(--weight-normal);
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* ===== ALL MERGED STYLES (grouped by new element classes) ===== */
-
-    /* ----- element001: <body data-theme="dark"> ----- */
-    .element001 {
-      color-scheme: dark;
-      background-color: #000;
-      color: #fff;
-      font-family: var(--font-text);
-      margin: 0;
-      padding: 0;
-    }
-
-    /* ----- element002: <main class="relative min-h-screen w-full overflow-hidden"> ----- */
-    .element002 {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    /* ----- element003: <div class="relative pt-14"> ----- */
-    .element003 {
-      position: relative;
-      padding-top: 3.5rem;
-    }
-
-    /* ----- element004: <section class="section"> (first section) ----- */
-    .element004 {
-      min-height: calc(100vh - 5.5rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 0;
-      margin: 0.25rem 0.5rem 1rem 0.5rem;
-      border-radius: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      background-color: #0a0a0a;
-    }
-    @media (min-width: 40rem) {
-      .element004 {
-        padding: 2.5rem 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-    }
-    .element004::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cfilter%20id%3D%22a%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%221.6%22%20numOctaves%3D%226%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23a%29%22%2F%3E%3C%2Fsvg%3E');
-      background-repeat: repeat;
-      background-size: 80px;
-      opacity: 0.45;
-      mix-blend-mode: hard-light;
-    }
-    .element004::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cfilter%20id%3D%22a%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%222.2%22%20numOctaves%3D%225%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23a%29%22%2F%3E%3C%2Fsvg%3E');
-      background-repeat: repeat;
-      background-size: 100px;
-      opacity: 0.3;
-      mix-blend-mode: overlay;
-    }
-
-    /* ----- element005: <div class="section--header"> ----- */
-    .element005 {
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 4;
-    }
-
-    /* ----- element006: <span class="intro--label"> ----- */
-    .element006 {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      opacity: 0.15;
-      transition: opacity 0.35s ease-in-out;
-    }
-    .element004:hover .element006 {
-      opacity: 1;
-      transition: opacity 0.75s ease-in-out;
-    }
-
-    /* ----- element007: <div class="sectionBGwrap"> ----- */
-    .element007 {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 2;
-    }
-
-    /* ----- element008: <div class="sectionBG"> ----- */
-    .element008 {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(to bottom right, rgba(0,0,0,0.2), rgba(24,24,27,0.2), rgba(0,0,0,0.2));
-      backdrop-filter: blur(0.2px);
-    }
-
-    /* ----- element009: <div class="section--body"> ----- */
-    .element009 {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-      position: relative;
-      z-index: 3;
-    }
-    @media (min-width: 64rem) {
-      .element009 {
-        flex-direction: row;
-      }
-    }
-
-    /* ----- element010: <div class="section_area--middle"> ----- */
-    .element010 {
-      width: 100%;
-      padding-bottom: 2rem;
-      text-align: center;
-    }
-    @media (min-width: 64rem) {
-      .element010 {
-        width: 60%;
-        padding-bottom: 3rem;
-        text-align: left;
-      }
-    }
-
-    /* ----- element011: <div class="jsx-e50c37a0e64bb78b mt-20"> ----- */
-    .element011 {
-      margin-top: 5rem;
-    }
-
-    /* ----- element012: <div class="section--top jsx-e50c37a0e64bb78b space-y-3 max-w-xl mx-auto"> ----- */
-    .element012 {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 36rem;
-    }
-    .element012 > :not(:last-child) {
-      margin-bottom: 0.75rem;
-    }
-
-    /* ----- element013: <p class="jsx-e50c37a0e64bb78b text-right text-white text-md font-medium tracking-tighter"> ----- */
-    .element013 {
-      text-align: right;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-    }
-
-    /* ----- element014: <h1 class="intro--header"> ----- */
-    .element014 {
-      font-size: 2.275rem;
-      line-height: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element014 {
-        font-size: 3.75rem;
-        line-height: 1;
-      }
-    }
-    @media (min-width: 48rem) {
-      .element014 {
-        font-size: 4.5rem;
-        line-height: 1;
-      }
-    }
-
-    /* ----- element015: <span class="introHeader--emphasis"> ----- */
-    .element015 {
-      color: whitesmoke;
-      transition: color 0.35s ease-in-out;
-    }
-    .element004:hover .element015 {
-      color: #539BF5;
-      transition: color 0.75s ease-in-out;
-    }
-
-    /* ----- element016: <div class="wrapper topBanner jsx-e50c37a0e64bb78b relative w-full max-w-[480px] mx-auto opacity-85 rounded-xl overflow-hidden mb-20"> ----- */
-    .element016 {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.85;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      margin-bottom: 5rem;
-    }
-
-    /* ----- element017: <div class="jsx-e50c37a0e64bb78b absolute -inset-4"> ----- */
-    .element017 {
-      position: absolute;
-      inset: -1rem;
-    }
-
-    /* ----- element018: <div class="jsx-e50c37a0e64bb78b absolute inset-0 z-20 mix-blend-overlay opacity-90 pointer-events-none bg-[url(...)]"> ----- */
-    .element018 {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      mix-blend-mode: overlay;
-      opacity: 0.9;
-      pointer-events: none;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cfilter%20id%3D%22a%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%221.6%22%20numOctaves%3D%226%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23a%29%22%2F%3E%3C%2Fsvg%3E');
-    }
-
-    /* ----- element019: second noise overlay ----- */
-    .element019 {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      mix-blend-mode: overlay;
-      opacity: 0.7;
-      pointer-events: none;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cfilter%20id%3D%22a%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%222.2%22%20numOctaves%3D%225%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23a%29%22%2F%3E%3C%2Fsvg%3E');
-    }
-
-    /* ----- element020: third noise overlay ----- */
-    .element020 {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      mix-blend-mode: multiply;
-      opacity: 0.4;
-      pointer-events: none;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cfilter%20id%3D%22a%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%224%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23a%29%22%2F%3E%3C%2Fsvg%3E');
-    }
-
-    /* ----- element021: gradient overlay ----- */
-    .element021 {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      background: linear-gradient(to top right, rgba(0,0,0,0.4), rgba(39,39,42,0.3), rgba(0,0,0,0.4));
-      mix-blend-mode: hard-light;
-    }
-
-    /* ----- element022: <img class="topBanner saturate-[1.2] contrast-[1.15] brightness-110"> ----- */
-    .element022 {
-      position: relative;
-      z-index: 10;
-      object-fit: cover;
-      aspect-ratio: 16/9;
-      width: 100%;
-      filter: saturate(1.2) contrast(1.15) brightness(1.1);
-    }
-
-    /* ----- element023: <div class="wrapper--02"> ----- */
-    .element023 {
-      margin-top: 3rem !important;
-    }
-
-    /* ----- element024: <p class="introDescribe jsx-e50c37a0e64bb78b text-left text-white/60 text-md"> (first paragraph) ----- */
-    .element024 {
-      text-indent: 25px;
-      color: rgba(255,255,255,0.6);
-      font-size: 1rem;
-      text-align: left;
-    }
-
-    /* ----- element025: same as element024 but second paragraph ----- */
-    .element025 {
-      text-indent: 25px;
-      color: rgba(255,255,255,0.6);
-      font-size: 1rem;
-      text-align: left;
-    }
-
-    /* ----- element026: <div class="button--column flex items-center justify-center lg:justify-start gap-4 pt-6"> ----- */
-    .element026 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding-top: 1.5rem;
-    }
-    @media (min-width: 64rem) {
-      .element026 {
-        justify-content: flex-start;
-      }
-    }
-
-    /* ----- element027: <div class="button--wrapper rounded-xl p-1 border border-white/30 hover:border-white/50 transition-all duration-300"> ----- */
-    .element027 {
-      border-radius: 0.75rem;
-      padding: 0.25rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-    }
-    .element027:hover {
-      border-color: rgba(255,255,255,0.5);
-    }
-
-    /* ----- element028: <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm h-10 sm:h-11 px-5 sm:px-6 text-black tracking-tight group bg-white/95 rounded-lg hover:bg-white transition-all duration-300"> ----- */
-    .element028 {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      font-size: 0.875rem;
-      font-weight: 500;
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-      height: 2.5rem;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      color: #000;
-      letter-spacing: -0.025em;
-      background-color: rgba(255,255,255,0.95);
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-    .element028 svg {
-      pointer-events: none;
-      width: 1rem;
-      height: 1rem;
-      flex-shrink: 0;
-    }
-    .element028:hover {
-      background-color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element028 {
-        height: 2.75rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-    }
-    .element028:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 1px var(--ring);
-    }
-    .element028:disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    /* ----- element029: <svg class="lucide lucide-arrow-right ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"> ----- */
-    .element029 {
-      margin-left: 0.5rem;
-      width: 1rem;
-      height: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .element028:hover .element029 {
-      transform: translateX(0.25rem);
-    }
-
-    /* ----- element030: <div class="jsx-e50c37a0e64bb78b w-full lg:w-2/5 mt-8 lg:mt-0"> ----- */
-    .element030 {
-      width: 100%;
-      margin-top: 2rem;
-    }
-    @media (min-width: 64rem) {
-      .element030 {
-        width: 40%;
-        margin-top: 0;
-      }
-    }
-
-    /* ----- element031: <div class="jsx-e50c37a0e64bb78b mt-6 flex justify-between items-start text-sm text-white/70 px-2 relative z-10"> ----- */
-    .element031 {
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.7);
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* ----- element032: <div class="jsx-e50c37a0e64bb78b max-w-[160px]"> (left) ----- */
-    .element032 {
-      max-width: 160px;
-    }
-
-    /* ----- element033: <p class="jsx-e50c37a0e64bb78b font-medium text-white/90">HTML + CSS</p> ----- */
-    .element033 {
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ----- element034: <p class="jsx-e50c37a0e64bb78b mt-1">For structure and styling</p> ----- */
-    .element034 {
-      margin-top: 0.25rem;
-    }
-
-    /* ----- element035: <div class="jsx-e50c37a0e64bb78b max-w-[160px] text-right"> (right) ----- */
-    .element035 {
-      max-width: 160px;
-      text-align: right;
-    }
-
-    /* ----- element036: <p class="jsx-e50c37a0e64bb78b font-medium text-white/90">JavaScript</p> ----- */
-    .element036 {
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ----- element037: <p class="jsx-e50c37a0e64bb78b mt-1">For handling the logic</p> ----- */
-    .element037 {
-      margin-top: 0.25rem;
-    }
-
-    /* ----- element038: <div class="jsx-e50c37a0e64bb78b absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300"> ----- */
-    .element038 {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
-    }
-    .element038:hover {
-      opacity: 1;
-    }
-
-    /* ----- element039: <span class="jsx-e50c37a0e64bb78b text-white/60 text-xs tracking-wider uppercase">Scroll</span> ----- */
-    .element039 {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* ----- element040: <div class="jsx-e50c37a0e64bb78b w-5 h-8 rounded-full border-2 border-white/20 flex items-start p-1"> ----- */
-    .element040 {
-      width: 1.25rem;
-      height: 2rem;
-      border-radius: 9999px;
-      border: 2px solid rgba(255,255,255,0.2);
-      display: flex;
-      align-items: flex-start;
-      padding: 0.25rem;
-    }
-
-    /* ----- element041: <div class="jsx-e50c37a0e64bb78b w-1 h-1.5 rounded-full bg-white/60 animate-scroll"> ----- */
-    .element041 {
-      width: 0.25rem;
-      height: 0.375rem;
-      border-radius: 9999px;
-      background-color: rgba(255,255,255,0.6);
-      animation: scroll 2s ease-in-out infinite;
-    }
-
-    /* ----- element042: <section class="py-20 sm:py-32 mx-2 sm:mx-4 mb-4 rounded-xl relative overflow-hidden"> (what you'll learn) ----- */
-    .element042 {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      background-color: #0a0a0a;
-    }
-    @media (min-width: 40rem) {
-      .element042 {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-    }
-
-    /* ----- element043: <div class="absolute inset-0 z-[2]"> ----- */
-    .element043 {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-    }
-
-    /* ----- element044: <div class="max-w-6xl mx-auto px-4 relative z-[3]"> ----- */
-    .element044 {
-      max-width: 72rem;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      position: relative;
-      z-index: 3;
-    }
-
-    /* ----- element045: <div class="text-left space-y-4 mb-12 sm:mb-16"> ----- */
-    .element045 {
-      text-align: left;
-      margin-bottom: 3rem;
-    }
-    .element045 > :not(:last-child) {
-      margin-bottom: 1rem;
-    }
-    @media (min-width: 40rem) {
-      .element045 {
-        margin-bottom: 4rem;
-      }
-    }
-
-    /* ----- element046: <h2 class="text-4xl sm:text-5xl font-semibold tracking-tighter text-black dark:text-white">What you'll learn</h2> ----- */
-    .element046 {
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element046 {
-        font-size: 3rem;
-      }
-    }
-
-    /* ----- element047: <p class="text-base sm:text-lg tracking-tight text-black/60 dark:text-white/60 max-w-2xl"> ----- */
-    .element047 {
-      font-size: 1rem;
-      letter-spacing: -0.025em;
-      color: rgba(255,255,255,0.6);
-      max-width: 42rem;
-    }
-    @media (min-width: 40rem) {
-      .element047 {
-        font-size: 1.125rem;
-      }
-    }
-
-    /* ----- element048: <div class="feature-grid"> ----- */
-    .element048 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    /* ----- element049: <div class="feature-card"> (first card) ----- */
-    .element049 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element049:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- element050: <div class="feature-icon"> ----- */
-    .element050 {
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ----- element051: <h3 class="feature-title">Web App Manifest</h3> ----- */
-    .element051 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #fff;
-      margin-bottom: 0.75rem;
-    }
-
-    /* ----- element052: <p class="feature-description">Configure how your app appears...</p> ----- */
-    .element052 {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* ----- (continue for all remaining elements – the pattern is identical) ----- */
-
-
-    /* ----- element053: second feature card ----- */
-    .element053 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element053:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- element054: third feature card ----- */
-    .element054 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element054:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- element055: fourth feature card ----- */
-    .element055 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element055:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- element056: fifth feature card ----- */
-    .element056 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element056:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- element057: sixth feature card ----- */
-    .element057 {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1.5rem;
-      backdrop-filter: blur(4px);
-      transition: all 0.2s ease;
-    }
-    .element057:hover {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- HTTPS & LOCAL DEV SECTION ----- */
-    /* ----- element058: <section id="features" class="py-20 sm:py-32 mx-2 sm:mx-4 mb-4 rounded-xl relative overflow-hidden bg-white dark:bg-[#0a0a0a]"> ----- */
-    .element058 {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      background-color: #0a0a0a;
-    }
-    @media (min-width: 40rem) {
-      .element058 {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-    }
-
-    /* ----- element059: <div class="absolute inset-0 z-[2]"> ----- */
-    .element059 {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-    }
-
-    /* ----- element060: <div class="absolute inset-0 bg-gradient-to-br from-black/5 via-zinc-100/5 to-black/5 dark:from-black/20 dark:via-zinc-900/20 dark:to-black/20"> ----- */
-    .element060 {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.05), rgba(244,244,245,0.05), rgba(0,0,0,0.05));
-    }
-    @media (prefers-color-scheme: dark) {
-      .element060 {
-        background: linear-gradient(to bottom right, rgba(0,0,0,0.2), rgba(24,24,27,0.2), rgba(0,0,0,0.2));
-      }
-    }
-
-    /* ----- element061: <div class="max-w-6xl mx-auto px-4 relative z-[3]"> ----- */
-    .element061 {
-      max-width: 72rem;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      position: relative;
-      z-index: 3;
-    }
-
-    /* ----- element062: <div class="text-left space-y-4 mb-12 sm:mb-16"> ----- */
-    .element062 {
-      text-align: left;
-      margin-bottom: 3rem;
-    }
-    .element062 > :not(:last-child) {
-      margin-bottom: 1rem;
-    }
-    @media (min-width: 40rem) {
-      .element062 {
-        margin-bottom: 4rem;
-      }
-    }
-
-    /* ----- element063: <h2 class="text-4xl sm:text-5xl font-semibold tracking-tighter text-black dark:text-white">HTTPS is mandatory</h2> ----- */
-    .element063 {
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element063 {
-        font-size: 3rem;
-      }
-    }
-
-    /* ----- element064: <p class="text-base sm:text-lg tracking-tight text-black/60 dark:text-white/60 max-w-2xl">In production, PWAs require HTTPS...</p> ----- */
-    .element064 {
-      font-size: 1rem;
-      letter-spacing: -0.025em;
-      color: rgba(255,255,255,0.6);
-      max-width: 42rem;
-    }
-    @media (min-width: 40rem) {
-      .element064 {
-        font-size: 1.125rem;
-      }
-    }
-
-    /* ----- element065: <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> ----- */
-    .element065 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-    @media (min-width: 48rem) {
-      .element065 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ----- element066: <div class="w-full py-4 flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-xl border border-dashed border-black/20 dark:border-white/20 p-6"> ----- */
-    .element066 {
-      width: 100%;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(255,255,255,0.05);
-      border-radius: 0.75rem;
-      border: 1px dashed rgba(255,255,255,0.2);
-    }
-
-    /* ----- element067: <span class="text-black/40 dark:text-white/40 font-mono text-sm">localhost:5500  |  sw.js</span> ----- */
-    .element067 {
-      color: rgba(255,255,255,0.4);
-      font-family: Inconsolata, monospace;
-      font-size: 0.875rem;
-    }
-
-    /* ----- element068: <div class="flex flex-col justify-center space-y-6"> ----- */
-    .element068 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .element068 > :not(:last-child) {
-      margin-bottom: 1.5rem;
-    }
-
-    /* ----- element069: <h3 class="text-2xl sm:text-3xl font-semibold tracking-tighter text-black dark:text-white">local development</h3> ----- */
-    .element069 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element069 {
-        font-size: 1.875rem;
-      }
-    }
-
-    /* ----- element070: <p class="text-base text-black/70 dark:text-white/70">Use Python's http.server...</p> ----- */
-    .element070 {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* ----- element071: <div class="pt-2"> ----- */
-    .element071 {
-      padding-top: 0.5rem;
-    }
-
-    /* ----- element072: <div class="inline-block rounded-xl p-1 border border-black/30 dark:border-white/30 hover:border-black/50 dark:hover:border-white/50 transition-all duration-300"> ----- */
-    .element072 {
-      display: inline-block;
-      border-radius: 0.75rem;
-      padding: 0.25rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-    }
-    .element072:hover {
-      border-color: rgba(255,255,255,0.5);
-    }
-
-    /* ----- element073: <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm text-xs h-10 px-5 text-white dark:text-black bg-black/95 dark:bg-white/95 tracking-tight group rounded-lg hover:bg-black dark:hover:bg-white transition-all duration-300"> ----- */
-    .element073 {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      font-weight: 500;
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-      font-size: 0.75rem;
-      height: 2.5rem;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      color: #000;
-      letter-spacing: -0.025em;
-      background-color: rgba(255,255,255,0.95);
-      border-radius: 0.5rem;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-    .element073 svg {
-      pointer-events: none;
-      width: 1rem;
-      height: 1rem;
-      flex-shrink: 0;
-    }
-    .element073:hover {
-      background-color: #fff;
-    }
-    .element073:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 1px var(--ring);
-    }
-    .element073:disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    /* ----- element074: <svg class="lucide lucide-arrow-right ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"> ----- */
-    .element074 {
-      margin-left: 0.5rem;
-      width: 1rem;
-      height: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .element073:hover .element074 {
-      transform: translateX(0.25rem);
-    }
-
-    /* ----- element075: <div class="grid grid-cols-1 md:grid-cols-2 gap-16"> ----- */
-    .element075 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
-    @media (min-width: 48rem) {
-      .element075 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ----- element076: <div class="flex flex-col space-y-6"> ----- */
-    .element076 {
-      display: flex;
-      flex-direction: column;
-    }
-    .element076 > :not(:last-child) {
-      margin-bottom: 1.5rem;
-    }
-
-    /* ----- element077: <h3 class="text-2xl sm:text-3xl font-semibold tracking-tighter text-black dark:text-white">The "App Store" loophole</h3> ----- */
-    .element077 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element077 {
-        font-size: 1.875rem;
-      }
-    }
-
-    /* ----- element078: <p class="text-base text-black/70 dark:text-white/70">PWAs bypass app stores entirely...</p> ----- */
-    .element078 {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* ----- element079: <div class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 border border-black/15 dark:border-white/15 rounded-xl p-1 bg-gradient-to-br from-black/[0.03] to-black/[0.05] dark:from-white/[0.03] dark:to-white/[0.05]"> ----- */
-    .element079 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.125rem;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 0.75rem;
-      padding: 0.25rem;
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.03), rgba(0,0,0,0.05));
-    }
-    @media (min-width: 40rem) {
-      .element079 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (prefers-color-scheme: dark) {
-      .element079 {
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.03), rgba(255,255,255,0.05));
-      }
-    }
-
-    /* ----- element080: <div class="rounded-xl border border-black/10 dark:border-white/10 bg-gradient-to-br from-black/[0.075] dark:from-white/[0.075] to-transparent p-4 transition-all hover:border-black/20 dark:hover:border-white/20 group"> (first card) ----- */
-    .element080 {
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.075), transparent);
-      padding: 1rem;
-      transition: all 0.2s ease;
-    }
-    .element080:hover {
-      border-color: rgba(255,255,255,0.2);
-    }
-    @media (prefers-color-scheme: dark) {
-      .element080 {
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.075), transparent);
-      }
-    }
-
-    /* ----- element081: <h4 class="text-lg font-medium text-black dark:text-white mb-2">Offline first</h4> ----- */
-    .element081 {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ----- element082: <p class="text-sm text-black/60 dark:text-white/60">Service workers cache assets...</p> ----- */
-    .element082 {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
-    }
-
-    /* ----- element083: second card in grid ----- */
-    .element083 {
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.075), transparent);
-      padding: 1rem;
-      transition: all 0.2s ease;
-    }
-    .element083:hover {
-      border-color: rgba(255,255,255,0.2);
-    }
-    @media (prefers-color-scheme: dark) {
-      .element083 {
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.075), transparent);
-      }
-    }
-
-    /* ----- element084: <h4 class="text-lg font-medium text-black dark:text-white mb-2">Push notifications</h4> ----- */
-    .element084 {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ----- element085: <p class="text-sm text-black/60 dark:text-white/60">Re‑engage users with system notifications...</p> ----- */
-    .element085 {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
-    }
-
-    /* ----- element086: <div class="flex items-center gap-8 pt-4"> ----- */
-    .element086 {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      padding-top: 1rem;
-    }
-
-    /* ----- element087: <div class="flex flex-col gap-2"> (67% container) ----- */
-    .element087 {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    /* ----- element088: <h4 class="font-semibold text-black dark:text-white uppercase text-4xl tracking-tighter">67%</h4> ----- */
-    .element088 {
-      font-weight: 600;
-      color: #fff;
-      text-transform: uppercase;
-      font-size: 2.25rem;
-      letter-spacing: -0.05em;
-    }
-
-    /* ----- element089: <p class="text-xs text-black/60 dark:text-white/60 tracking-tight">higher engagement</p> ----- */
-    .element089 {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: -0.025em;
-    }
-
-    /* ----- element090: second stats container (3x) ----- */
-    .element090 {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    /* ----- element091: <h4 class="font-semibold text-black dark:text-white uppercase text-4xl tracking-tighter">3x</h4> ----- */
-    .element091 {
-      font-weight: 600;
-      color: #fff;
-      text-transform: uppercase;
-      font-size: 2.25rem;
-      letter-spacing: -0.05em;
-    }
-
-    /* ----- element092: <p class="text-xs text-black/60 dark:text-white/60 tracking-tight">conversion lift</p> ----- */
-    .element092 {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: -0.025em;
-    }
-
-    /* ----- element093: third stats container (0$) ----- */
-    .element093 {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    /* ----- element094: <h4 class="font-semibold text-black dark:text-white uppercase text-4xl tracking-tighter">0$</h4> ----- */
-    .element094 {
-      font-weight: 600;
-      color: #fff;
-      text-transform: uppercase;
-      font-size: 2.25rem;
-      letter-spacing: -0.05em;
-    }
-
-    /* ----- element095: <p class="text-xs text-black/60 dark:text-white/60 tracking-tight">store fees</p> ----- */
-    .element095 {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: -0.025em;
-    }
-
-    /* ----- PRICING / REQUIREMENTS SECTION ----- */
-    /* ----- element096: <section id="pricing" class="section"> ----- */
-    .element096 {
-      min-height: calc(100vh - 5.5rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 0;
-      margin: 0.25rem 0.5rem 1rem 0.5rem;
-      border-radius: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      background-color: #0a0a0a;
-    }
-    @media (min-width: 40rem) {
-      .element096 {
-        padding: 2.5rem 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-    }
-
-    /* ----- element097: <div class="section--header"> ----- */
-    .element097 {
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      z-index: 4;
-    }
-
-    /* ----- element098: <span class="intro--label text-white/70 text-sm font-medium tracking-tigher">Requirements</span> ----- */
-    .element098 {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      opacity: 0.15;
-      transition: opacity 0.35s ease-in-out;
-    }
-    .element096:hover .element098 {
-      opacity: 1;
-      transition: opacity 0.75s ease-in-out;
-    }
-
-    /* ----- element099: <div class="absolute inset-0 z-[2]"> ----- */
-    .element099 {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-    }
-
-    /* ----- element100: <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-zinc-900/20 to-black/20 backdrop-blur-[0.2px]"> ----- */
-    .element100 {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom right, rgba(0,0,0,0.2), rgba(24,24,27,0.2), rgba(0,0,0,0.2));
-      backdrop-filter: blur(0.2px);
-    }
-
-    /* ----- element101: <div class="max-w-7xl mx-auto px-4 relative z-[3]"> ----- */
-    .element101 {
-      max-width: 80rem;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      position: relative;
-      z-index: 3;
-    }
-
-    /* ----- element102: <div class="text-center space-y-6 mb-16"> ----- */
-    .element102 {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .element102 > :not(:last-child) {
-      margin-bottom: 1.5rem;
-    }
-
-    /* ----- element103: <h2 class="text-4xl sm:text-5xl font-semibold tracking-tight text-white">What you will need to have <span class="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">for this to work</span></h2> ----- */
-    .element103 {
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element103 {
-        font-size: 3rem;
-      }
-    }
-
-    /* ----- element104: <span class="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">for this to work</span> ----- */
-    .element104 {
-      background: linear-gradient(to right, #fff, rgba(255,255,255,0.7));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* ----- element105: <p class="text-base sm:text-lg tracking-tight text-white/60 max-w-2xl mx-auto">Transform your visual experience...</p> ----- */
-    .element105 {
-      font-size: 1rem;
-      letter-spacing: -0.025em;
-      color: rgba(255,255,255,0.6);
-      max-width: 42rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @media (min-width: 40rem) {
-      .element105 {
-        font-size: 1.125rem;
-      }
-    }
-
-    /* ----- element106: <div class="relative max-w-5xl mx-auto"> ----- */
-    .element106 {
-      position: relative;
-      max-width: 64rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ----- element107: <div class="grid grid-cols-1 gap-3"> ----- */
-    .element107 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    /* ----- element108: <div class="pricing-feature flex items-start gap-2" style="animation-delay: 0.2s"> ----- */
-    .element108 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.2s;
-    }
-
-    /* ----- element109: <div class="flex-shrink-0 rounded-full mt-1 mb-10 border-b"> ----- */
-    .element109 {
-      flex-shrink: 0;
-      border-radius: 9999px;
-      margin-top: 0.25rem;
-      margin-bottom: 2.5rem;
-      border-bottom: 1px solid currentColor;
-    }
-
-    /* ----- element110: <svg class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> ----- */
-    .element110 {
-      height: 1rem;
-      width: 1rem;
-      color: #fff;
-    }
-
-    /* ----- element111: <span class="text-sm text-white/80">Advanced AI-Powered Vision Processing</span> ----- */
-    .element111 {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.8);
-    }
-
-    /* ----- element112: second feature ----- */
-    .element112 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.25s;
-    }
-
-    /* ----- element113: <div class="flex-shrink-0 rounded-full mt-1"> ----- */
-    .element113 {
-      flex-shrink: 0;
-      border-radius: 9999px;
-      margin-top: 0.25rem;
-    }
-
-    /* ----- element114: <svg class="h-4 w-4 text-white"> ----- */
-    .element114 {
-      height: 1rem;
-      width: 1rem;
-      color: #fff;
-    }
-
-    /* ----- element115: <span class="text-sm text-white/80">24/7 Battery Life Without Charging</span> ----- */
-    .element115 {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.8);
-    }
-
-    /* ----- (continue pattern for all 6 pricing features) ----- */
-
-    /* ----- element116: third feature ----- */
-    .element116 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.3s;
-    }
-
-    /* ----- element117: fourth feature ----- */
-    .element117 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.35s;
-    }
-
-    /* ----- element118: fifth feature ----- */
-    .element118 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.4s;
-    }
-
-    /* ----- element119: sixth feature ----- */
-    .element119 {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateX(-5px);
-      animation: fadeIn 0.3s forwards;
-      animation-delay: 0.45s;
-    }
-
-    /* ----- element120: <div class="mt-8 sm:mt-12 relative"> ----- */
-    .element120 {
-      margin-top: 2rem;
-      position: relative;
-    }
-    @media (min-width: 40rem) {
-      .element120 {
-        margin-top: 3rem;
-      }
-    }
-
-    /* ----- element121: <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-4 text-sm text-white/70 px-4 relative z-10"> ----- */
-    .element121 {
-      width: 100%;
-      max-width: 56rem;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.7);
-      padding-left: 1rem;
-      padding-right: 1rem;
-      position: relative;
-      z-index: 10;
-    }
-    @media (min-width: 48rem) {
-      .element121 {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-    }
-
-    /* ----- element122: <div class="max-w-[280px] text-center md:text-left"> ----- */
-    .element122 {
-      max-width: 280px;
-      text-align: center;
-    }
-    @media (min-width: 48rem) {
-      .element122 {
-        text-align: left;
-      }
-    }
-
-    /* ----- element123: <p class="font-medium text-white/90">24/7 Premium Support</p> ----- */
-    .element123 {
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ----- element124: <p class="mt-1">Our dedicated team is always ready to assist...</p> ----- */
-    .element124 {
-      margin-top: 0.25rem;
-    }
-
-    /* ----- element125: <div class="max-w-[280px] text-center"> ----- */
-    .element125 {
-      max-width: 280px;
-      text-align: center;
-    }
-
-    /* ----- element126: <p class="font-medium text-white/90">Free Training Sessions</p> ----- */
-    .element126 {
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ----- element127: <p class="mt-1">Get personalized onboarding...</p> ----- */
-    .element127 {
-      margin-top: 0.25rem;
-    }
-
-    /* ----- element128: <div class="max-w-[280px] text-center md:text-right"> ----- */
-    .element128 {
-      max-width: 280px;
-      text-align: center;
-    }
-    @media (min-width: 48rem) {
-      .element128 {
-        text-align: right;
-      }
-    }
-
-    /* ----- element129: <p class="font-medium text-white/90">Regular Updates</p> ----- */
-    .element129 {
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ----- element130: <p class="mt-1">Stay ahead with continuous software updates...</p> ----- */
-    .element130 {
-      margin-top: 0.25rem;
-    }
-
-    /* ----- FAQ SECTION ----- */
-    /* ----- element131: <section id="faq" class="py-16 sm:py-24 bg-black/95 dark:bg-white/95 mx-2 sm:mx-4 mb-4 rounded-2xl overflow-hidden relative"> ----- */
-    .element131 {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      background-color: rgba(0,0,0,0.95);
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 1rem;
-      overflow: hidden;
-      position: relative;
-    }
-    @media (min-width: 40rem) {
-      .element131 {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-    }
-
-    /* ----- element132: <div class="absolute inset-0 overflow-hidden opacity-10"> ----- */
-    .element132 {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      opacity: 0.1;
-    }
-
-    /* ----- element133: <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-white/30 to-white/5 dark:from-black/30 dark:to-black/5 blur-3xl"></div> ----- */
-    .element133 {
-      position: absolute;
-      top: -6rem;
-      right: -6rem;
-      width: 24rem;
-      height: 24rem;
-      border-radius: 9999px;
-      background: linear-gradient(to bottom right, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
-      filter: blur(64px);
-    }
-    @media (prefers-color-scheme: dark) {
-      .element133 {
-        background: linear-gradient(to bottom right, rgba(0,0,0,0.3), rgba(0,0,0,0.05));
-      }
-    }
-
-    /* ----- element134: <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-white/30 to-white/5 dark:from-black/30 dark:to-black/5 blur-3xl"></div> ----- */
-    .element134 {
-      position: absolute;
-      bottom: -6rem;
-      left: -6rem;
-      width: 24rem;
-      height: 24rem;
-      border-radius: 9999px;
-      background: linear-gradient(to top right, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
-      filter: blur(64px);
-    }
-    @media (prefers-color-scheme: dark) {
-      .element134 {
-        background: linear-gradient(to top right, rgba(0,0,0,0.3), rgba(0,0,0,0.05));
-      }
-    }
-
-    /* ----- element135: <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_right,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:32px_32px]"> ----- */
-    .element135 {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    @media (prefers-color-scheme: dark) {
-      .element135 {
-        background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px);
-      }
-    }
-
-    /* ----- element136: <div class="max-w-3xl mx-auto px-4 sm:px-6 relative"> ----- */
-    .element136 {
-      max-width: 48rem;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      position: relative;
-    }
-    @media (min-width: 40rem) {
-      .element136 {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-    }
-
-    /* ----- element137: <div class="text-center space-y-4 mb-10"> ----- */
-    .element137 {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .element137 > :not(:last-child) {
-      margin-bottom: 1rem;
-    }
-
-    /* ----- element138: <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white dark:text-black">FAQ.</h2> ----- */
-    .element138 {
-      font-size: 1.875rem;
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      color: #fff;
-    }
-    @media (min-width: 40rem) {
-      .element138 {
-        font-size: 2.25rem;
-      }
-    }
-
-    /* ----- element139: <p class="text-sm sm:text-base tracking-tight text-white/60 dark:text-black/60 max-w-2xl mx-auto">Looking for answers? It's here.</p> ----- */
-    .element139 {
-      font-size: 0.875rem;
-      letter-spacing: -0.025em;
-      color: rgba(255,255,255,0.6);
-      max-width: 42rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @media (min-width: 40rem) {
-      .element139 {
-        font-size: 1rem;
-      }
-    }
-
-    /* ----- element140: <div class="space-y-2.5" id="faq-list"></div> ----- */
-    .element140 {
-    }
-    .element140 > :not(:last-child) {
-      margin-bottom: 0.625rem;
-    }
-
-    /* ----- element141: <div class="mt-12 text-center"> ----- */
-    .element141 {
-      margin-top: 3rem;
-      text-align: center;
-    }
-
-    /* ----- element142: <h3 class="text-lg font-medium text-white dark:text-black mb-4">Can't find what you're looking for? Email us.</h3> ----- */
-    .element142 {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-
-    /* ----- element143: <div class="inline-block"> ----- */
-    .element143 {
-      display: inline-block;
-    }
-
-    /* ----- element144: <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-xs h-9 px-5 bg-white dark:bg-black text-black dark:text-white rounded-lg border border-white/10 dark:border-black/10 shadow-sm hover:shadow-md hover:bg-white/90 dark:hover:bg-black/90 transition-all duration-200 group"> ----- */
-    .element144 {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      font-weight: 500;
-      font-size: 0.75rem;
-      height: 2.25rem;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      background-color: #fff;
-      color: #000;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    .element144 svg {
-      pointer-events: none;
-      width: 1rem;
-      height: 1rem;
-      flex-shrink: 0;
-    }
-    .element144:hover {
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      background-color: rgba(255,255,255,0.9);
-    }
-    .element144:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 1px var(--ring);
-    }
-    .element144:disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-    @media (prefers-color-scheme: dark) {
-      .element144 {
-        background-color: #000;
-        color: #fff;
-        border-color: rgba(0,0,0,0.1);
-      }
-      .element144:hover {
-        background-color: rgba(0,0,0,0.9);
-      }
-    }
-
-    /* ----- element145: <svg class="lucide lucide-arrow-right ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"> ----- */
-    .element145 {
-      margin-left: 0.375rem;
-      height: 0.875rem;
-      width: 0.875rem;
-      transition: transform 0.2s ease;
-    }
-    .element144:hover .element145 {
-      transform: translateX(0.25rem);
-    }
-
-    /* ----- FOOTER PLACEHOLDER ----- */
-    /* ----- element146: <div id="footer-placeholder"></div> ----- */
-    .element146 {
-    }
-
-    /* ----- element147: closing divs ----- */
-    .element147 {
-    }
-    .element148 {
-    }
-    .element149 {
-    }
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes scroll {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(20px); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    /* ===== UTILITY CLASSES (kept for any remaining raw classes) ===== */
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    .animate-scroll { animation: scroll 2s ease-in-out infinite; }
-    .faq-answer { overflow: hidden; transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out; max-height: 0; opacity: 0; }
-    .faq-answer.open { max-height: 300px; opacity: 1; }
-    .pricing-feature { opacity: 0; transform: translateX(-5px); animation: fadeIn 0.3s forwards; }    
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="dark" class="element001">
-  <main class="element002">
-    <div class="element003">
+<body data-theme="dark" class="body-dark-theme">
+  <main class="main-container">
+    <div class="content-wrapper">
       <div id="header-placeholder"></div>
 
-      <!-- Hero Section -->
-      <section data-dynamic="first" class="element004">
-        <div class="element005">
-          <span class="element006">Introductory</span>
+      <section data-dynamic="first" class="hero-section">
+        <div class="hero-header-badge">
+          <span class="hero-label">Introductory</span>
         </div>
-        <div class="element007">
-          <div class="element008"></div>
+        <div class="hero-bg-wrapper">
+          <div class="hero-bg-gradient"></div>
         </div>
-        <div class="element009">
-          <div class="element010">
-            <div class="element011">
-              <div class="element012">
-                <p class="element013">Progressive Web Apps</p>
-                <h1 class="element014">
-                  <span class="element015">Enhancing</span>
+        <div class="hero-body">
+          <div class="hero-content-area">
+            <div class="hero-content-spacer">
+              <div class="hero-top-block">
+                <p class="hero-subtitle">Progressive Web Apps</p>
+                <h1 class="hero-heading">
+                  <span class="hero-heading-emphasis">Enhancing</span>
                   your website
                   <br>
                   PWA Tutorial
                 </h1>
-                <div class="element016">
-                  <div class="element017"></div>
-                  <div class="element018"></div>
-                  <div class="element019"></div>
-                  <div class="element020"></div>
-                  <div class="element021"></div>
-                  <img src="https://raw.githubusercontent.com/ClockBlocked/bytes/refs/heads/main/scripts/prelineUi/bannerTop.jpg" alt="AI Robot" class="element022">
+                <div class="hero-banner-wrapper">
+                  <div class="hero-banner-blur"></div>
+                  <div class="noise-overlay-1"></div>
+                  <div class="noise-overlay-2"></div>
+                  <div class="noise-overlay-3"></div>
+                  <div class="gradient-overlay"></div>
+                  <img src="https://raw.githubusercontent.com/ClockBlocked/bytes/refs/heads/main/scripts/prelineUi/bannerTop.jpg" alt="AI Robot" class="hero-banner-image">
                 </div>
-                <div class="element023">
-                  <p class="element024">PWAs are essentially websites that have been "leveled up" to behave like native mobile applications. Instead of forcing users to choose between the reach of the web and the power of on app, PWAs give you the best of both worlds.</p>
-                  <p class="element025">They are built using standard web technologies-HTML, CSS, and JavaScript-but come packed with features previously reserved for apps you'd find in the App Store or Google Play store.</p>
+                <div class="hero-description-wrapper">
+                  <p class="hero-description">PWAs are essentially websites that have been "leveled up" to behave like native mobile applications. Instead of forcing users to choose between the reach of the web and the power of on app, PWAs give you the best of both worlds.</p>
+                  <p class="hero-description">They are built using standard web technologies-HTML, CSS, and JavaScript-but come packed with features previously reserved for apps you'd find in the App Store or Google Play store.</p>
                 </div>
-                <div class="element026">
-                  <div class="element027">
-                    <button class="element028">
+                <div class="hero-cta-row">
+                  <div class="btn-outline-wrapper">
+                    <button class="btn-primary">
                       GET STARTED
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="element029">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
                         <path d="M5 12h14"></path>
                         <path d="m12 5 7 7-7 7"></path>
                       </svg>
@@ -1832,109 +71,107 @@
               </div>
             </div>
           </div>
-          <div class="element030">
-            <div class="element031">
-              <div class="element032">
-                <p class="element033">HTML + CSS</p>
-                <p class="element034">For structure and styling</p>
+          <div class="hero-sidebar">
+            <div class="tech-stack-row">
+              <div class="tech-stack-item">
+                <p class="tech-stack-title">HTML + CSS</p>
+                <p class="tech-stack-subtitle">For structure and styling</p>
               </div>
-              <div class="element035">
-                <p class="element036">JavaScript</p>
-                <p class="element037">For handling the logic</p>
+              <div class="tech-stack-item--right">
+                <p class="tech-stack-title">JavaScript</p>
+                <p class="tech-stack-subtitle">For handling the logic</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="element038">
-          <span class="element039">Scroll</span>
-          <div class="element040">
-            <div class="element041"></div>
+        <div class="scroll-indicator">
+          <span class="scroll-indicator-label">Scroll</span>
+          <div class="scroll-indicator-track">
+            <div class="scroll-indicator-dot"></div>
           </div>
         </div>
       </section>
 
-      <!-- What you'll learn section -->
-      <section data-dynamic="second" class="element042">
-        <div class="element043"></div>
-        <div class="element044">
-          <div class="element045">
-            <h2 class="element046">What you'll learn</h2>
-            <p class="element047">Core technologies that turn your site into a fast, reliable, engaging app.</p>
+      <section data-dynamic="second" class="learn-section">
+        <div class="section-overlay"></div>
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title">What you'll learn</h2>
+            <p class="section-subtitle">Core technologies that turn your site into a fast, reliable, engaging app.</p>
           </div>
-          <div class="element048">
-            <div class="element049">
-              <div class="element050">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/></svg>
               </div>
-              <h3 class="element051">Web App Manifest</h3>
-              <p class="element052">Configure how your app appears when installed: name, icons, theme color, display mode, and start URL.</p>
+              <h3 class="feature-title">Web App Manifest</h3>
+              <p class="feature-description">Configure how your app appears when installed: name, icons, theme color, display mode, and start URL.</p>
             </div>
-            
-            <div class="element053">
-              <div class="element050">
+
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="m21 12-6 0m-6 0-6 0"/></svg>
               </div>
-              <h3 class="element051">Service Workers</h3>
-              <p class="element052">Background scripts that enable offline support, caching strategies, push notifications, and background sync.</p>
+              <h3 class="feature-title">Service Workers</h3>
+              <p class="feature-description">Background scripts that enable offline support, caching strategies, push notifications, and background sync.</p>
             </div>
 
-            <div class="element054">
-              <div class="element050">
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
               </div>
-              <h3 class="element051">Offline Strategies</h3>
-              <p class="element052">Cache-first, network-first, stale-while-revalidate – ensure your app works without an internet connection.</p>
+              <h3 class="feature-title">Offline Strategies</h3>
+              <p class="feature-description">Cache-first, network-first, stale-while-revalidate – ensure your app works without an internet connection.</p>
             </div>
 
-            <div class="element055">
-              <div class="element050">
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
               </div>
-              <h3 class="element051">Push Notifications</h3>
-              <p class="element052">Re‑engage users with system notifications, even when the browser is closed. Manage subscriptions and payloads.</p>
+              <h3 class="feature-title">Push Notifications</h3>
+              <p class="feature-description">Re‑engage users with system notifications, even when the browser is closed. Manage subscriptions and payloads.</p>
             </div>
 
-            <div class="element056">
-              <div class="element050">
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-              <h3 class="element051">HTTPS & Security</h3>
-              <p class="element052">PWAs require HTTPS in production. Learn how to set up local development and deploy securely.</p>
+              <h3 class="feature-title">HTTPS & Security</h3>
+              <p class="feature-description">PWAs require HTTPS in production. Learn how to set up local development and deploy securely.</p>
             </div>
 
-            <div class="element057">
-              <div class="element050">
+            <div class="feature-card">
+              <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               </div>
-              <h3 class="element051">Cross‑Platform</h3>
-              <p class="element052">Build once, run everywhere – desktop, mobile, tablet. One codebase, all platforms.</p>
+              <h3 class="feature-title">Cross&#8209;Platform</h3>
+              <p class="feature-description">Build once, run everywhere – desktop, mobile, tablet. One codebase, all platforms.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- HTTPS & LOCAL DEV SECTION -->
-      <section data-dynamic="third" id="features" class="element058">
-        <div class="element059">
-          <div class="element060"></div>
+      <section data-dynamic="third" id="features" class="https-section">
+        <div class="section-overlay">
+          <div class="section-gradient-bg"></div>
         </div>
-        <div class="element061">
-          <div class="element062">
-            <h2 class="element063">HTTPS is mandatory</h2>
-            <p class="element064">In production, PWAs require HTTPS. Localhost works for development — we'll use a local server.</p>
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title">HTTPS is mandatory</h2>
+            <p class="section-subtitle">In production, PWAs require HTTPS. Localhost works for development — we'll use a local server.</p>
           </div>
-          <div class="element065">
-            <div class="element066">
-              <span class="element067">localhost:5500  |  sw.js</span>
+          <div class="two-col-grid">
+            <div class="code-preview-box">
+              <span class="code-preview-text">localhost:5500  |  sw.js</span>
             </div>
-            <div class="element068">
-              <h3 class="element069">local development</h3>
-              <p class="element070">Use Python's http.server, VS Code Live Server, or any local server. Service workers only run over HTTPS (or localhost).</p>
-              <div class="element071">
-                <div class="element072">
-                  <button class="element073">
+            <div class="stacked-content">
+              <h3 class="subsection-title">local development</h3>
+              <p class="subsection-text">Use Python's http.server, VS Code Live Server, or any local server. Service workers only run over HTTPS (or localhost).</p>
+              <div class="btn-spacer">
+                <div class="btn-outline-wrapper">
+                  <button class="btn-secondary">
                     SET UP LOCAL SERVER
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="element074">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
                       <path d="M5 12h14"></path>
                       <path d="m12 5 7 7-7 7"></path>
                     </svg>
@@ -1943,32 +180,32 @@
               </div>
             </div>
           </div>
-          <div class="element075">
-            <div class="element076">
-              <h3 class="element077">The "App Store" loophole</h3>
-              <p class="element078">PWAs bypass app stores entirely. No fees, no approval delays. Update your server and every user gets the new version instantly.</p>
-              <div class="element079">
-                <div class="element080">
-                  <h4 class="element081">Offline first</h4>
-                  <p class="element082">Service workers cache assets, your app works without internet.</p>
+          <div class="two-col-grid--wide">
+            <div class="stacked-content">
+              <h3 class="subsection-title">The "App Store" loophole</h3>
+              <p class="subsection-text">PWAs bypass app stores entirely. No fees, no approval delays. Update your server and every user gets the new version instantly.</p>
+              <div class="capability-grid">
+                <div class="capability-card">
+                  <h4 class="capability-card-title">Offline first</h4>
+                  <p class="capability-card-text">Service workers cache assets, your app works without internet.</p>
                 </div>
-                <div class="element083">
-                  <h4 class="element084">Push notifications</h4>
-                  <p class="element085">Re‑engage users with system notifications even when browser is closed.</p>
+                <div class="capability-card">
+                  <h4 class="capability-card-title">Push notifications</h4>
+                  <p class="capability-card-text">Re&#8209;engage users with system notifications even when browser is closed.</p>
                 </div>
               </div>
-              <div class="element086">
-                <div class="element087">
-                  <h4 class="element088">67%</h4>
-                  <p class="element089">higher engagement</p>
+              <div class="stats-row">
+                <div class="stat-item">
+                  <h4 class="stat-value">67%</h4>
+                  <p class="stat-label">higher engagement</p>
                 </div>
-                <div class="element090">
-                  <h4 class="element091">3x</h4>
-                  <p class="element092">conversion lift</p>
+                <div class="stat-item">
+                  <h4 class="stat-value">3x</h4>
+                  <p class="stat-label">conversion lift</p>
                 </div>
-                <div class="element093">
-                  <h4 class="element094">0$</h4>
-                  <p class="element095">store fees</p>
+                <div class="stat-item">
+                  <h4 class="stat-value">0$</h4>
+                  <p class="stat-label">store fees</p>
                 </div>
               </div>
             </div>
@@ -1976,86 +213,85 @@
         </div>
       </section>
 
-      <!-- Pricing / Requirements Section -->
-      <section data-dynamic="fourth" id="pricing" class="element096">
-        <div class="element097">
-          <span class="element098">Requirements</span>
+      <section data-dynamic="fourth" id="pricing" class="requirements-section">
+        <div class="hero-header-badge">
+          <span class="hero-label">Requirements</span>
         </div>
-        <div class="element099">
-          <div class="element100"></div>
+        <div class="section-overlay">
+          <div class="hero-bg-gradient"></div>
         </div>
-        <div class="element101">
-          <div class="element102">
-            <h2 class="element103">
-              What you will need to have 
-              <span class="element104">for this to work</span>
+        <div class="section-container--wide">
+          <div class="section-header--centered">
+            <h2 class="section-title">
+              What you will need to have
+              <span class="gradient-text">for this to work</span>
             </h2>
-            <p class="element105">Transform your visual experience with our cutting-edge AI-powered eyewear. Premium quality meets unparalleled innovation.</p>
+            <p class="section-subtitle">Transform your visual experience with our cutting-edge AI-powered eyewear. Premium quality meets unparalleled innovation.</p>
           </div>
-          <div class="element106">
-            <div class="element107">
-              <div class="element108">
-                <div class="element109">
-                  <svg class="element110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="requirements-content">
+            <div class="checklist">
+              <div class="checklist-item" style="animation-delay: 0.2s">
+                <div class="checklist-icon-wrapper" style="margin-bottom: 2.5rem; border-bottom: 1px solid currentColor">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element111">Advanced AI-Powered Vision Processing</span>
+                <span class="checklist-text">Advanced AI-Powered Vision Processing</span>
               </div>
-              <div class="element112">
-                <div class="element113">
-                  <svg class="element114" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="checklist-item" style="animation-delay: 0.25s">
+                <div class="checklist-icon-wrapper">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element115">24/7 Battery Life Without Charging</span>
+                <span class="checklist-text">24/7 Battery Life Without Charging</span>
               </div>
-              <div class="element116">
-                <div class="element113">
-                  <svg class="element114" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="checklist-item" style="animation-delay: 0.3s">
+                <div class="checklist-icon-wrapper">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element115">99% Visual Recognition Accuracy</span>
+                <span class="checklist-text">99% Visual Recognition Accuracy</span>
               </div>
-              <div class="element117">
-                <div class="element113">
-                  <svg class="element114" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="checklist-item" style="animation-delay: 0.35s">
+                <div class="checklist-icon-wrapper">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element115">10ms Real-time Response Time</span>
+                <span class="checklist-text">10ms Real-time Response Time</span>
               </div>
-              <div class="element118">
-                <div class="element113">
-                  <svg class="element114" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="checklist-item" style="animation-delay: 0.4s">
+                <div class="checklist-icon-wrapper">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element115">Smart Display with Adaptive Brightness</span>
+                <span class="checklist-text">Smart Display with Adaptive Brightness</span>
               </div>
-              <div class="element119">
-                <div class="element113">
-                  <svg class="element114" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="checklist-item" style="animation-delay: 0.45s">
+                <div class="checklist-icon-wrapper">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <span class="element115">Voice Command Integration</span>
+                <span class="checklist-text">Voice Command Integration</span>
               </div>
             </div>
-            <div class="element120">
-              <div class="element121">
-                <div class="element122">
-                  <p class="element123">24/7 Premium Support</p>
-                  <p class="element124">Our dedicated team is always ready to assist you with any questions or technical support</p>
+            <div class="info-cards-wrapper">
+              <div class="info-cards-row">
+                <div class="info-card info-card--left">
+                  <p class="info-card-title">24/7 Premium Support</p>
+                  <p class="info-card-text">Our dedicated team is always ready to assist you with any questions or technical support</p>
                 </div>
-                <div class="element125">
-                  <p class="element126">Free Training Sessions</p>
-                  <p class="element127">Get personalized onboarding and training to maximize your AI Vision Pro experience</p>
+                <div class="info-card info-card--center">
+                  <p class="info-card-title">Free Training Sessions</p>
+                  <p class="info-card-text">Get personalized onboarding and training to maximize your AI Vision Pro experience</p>
                 </div>
-                <div class="element128">
-                  <p class="element129">Regular Updates</p>
-                  <p class="element130">Stay ahead with continuous software updates and new feature releases</p>
+                <div class="info-card info-card--right">
+                  <p class="info-card-title">Regular Updates</p>
+                  <p class="info-card-text">Stay ahead with continuous software updates and new feature releases</p>
                 </div>
               </div>
             </div>
@@ -2063,25 +299,24 @@
         </div>
       </section>
 
-      <!-- FAQ Section -->
-      <section id="faq" class="element131">
-        <div class="element132">
-          <div class="element133"></div>
-          <div class="element134"></div>
+      <section id="faq" class="faq-section">
+        <div class="faq-bg-decoration">
+          <div class="faq-glow-top"></div>
+          <div class="faq-glow-bottom"></div>
         </div>
-        <div class="element135"></div>
-        <div class="element136">
-          <div class="element137">
-            <h2 class="element138">FAQ.</h2>
-            <p class="element139">Looking for answers? It's here.</p>
+        <div class="faq-grid-pattern"></div>
+        <div class="faq-container">
+          <div class="section-header--centered">
+            <h2 class="faq-title">FAQ.</h2>
+            <p class="faq-subtitle">Looking for answers? It's here.</p>
           </div>
-          <div class="element140" id="faq-list"></div>
-          <div class="element141">
-            <h3 class="element142">Can't find what you're looking for? Email us.</h3>
-            <div class="element143">
-              <button class="element144">
+          <div class="faq-list" id="faq-list"></div>
+          <div class="faq-contact">
+            <h3 class="faq-contact-heading">Can't find what you're looking for? Email us.</h3>
+            <div class="faq-contact-btn-wrapper">
+              <button class="btn-contact">
                 hi@kokonutui.pro
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="element145">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon--sm">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>
@@ -2091,13 +326,9 @@
         </div>
       </section>
 
-      <!-- Footer placeholder -->
-      <div id="footer-placeholder" class="element146"></div>
+      <div id="footer-placeholder"></div>
     </div>
   </main>
-  <div class="element147"></div>
-  <div class="element148"></div>
-  <div class="element149"></div>
 
   <script>
     (function() {
@@ -2120,8 +351,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
