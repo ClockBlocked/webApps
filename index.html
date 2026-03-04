@@ -3183,8 +3183,8 @@ smoothScrollTo(element, duration = 600, offset = 0) {
                 if (contentArea) {
                   const target = contentArea.querySelector("#" + CSS.escape(id));
                   if (target) {
-                    this.smoothScrollTo(target, 800);
-                    }
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
                 }
               });
 
