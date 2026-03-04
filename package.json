@@ -1,0 +1,21 @@
+{
+  "name": "pwa-tutorial",
+  "version": "1.0.0",
+  "description": "Progressive Web Apps Tutorial",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build complete - static site ready'",
+    "start": "npx http-server -p 8080"
+  },
+  "keywords": [
+    "pwa",
+    "progressive-web-app",
+    "service-worker",
+    "tutorial"
+  ],
+  "author": "William Cole Hanson",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
