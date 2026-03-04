@@ -2974,6 +2974,8 @@ N E W E S T
             this.activeId = null;
             this.observer = null;
             this.init();
+            
+            this.AppRouter = new AppRouter();
           }
 
           init() {
@@ -3109,6 +3111,7 @@ N E W E S T
             this.loadedStylesheets = new Set();
             this.loadedScripts = new Set();
             this.pendingScripts = new Map();
+            
           }
 
           injectLinkedStylesheetIntoShadow(href, shadowRoot) {
