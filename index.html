@@ -3499,6 +3499,7 @@ smoothScrollTo(element, duration = 800, offset = 0) {
           }
 
           loadPage(url, element, addToHistory = true) {
+            this.closeLeftSidebar();
             this.startLoading();
 
             document.querySelectorAll(".nav-link, .repo-item").forEach((el) => el.classList.remove("active"));
