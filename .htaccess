@@ -1,0 +1,96 @@
+# ============================================
+# STRICT CACHE POLICY
+# SVG ONLY CACHED — EVERYTHING ELSE NETWORK FIRST
+# ============================================
+
+# Disable ETags completely
+FileETag None
+Header unset ETag
+
+# Disable Apache default expiration behavior
+ExpiresActive Off
+
+# --------------------------------------------
+# DEFAULT: NEVER CACHE ANYTHING
+# --------------------------------------------
+<FilesMatch ".*">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# --------------------------------------------
+# HTML — NEVER CACHE
+# --------------------------------------------
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# --------------------------------------------
+# CSS / JS — NEVER CACHE
+# --------------------------------------------
+<FilesMatch "\.(css|js)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
+# --------------------------------------------
+# JSON / XML — NEVER CACHE
+# --------------------------------------------
+<FilesMatch "\.(json|xml)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+</FilesMatch>
+
+# --------------------------------------------
+# IMAGES (EXCEPT SVG) — NEVER CACHE
+# --------------------------------------------
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|bmp|ico)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+</FilesMatch>
+
+# --------------------------------------------
+# FONTS — NEVER CACHE
+# --------------------------------------------
+<FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+</FilesMatch>
+
+# --------------------------------------------
+# SVG — ALLOW CACHING (STRICT + IMMUTABLE)
+# --------------------------------------------
+<FilesMatch "\.svg$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# --------------------------------------------
+# PREVENT PROXY / CDN MISBEHAVIOR
+# --------------------------------------------
+Header always set Surrogate-Control "no-store"
+
+# --------------------------------------------
+# FORCE NO TRANSFORMATION (OPTIONAL HARDENING)
+# --------------------------------------------
+Header set Cache-Control "no-transform"
+
+# --------------------------------------------
+# SECURITY HARDENING (OPTIONAL BUT RECOMMENDED)
+# --------------------------------------------
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+
+
+
+# If using Apache, add to .htaccess
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "Range"
+</IfModule>
+
+
+
