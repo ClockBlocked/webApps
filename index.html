@@ -1931,6 +1931,275 @@ N E W E S T
         transform: scale(1.05);
         transition: all 0.45s ease-in-out;
       }
+
+      /* ============================== */
+      /*  ENHANCEMENT: Skip to Content  */
+      /* ============================== */
+      .skip-to-content {
+        position: absolute;
+        top: -100%;
+        left: 16px;
+        z-index: 10000;
+        background: var(--accent-blue, #539bf5);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 0 0 8px 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: top 0.3s ease;
+      }
+      .skip-to-content:focus {
+        top: 0;
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      /* ============================================ */
+      /*  ENHANCEMENT: Prefers Reduced Motion         */
+      /* ============================================ */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        html { scroll-behavior: auto !important; }
+        .bento-spinner { animation: none !important; }
+        .loading::after { animation: none !important; }
+      }
+
+      /* ================================= */
+      /*  ENHANCEMENT: Print Stylesheet    */
+      /* ================================= */
+      @media print {
+        body {
+          background: #fff !important;
+          color: #000 !important;
+          font-size: 12pt;
+        }
+        #top-navbar, #leftSidebar, #rightSidebar, #miniSidebar,
+        #overlay, #loadingWrapper, .search-backdrop, .search-modal,
+        #offline-banner, .skip-to-content, #backToTop, #scrollProgress,
+        #keyboardShortcutsOverlay, .nav-icon-btn, .menu-button,
+        .bento-overlay, #closeIconsWrap {
+          display: none !important;
+        }
+        .main-content {
+          position: static !important;
+          width: 100% !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+        #contentArea {
+          position: static !important;
+          width: 100% !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+        .bento-cell.active {
+          display: block !important;
+          page-break-inside: avoid;
+        }
+        a[href]::after {
+          content: " (" attr(href) ")";
+          font-size: 10pt;
+          color: #666;
+        }
+        a.nav-link::after, a.repo-item::after {
+          content: none;
+        }
+      }
+
+      /* ================================= */
+      /*  ENHANCEMENT: Back to Top Button  */
+      /* ================================= */
+      #backToTop {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 999;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--accent-blue, #539bf5);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(16px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+      }
+      #backToTop.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      #backToTop:hover {
+        background: var(--text-link-hover, #6cb6ff);
+        transform: translateY(-2px);
+      }
+      #backToTop:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+      #backToTop svg {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* ============================================= */
+      /*  ENHANCEMENT: Keyboard Shortcuts Overlay      */
+      /* ============================================= */
+      #keyboardShortcutsOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        background: rgba(1, 4, 9, 0.85);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      #keyboardShortcutsOverlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .shortcuts-modal {
+        background: var(--bg-secondary, #2d333b);
+        border: 1px solid var(--border-secondary, #373e47);
+        border-radius: 12px;
+        padding: 24px 32px;
+        max-width: 520px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 16px 70px rgba(0,0,0,0.5);
+      }
+      .shortcuts-modal h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary, #adbac7);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .shortcuts-modal h2 button {
+        background: none;
+        border: none;
+        color: var(--text-secondary, #768390);
+        cursor: pointer;
+        font-size: 18px;
+        padding: 4px;
+        border-radius: 4px;
+      }
+      .shortcuts-modal h2 button:hover {
+        color: var(--text-primary);
+        background: var(--bg-hover, #444c56);
+      }
+      .shortcut-group {
+        margin-bottom: 16px;
+      }
+      .shortcut-group-title {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-secondary, #768390);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+      .shortcut-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 0;
+        font-size: 13px;
+        color: var(--text-primary, #adbac7);
+      }
+      .shortcut-keys {
+        display: flex;
+        gap: 4px;
+      }
+      .shortcut-key {
+        background: var(--bg-primary, #22272e);
+        border: 1px solid var(--border-primary, #444c56);
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 12px;
+        font-weight: 500;
+        font-family: var(--font-mono, monospace);
+        color: var(--text-secondary, #768390);
+        min-width: 24px;
+        text-align: center;
+      }
+
+      /* ============================================= */
+      /*  ENHANCEMENT: Scroll Reading Progress         */
+      /* ============================================= */
+      #scrollProgress {
+        position: fixed;
+        top: 62px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-blue, #539bf5), var(--accent-purple, #b083f0));
+        z-index: 999;
+        transition: width 0.1s linear;
+      }
+
+      /* =============================== */
+      /*  ENHANCEMENT: Site Footer       */
+      /* =============================== */
+      #siteFooter {
+        background: var(--bg-secondary, #2d333b);
+        border-top: 1px solid var(--border-secondary, #373e47);
+        padding: 24px 32px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-secondary, #768390);
+      }
+      #siteFooter .footer-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      #siteFooter .footer-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #siteFooter .footer-links a {
+        color: var(--text-link, #539bf5);
+        text-decoration: none;
+        font-size: 12px;
+        transition: color 0.2s ease;
+      }
+      #siteFooter .footer-links a:hover {
+        color: var(--text-link-hover, #6cb6ff);
+        text-decoration: underline;
+      }
+      #siteFooter .footer-copy {
+        color: var(--text-tertiary, #636e7b);
+      }
     </style>
 
     <style>
@@ -2023,6 +2292,16 @@ N E W E S T
 </head>
 
   <body>
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#contentArea" class="skip-to-content" id="skipToContent">Skip to main content</a>
+
+    <!-- Noscript Fallback -->
+    <noscript>
+      <div style="background:#b00020;color:#fff;text-align:center;padding:16px;font-family:sans-serif;font-weight:600;">
+        JavaScript is required for this site to function. Please enable JavaScript in your browser settings.
+      </div>
+    </noscript>
+
     <div
       id="loadingWrapper"
       style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 9999; visibility: hidden"
@@ -2030,7 +2309,7 @@ N E W E S T
       <div id="loadingStrip" style="height: 100%; background: #f62218; transition: width 0.3s"></div>
     </div>
 
-    <nav id="top-navbar" class="navbar-container">
+    <nav id="top-navbar" class="navbar-container" role="navigation" aria-label="Main navigation">
       <div class="navbar-content">
         <!-- Left Section -->
         <div class="navbar-left">
@@ -2568,7 +2847,7 @@ function smoothScrollTo(element, duration = 600, offset = 0) {
       <!-- Add more icons as needed -->
     </div>
     <!-- Left Sidebar -->
-    <aside id="leftSidebar" class="sidebar left-sidebar">
+    <aside id="leftSidebar" class="sidebar left-sidebar" role="complementary" aria-label="Left sidebar navigation">
       <div class="sidebar-content" style="overflow-y: scroll">
         <style>
           #closeIconsWrap {
@@ -2649,7 +2928,7 @@ function smoothScrollTo(element, duration = 600, offset = 0) {
 
         <!-- User Profile Section -->
         <div class="profile-section">
-          <img src="https://dev.wuaze.com/banner.png" alt="Profile" class="profile-avatar" />
+          <img src="https://dev.wuaze.com/banner.png" alt="Profile" class="profile-avatar" loading="lazy" />
           <div class="profile-info">
             <h3 class="profile-name">GitCodr</h3>
             <span class="profile-username">All things code.</span>
@@ -2987,7 +3266,7 @@ function smoothScrollTo(element, duration = 600, offset = 0) {
         </div>
       </div>
     </aside>
-    <aside id="rightSidebar" class="sidebar right-sidebar">
+    <aside id="rightSidebar" class="sidebar right-sidebar" role="complementary" aria-label="Page outline">
       <div class="sidebar-content">
         <div class="scrollspy-header">On this page</div>
         <div id="rightSidebarScrollspy" class="scrollspy-list">
@@ -2998,7 +3277,7 @@ function smoothScrollTo(element, duration = 600, offset = 0) {
 
     <div class="main-layout">
       <!-- Main Content Area -->
-      <main class="main-content">
+      <main class="main-content" role="main" aria-label="Main content">
         <!-- 
         <iframe id="content-frame" src="./routes/home/" class="content-iframe"></iframe>
   -->
@@ -3029,8 +3308,80 @@ function smoothScrollTo(element, duration = 600, offset = 0) {
           <div class="bento-cell" data-dynamic="8"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
           <div class="bento-cell" data-dynamic="9"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
           <div class="bento-cell" data-dynamic="10"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+
+          <!-- Site Footer (inside scrollable content area) -->
+          <footer id="siteFooter" role="contentinfo">
+            <div class="footer-inner">
+              <div class="footer-links">
+                <a href="https://github.com/ClockBlocked/webApps" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" onclick="event.preventDefault(); loadRoute('intro');">Docs</a>
+                <a href="#" onclick="event.preventDefault(); loadRoute('manifest');">Manifest Guide</a>
+                <a href="#" onclick="event.preventDefault(); loadRoute('sw');">Service Workers</a>
+              </div>
+              <p class="footer-copy">&copy; 2025 GitDev &mdash; Built by William Cole Hanson. All rights reserved.</p>
+            </div>
+          </footer>
         </div>
       </main>
+    </div>
+
+    <!-- Scroll Reading Progress Indicator -->
+    <div id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <!-- Keyboard Shortcuts Overlay -->
+    <div id="keyboardShortcutsOverlay" role="dialog" aria-label="Keyboard shortcuts" aria-modal="true">
+      <div class="shortcuts-modal">
+        <h2>
+          Keyboard Shortcuts
+          <button id="closeShortcuts" aria-label="Close shortcuts">✕</button>
+        </h2>
+        <div class="shortcut-group">
+          <div class="shortcut-group-title">Navigation</div>
+          <div class="shortcut-row">
+            <span>Open search</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Ctrl</span><span class="shortcut-key">K</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Focus search</span>
+            <div class="shortcut-keys"><span class="shortcut-key">/</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Toggle sidebar</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Ctrl</span><span class="shortcut-key">B</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Go back</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Alt</span><span class="shortcut-key">←</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Go forward</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Alt</span><span class="shortcut-key">→</span></div>
+          </div>
+        </div>
+        <div class="shortcut-group">
+          <div class="shortcut-group-title">Pages</div>
+          <div class="shortcut-row">
+            <span>Go to Home</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Ctrl</span><span class="shortcut-key">Shift</span><span class="shortcut-key">G</span></div>
+          </div>
+        </div>
+        <div class="shortcut-group">
+          <div class="shortcut-group-title">General</div>
+          <div class="shortcut-row">
+            <span>Close / Dismiss</span>
+            <div class="shortcut-keys"><span class="shortcut-key">Esc</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Show shortcuts</span>
+            <div class="shortcut-keys"><span class="shortcut-key">?</span></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -4406,6 +4757,115 @@ initPWAProgressSystem() {
           window.loadRoute = loadRoute;
         });
       })();
+    </script>
+
+    <!-- ============================================= -->
+    <!--  ENHANCEMENT SCRIPTS                          -->
+    <!-- ============================================= -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* ---- Back to Top Button ---- */
+      (function () {
+        var btn = document.getElementById("backToTop");
+        var contentArea = document.getElementById("contentArea");
+        if (!btn || !contentArea) return;
+
+        contentArea.addEventListener("scroll", function () {
+          if (contentArea.scrollTop > 300) {
+            btn.classList.add("visible");
+          } else {
+            btn.classList.remove("visible");
+          }
+        });
+
+        btn.addEventListener("click", function () {
+          contentArea.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+
+      /* ---- Scroll Reading Progress ---- */
+      (function () {
+        var bar = document.getElementById("scrollProgress");
+        var contentArea = document.getElementById("contentArea");
+        if (!bar || !contentArea) return;
+
+        contentArea.addEventListener("scroll", function () {
+          var scrollTop = contentArea.scrollTop;
+          var scrollHeight = contentArea.scrollHeight - contentArea.clientHeight;
+          var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+          bar.style.width = Math.min(progress, 100) + "%";
+        });
+      })();
+
+      /* ---- Keyboard Shortcuts Overlay ---- */
+      (function () {
+        var overlay = document.getElementById("keyboardShortcutsOverlay");
+        var closeBtn = document.getElementById("closeShortcuts");
+        if (!overlay) return;
+
+        function openShortcuts() {
+          overlay.classList.add("active");
+          if (closeBtn) closeBtn.focus();
+        }
+        function closeShortcuts() {
+          overlay.classList.remove("active");
+        }
+
+        document.addEventListener("keydown", function (e) {
+          if (e.target.matches("input, textarea, select")) return;
+          if (e.key === "?" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+            if (overlay.classList.contains("active")) {
+              closeShortcuts();
+            } else {
+              openShortcuts();
+            }
+          }
+          if (e.key === "Escape" && overlay.classList.contains("active")) {
+            closeShortcuts();
+          }
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", closeShortcuts);
+        }
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) closeShortcuts();
+        });
+      })();
+
+      /* ---- Focus Trap for Search Modal ---- */
+      (function () {
+        var modal = document.querySelector(".search-modal");
+        if (!modal) return;
+
+        modal.addEventListener("keydown", function (e) {
+          if (e.key !== "Tab") return;
+
+          var focusable = modal.querySelectorAll(
+            'input, button, [tabindex]:not([tabindex="-1"]), a[href]'
+          );
+          if (focusable.length === 0) return;
+
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        });
+      })();
+
+    });
     </script>
 
     <script id="debugger" src="https://cdn.jsdelivr.net/npm/eruda">
