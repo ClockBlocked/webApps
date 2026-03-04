@@ -3385,7 +3385,6 @@ smoothScrollTo(element, duration = 800, offset = 0) {
 
         class AppRouter {
           constructor() {
-            this.AppRouter = new AppRouter();
             this.elements = this.cacheElements();
             this.state = this.initialState();
             this.baseUrl = window.location.origin;
@@ -4069,7 +4068,9 @@ initDynamicNAV() {
     const firstLink = document.querySelector('#pwaRouteNav [data-route="intro"]');
     if (firstLink) firstLink.classList.add("active");
   }
-}          initPWAProgressSystem() {
+}
+
+initPWAProgressSystem() {
             if (!this.elements.pwaGuideLink) return;
 
             this.elements.pwaGuideLink.addEventListener("click", (e) => {
