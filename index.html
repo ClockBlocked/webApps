@@ -1,0 +1,4090 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script>
+      (async function injectHeadFromTemplate() {
+        const response = await fetch("./layout/");
+        if (!response.ok) {
+          console.error("Failed to load head template:", response.status);
+          return;
+        }
+
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+        const template = doc.getElementById("head");
+
+        if (!template) {
+          console.error('No <template id="head"> found in loaded document.');
+          return;
+        }
+
+        const content = template.content.cloneNode(true);
+
+        // Insert each child into <head>
+        for (const node of content.children) {
+          document.head.appendChild(node.cloneNode(true));
+        }
+
+        console.log("✅ Head template content successfully injected.");
+      })();
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const iframe = document.getElementById("content-frame");
+
+        let pageToLoad = "https://create.wuaze.com/routes/intro.html";
+
+        const hashPath = window.location.hash;
+        if (hashPath && hashPath.startsWith("#/")) {
+          pageToLoad = hashPath.substring(2);
+        }
+
+        iframe.src = pageToLoad;
+      });
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Clone - Dark Dimmed</title>
+
+    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/pages.css" />
+    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/manifest.css" />
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/svg.css" />
+
+    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/fonts.css" />
+
+    <link rel="stylesheet" href="https://dev.wuaze.com/icons/css/all.min.css" />
+    <script>
+      // Add this to your HTML <head> section
+
+      (function () {
+        // Get all link tags
+        var links = document.getElementsByTagName("link");
+
+        // Loop through all link tags
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i];
+
+          // Check if it's a stylesheet
+          if (link.rel === "stylesheet") {
+            // Get current timestamp
+            var timestamp = new Date().getTime();
+
+            // Check if URL already has query parameters
+            if (link.href.indexOf("?") === -1) {
+              link.href = link.href + "?v=" + timestamp;
+            } else {
+              link.href = link.href + "&v=" + timestamp;
+            }
+          }
+        }
+      })();
+    </script>
+    <style>
+      #rightSidebarScrollspy {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.5;
+        color: hsl(215, 14%, 25%);
+      }
+
+      .scrollspy-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .scrollspy-item {
+        margin: 0;
+        padding: 0;
+      }
+
+      .scrollspy-item button {
+        width: 100%;
+        text-align: left;
+        padding: 6px 16px 6px 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.5;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        position: relative;
+
+        border-radius: 10px;
+      }
+
+      .scrollspy-item button:hover {
+        color: #f6f8fa;
+        text-decoration: none;
+
+        background: #262c36;
+        transition: all 0.45s ease;
+      }
+
+      .scrollspy-item button:active {
+        color: #eff2f5;
+      }
+      .scrollspy-item button:not(.active) {
+        opacity: 0.65;
+        transition: all 0.45s ease;
+      }
+      .scrollspy-item button.active {
+        font-weight: 600;
+        color: #efefef;
+        background: #262c36;
+        opacity: 1;
+        transition: all 0.45s ease;
+      }
+
+      .scrollspy-item button.active::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 4px;
+        bottom: 4px;
+        width: 4px;
+        background: #0969da;
+        border-radius: 15px;
+      }
+
+      .scrollspy-item button:focus-visible {
+        outline: 2px solid #0969da;
+        outline-offset: -2px;
+        border-radius: 15px;
+      }
+
+      .scrollspy-item button:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      .scrollspy-placeholder,
+      .scrollspy-error {
+        padding: 16px 12px;
+        text-align: center;
+        font-size: 12px;
+        color: #59636e;
+        border: 1px dashed #d1d9e0;
+        border-radius: 6px;
+        margin: 8px 12px;
+        background: #f6f8fa;
+      }
+
+      .scrollspy-error {
+        color: #bc1c1c;
+        border-color: #fcb5b5;
+        background: #fff2f2;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        #rightSidebarScrollspy {
+          color: #f0f6fc;
+        }
+
+        .scrollspy-item button {
+          color: #f0f6fc;
+        }
+
+        .scrollspy-item button:hover {
+          background: #262c36;
+        }
+
+        .scrollspy-item button:active {
+          background: #2d333d;
+        }
+
+        .scrollspy-item button.active {
+          color: #f0f6fc;
+        }
+
+        .scrollspy-item button.active::before {
+          background: #2f81f7;
+        }
+
+        .scrollspy-item button:focus-visible {
+          outline-color: #2f81f7;
+        }
+
+        .scrollspy-placeholder {
+          color: #9198a1;
+          border-color: #3d444d;
+          background: #262c36;
+        }
+
+        .scrollspy-error {
+          color: #f85149;
+          border-color: #803434;
+          background: #2f1c1c;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .scrollspy-item button {
+          padding: 8px 16px 8px 24px;
+        }
+
+        .scrollspy-item button.active::before {
+          top: 10px;
+          bottom: 10px;
+        }
+      }
+
+      *::-webkit-scrollbar {
+        display: none;
+      }
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      html,
+      body {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        height: 100%;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      body {
+        display: flex;
+        overflow-y: auto;
+        width: 100vw;
+        background-color: var(--bg-body);
+        color: var(--color-text-primary);
+      }
+
+      /*==================================*/
+      /* F O N T  F A M I L Y  S E T U P  */
+      /* =================================*/
+      @font-face {
+        font-family: "WF Visual Sans Text";
+        src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6f9f50f2d876a4f384_WFVisualSans-RegularText.woff2")
+          format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "WF Visual Sans Text";
+        src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6ffaf4654a99eceefd_WFVisualSans-SemiBoldText.woff2")
+          format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "WF Visual Sans";
+        src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6fd096dfcb63d84a7d_WFVisualSans-Regular.woff2")
+          format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "WF Visual Sans";
+        src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6fb4479820549d1044_WFVisualSans-Medium.woff2")
+          format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "WF Visual Sans";
+        src: url("https://assets.website-files.com/6491b4dd238fa881faab3d5c/65258e6f74892e61c00dc42e_WFVisualSans-SemiBold.woff2")
+          format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      body,
+      html,
+      * {
+        font-family: var(--font-text);
+        font-size: var(--text-md);
+        font-weight: var(--weight-normal);
+      }
+
+      h1,
+      .h1 {
+        font-family: var(--font-headings);
+        font-size: var(--h1);
+        font-weight: var(--weight-semibold);
+        line-height: 1.06;
+      }
+
+      h2,
+      .h2 {
+        font-family: var(--font-headings);
+        font-size: var(--h2);
+        font-weight: var(--weight-semibold);
+        line-height: 1;
+      }
+
+      h3,
+      .h3 {
+        font-family: var(--font-headings);
+        font-size: var(--h3);
+        font-weight: var(--weight-semibold);
+        line-height: 1.2;
+      }
+
+      h4,
+      .h4 {
+        font-family: var(--font-headings);
+        font-size: var(--h4);
+        font-weight: var(--weight-semibold);
+        line-height: 1.2;
+      }
+
+      p {
+        font-variation-settings:
+          "opsz" 18,
+          "wght" 400;
+      }
+
+      /* ==================== */
+      /*    ROOT VARIABLES    */
+      /* ==================== */
+      :root {
+        --bg-main: #2a313c;
+        --bg-body: #1c222b;
+        --bg-sections: #212830;
+        --bgCode: #0e1116;
+        --border-other: #2a313c;
+        --border-main: #434a55;
+        --color-header-bg: #161b22;
+        --color-border: #434a55;
+        --color-border-secondary: #30363d;
+        --color-text-primary: #c9d1d9;
+        --color-text-secondary: #8b949e;
+        --color-link: #58a6ff;
+        --color-btn-primary-bg: #238636;
+        --color-btn-primary-hover: #2ea043;
+        --color-btn-primary-text: #ffffff;
+        --color-repo-bg: #161b22;
+        --color-nav-item-active: #ffffff;
+        --color-nav-item: #8b949e;
+        --color-tag-bg: rgba(56, 139, 253, 0.15);
+        --color-tag-text: #58a6ff;
+
+        --color-nav-item: #9ca3af;
+        --color-nav-item-active: #f3f4f6;
+        --nav-bg: #1f2937;
+        --nav-hover-bg: rgba(55, 65, 81, 0.6);
+        --nav-active-bg: #1f2328;
+        --nav-border: #374151;
+        --nav-accent: #3b82f6;
+
+        --darkest: rgb(33, 34, 36);
+        --darker: rgb(45, 51, 59);
+        --dark: rgb(52, 59, 68);
+        --lightest: rgb(191, 193, 196);
+        --lighter: rgb(152, 155, 160);
+        --light: rgb(113, 117, 122);
+
+        /* Brand Colors */
+        --red: #f85149;
+        --blue: #58a6ff;
+        --green: #56d364;
+        --purple: #bc8cff;
+        --yellow: #e3b341;
+
+        /* Functional Colors */
+        --success: #3fb950;
+        --warning: #d29922;
+        --error: #f85149;
+        --info: #58a6ff;
+
+        /* Spacing */
+        --space-xs: 4px;
+        --space-sm: 8px;
+        --space-md: 16px;
+        --space-lg: 24px;
+        --space-xl: 32px;
+
+        /* Border Radius */
+        --radius-sm: 4px;
+        --radius-md: 6px;
+        --radius-lg: 12px;
+        --radius-round: 50%;
+
+        /* Shadows */
+        --shadow-sm: 0 2px 10px rgba(1, 4, 9, 0.5);
+        --shadow-md: 0 5px 15px rgba(1, 4, 9, 0.5);
+        --shadow-lg: 0 10px 30px rgba(1, 4, 9, 0.8);
+
+        /* Transitions */
+        --transition-fast: 0.2s;
+        --transition-normal: 0.3s;
+        --transition-slow: 0.4s;
+
+        /* Z-index */
+        --z-content: 1;
+        --z-overlay: 9;
+        --z-sidebar: 101;
+        --z-header: 100;
+        --z-modal: 1000;
+        --z-loading: 1001;
+
+        /* Font Families */
+        --font-text: "WF Visual Sans Text", sans-serif;
+        --font-headings: "WF Visual Sans", sans-serif;
+        --font-mono: Inconsolata, monospace;
+
+        /* Font Sizes */
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-md: 1rem;
+        --text-lg: 1.125rem;
+        --text-xl: 1.25rem;
+        --text-2xl: 1.5rem;
+        --text-3xl: 1.875rem;
+
+        /* Heading Sizes */
+        --h1: 2.5rem;
+        --h2: 3rem;
+        --h3: 1.75rem;
+        --h4: 1.5rem;
+
+        /* Font Weights */
+        --weight-light: 300;
+        --weight-normal: 400;
+        --weight-medium: 500;
+        --weight-semibold: 600;
+        --weight-bold: 700;
+      }
+
+      :root {
+        --bg-primary: #22272e;
+        --bg-secondary: #2d333b;
+        --bg-tertiary: #373e47;
+        --bg-hover: #444c56;
+        --border-primary: #444c56;
+        --border-secondary: #373e47;
+        --text-primary: #adbac7;
+        --text-secondary: #768390;
+        --text-tertiary: #636e7b;
+        --text-link: #539bf5;
+        --text-link-hover: #6cb6ff;
+        --accent-blue: #539bf5;
+        --accent-green: #57ab5a;
+        --accent-red: #e5534b;
+        --accent-yellow: #c69026;
+        --accent-purple: #b083f0;
+        --btn-bg: #373e47;
+        --btn-hover: #444c56;
+        --btn-border: #444c56;
+        --input-bg: #2d333b;
+        --input-border: #444c56;
+        --shadow: rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-text);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.5;
+        overflow: hidden;
+
+        position: relative;
+        z-index: 5;
+      }
+      .content-iframe {
+        z-index: 10;
+        pointer-events: auto;
+      }
+      .navbar-container {
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-secondary);
+        height: 62px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 1px 3px var(--shadow);
+      }
+      .navbar-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0 16px;
+        max-width: 100%;
+      }
+      .navbar-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .menu-button {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+      .menu-button:hover {
+        background-color: var(--bg-hover);
+      }
+
+      .logo-link {
+        display: flex;
+        align-items: center;
+        color: var(--text-primary);
+        text-decoration: none;
+      }
+      .logo-icon {
+        font-size: 32px;
+        transition: transform 0.3s ease;
+      }
+      .logo-link:hover .logo-icon {
+        transform: rotate(360deg);
+      }
+
+      .dashboard-text {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-primary);
+      }
+
+      .search-container {
+        flex: 1;
+        max-width: 480px;
+        margin: 0 16px;
+      }
+      .search-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .search-input {
+        width: 100%;
+        background-color: var(--input-bg);
+        border: 1.5px solid var(--input-border);
+        border-radius: 6px;
+        padding: 5px 40px 5px 12px;
+        color: var(--text-primary);
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .search-input:focus {
+        outline: none;
+        border: 1.5px solid var(--accent-blue);
+        background-color: var(--bg-primary);
+      }
+      .search-input::placeholder {
+        color: var(--text-tertiary);
+      }
+      .search-shortcut {
+        position: absolute;
+        right: 12px;
+        font-size: 12px;
+        color: var(--text-tertiary);
+        border: 1px solid var(--border-primary);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: 500;
+      }
+
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-icon-btn {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .nav-icon-btn:hover {
+        background-color: var(--bg-hover);
+      }
+
+      .dropdown-arrow {
+        font-size: 10px;
+        color: var(--text-tertiary);
+      }
+      .notification-btn {
+        position: relative;
+      }
+      .notification-badge {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background-color: var(--accent-blue);
+        color: white;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 5px;
+        border-radius: 10px;
+        line-height: 1;
+      }
+      .avatar-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--border-primary);
+      }
+      /**
+      .main-layout {
+          display: flex;
+          height: calc(100vh - 62px);
+          margin-top: 62px;
+          position: relative;
+        
+      }
+**/
+      .sidebar-content {
+        padding: 16px;
+      }
+
+      .profile-section {
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border-secondary);
+        margin-bottom: 16px;
+      }
+      .profile-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-bottom: 12px;
+        border: 2px solid var(--border-primary);
+      }
+      .profile-info {
+        margin-bottom: 12px;
+      }
+      .profile-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+      .profile-username {
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+      .profile-status-btn {
+        width: 100%;
+        background-color: var(--btn-bg);
+        border: 1px solid var(--btn-border);
+        color: var(--text-primary);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .profile-status-btn:hover {
+        background-color: var(--btn-hover);
+        border-color: var(--text-secondary);
+      }
+
+      .sidebar-nav {
+        margin-bottom: 24px;
+      }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        position: relative;
+        margin-bottom: 2px;
+      }
+      .nav-link:hover {
+        background-color: var(--bg-hover);
+      }
+      .nav-link.active {
+        background-color: var(--bg-tertiary);
+        font-weight: 600;
+      }
+      .nav-link.active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 24px;
+        background-color: var(--accent-blue);
+        border-radius: 0 3px 3px 0;
+      }
+      .nav-link i {
+        width: 16px;
+        text-align: center;
+      }
+      .nav-badge {
+        margin-left: auto;
+        background-color: var(--bg-tertiary);
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 10px;
+        line-height: 1;
+      }
+
+      .repositories-section {
+        margin-bottom: 24px;
+      }
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .section-header h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .new-repo-btn {
+        background-color: var(--accent-green);
+        color: white;
+        border: none;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .new-repo-btn:hover {
+        background-color: #6bc074;
+      }
+      .repo-search {
+        width: 100%;
+        background-color: var(--input-bg);
+        border: 1px solid var(--input-border);
+        border-radius: 6px;
+        padding: 6px 12px;
+        color: var(--text-primary);
+        font-size: 14px;
+        margin-bottom: 12px;
+        transition: all 0.2s ease;
+      }
+      .repo-search:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        background-color: var(--bg-primary);
+      }
+      .repo-list {
+        margin-bottom: 12px;
+      }
+      .repo-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        margin-bottom: 2px;
+      }
+      .repo-item:hover {
+        background-color: var(--bg-hover);
+      }
+      .repo-icon {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+      .repo-icon.public {
+        color: var(--accent-green);
+      }
+      .show-more-link {
+        color: var(--text-link);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+      }
+      .show-more-link:hover {
+        color: var(--text-link-hover);
+      }
+
+      .teams-section .section-header {
+        margin-bottom: 12px;
+      }
+      .team-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        color: var(--text-primary);
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .team-item:hover {
+        background-color: var(--bg-hover);
+      }
+      .team-avatar {
+        width: 20px;
+        height: 20px;
+        background-color: var(--bg-tertiary);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      /**
+      .main-content {
+          
+          background-color: lime;*var(--bg-primary);*
+        width: 100vw; height: 100vh;
+          overflow: hidden;
+      }
+      .content-frame {
+          width: 100%;
+          height: 100%;
+          border: none;
+          background-color: pink; *var(--bg-primary);*
+        border: 13px solid blue;
+        position: relative;
+        z-index: 999999999999999999;
+      }
+**/
+      .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+      .changes-section {
+        margin-bottom: 32px;
+      }
+      .change-item {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-secondary);
+      }
+      .change-item:last-child {
+        border-bottom: none;
+      }
+      .change-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .change-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+      .change-info {
+        font-size: 14px;
+      }
+      .change-user {
+        color: var(--text-link);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .change-user:hover {
+        color: var(--text-link-hover);
+        text-decoration: underline;
+      }
+      .change-action {
+        color: var(--text-secondary);
+      }
+      .change-branch {
+        color: var(--text-link);
+        text-decoration: none;
+        font-family: monospace;
+        font-size: 12px;
+        background-color: var(--bg-tertiary);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .change-branch:hover {
+        color: var(--text-link-hover);
+        text-decoration: underline;
+      }
+      .change-details {
+        margin-bottom: 8px;
+        padding-left: 28px;
+      }
+
+      .repo-link {
+        color: var(--text-link);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .repo-link:hover {
+        color: var(--text-link-hover);
+        text-decoration: underline;
+      }
+
+      .change-time {
+        color: var(--text-tertiary);
+        font-size: 12px;
+        margin-left: 8px;
+      }
+
+      .commit-list {
+        padding-left: 28px;
+      }
+      .commit-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+      .commit-dot {
+        font-size: 6px;
+        color: var(--accent-blue);
+      }
+      .commit-message {
+        color: var(--text-secondary);
+      }
+
+      .pr-info {
+        padding-left: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .pr-icon {
+        color: var(--accent-green);
+        font-size: 14px;
+      }
+      .pr-title {
+        color: var(--text-link);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .pr-title:hover {
+        color: var(--text-link-hover);
+        text-decoration: underline;
+      }
+
+      .explore-section {
+        margin-bottom: 32px;
+      }
+      .explore-item {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-secondary);
+      }
+      .explore-item:last-child {
+        border-bottom: none;
+      }
+      .explore-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .explore-repo {
+        color: var(--text-link);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .explore-repo:hover {
+        color: var(--text-link-hover);
+        text-decoration: underline;
+      }
+
+      .star-btn {
+        background-color: var(--btn-bg);
+        border: 1px solid var(--btn-border);
+        color: var(--text-primary);
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+      }
+      .star-btn:hover {
+        background-color: var(--btn-hover);
+        border-color: var(--text-secondary);
+      }
+
+      .explore-description {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .explore-stats {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .lang-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .lang-dot.javascript {
+        background-color: #f1e05a;
+      }
+
+      .explore-more-link {
+        display: inline-block;
+        margin-top: 12px;
+        color: var(--text-link);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+      }
+      .explore-more-link:hover {
+        color: var(--text-link-hover);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .change-item,
+      .explore-item {
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      /* Hover Effects */
+      .nav-link,
+      .repo-item,
+      .team-item,
+      .nav-icon-btn,
+      .profile-status-btn,
+      .star-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-link::after,
+      .repo-item::after,
+      .team-item::after,
+      .nav-icon-btn::after,
+      .profile-status-btn::after,
+      .star-btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.4s ease,
+          height 0.4s ease;
+      }
+
+      .nav-link:active::after,
+      .repo-item:active::after,
+      .team-item:active::after,
+      .nav-icon-btn:active::after,
+      .profile-status-btn:active::after,
+      .star-btn:active::after {
+        width: 200px;
+        height: 200px;
+      }
+
+      .loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.6;
+      }
+      .loading::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid var(--text-tertiary);
+        border-top-color: var(--accent-blue);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .tooltip {
+        position: absolute;
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 1000;
+        box-shadow: 0 2px 4px var(--shadow);
+      }
+      .tooltip.show {
+        opacity: 1;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--accent-blue);
+        outline-offset: 2px;
+      }
+
+      ::selection {
+        background-color: var(--accent-blue);
+        color: white;
+      }
+
+      /* Other Styles */
+      nav {
+        z-index: 9 !important;
+      }
+      /**
+      iframe {
+        z-index: 1 !important;
+        border: 3px solid orange;
+      }
+**/
+      :root {
+        --sidebar-width: 296px;
+        --mini-sidebar-width: 60px;
+        --shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      .layout {
+        display: flex;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      #leftSidebar {
+        width: var(--sidebar-width);
+        flex-shrink: 0;
+        background-color: var(--bg-secondary);
+        border-right: 1px solid var(--border-secondary);
+        overflow-y: auto;
+        overflow-x: visible;
+        transition: transform 0.3s ease;
+        border-top-right-radius: 15px;
+        overflow: visible;
+      }
+
+      #rightSidebar {
+        width: var(--sidebar-width);
+        flex-shrink: 0;
+        background-color: var(--bg-secondary);
+        border-left: 1px solid var(--border-secondary);
+        overflow-y: auto;
+        overflow-x: visible;
+        transition: transform 0.3s ease;
+        border-top-left-radius: 15px;
+      }
+      /**
+              .main-content {
+                  overflow-x: hidden;
+                  overflow-y: scroll;
+                  flex-grow: 1;
+              }
+**/
+      #miniSidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: var(--mini-sidebar-width);
+        background-color: var(--bg-secondary);
+        border-right: 1px solid var(--border-secondary);
+        z-index: 8;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+        transform: translateX(0);
+        opacity: 1;
+
+        display: none !important;
+      }
+
+      #miniSidebar:not(.open) {
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 9;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+        backdrop-filter: blur(80px);
+      }
+
+      #overlay.active {
+        visibility: visible;
+        opacity: 0.65;
+        pointer-events: all;
+        z-index: 9;
+      }
+
+      .closeBtnsWrapper {
+        position: relative;
+        z-index: 20;
+      }
+
+      #closeCompletely,
+      #closeToMini {
+        position: absolute;
+        z-index: 20;
+        /* gap: 2rem; */
+        padding: 3px;
+        /* margin-bottom: 0.5rem; */
+        border-radius: 50%;
+        border: 1px solid var(--color-border-secondary);
+        background-color: var(--bg-main);
+        color: whitesmoke !important;
+        right: 1rem;
+        box-shadow: 2px 0 8px var(--shadow-md);
+      }
+
+      #closeCompletely {
+        position: absolute;
+        top: 0;
+        right: -2rem;
+        z-index: 20;
+      }
+
+      #closeToMini {
+        position: absolute;
+        bottom: 0;
+        right: -2rem;
+        z-index: 20;
+      }
+
+      @media (max-width: 768px) {
+        #leftSidebar,
+        #rightSidebar {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          width: var(--sidebar-width);
+          z-index: 15;
+          transform: translateX(-100%);
+          box-shadow: 2px 0 8px var(--shadow);
+        }
+
+        #rightSidebar {
+          right: 0;
+          left: auto;
+          transform: translateX(100%);
+        }
+
+        #leftSidebar.open {
+          transform: translateX(0);
+        }
+
+        #rightSidebar.open {
+          transform: translateX(0);
+        }
+        /**
+                  .main-content {
+                      width: 100vw; height: 100vh;
+                    border: 3px dashed crimson;
+                  }
+**/
+      }
+
+      #floatingSearch {
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 80vw;
+      }
+
+      .floatingSearch {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition:
+          opacity 0.55s ease-in-out,
+          visibility 0.95s ease-in-out;
+      }
+      .hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.55s ease-in-out,
+          visibility 0.95s ease-in-out;
+      }
+      #mainSearch {
+        background-color: #353d46;
+        border: 2px solid #3e4651;
+      }
+
+      .breadcrumb-dropdown {
+        z-index: 99999;
+      }
+
+      .main-content {
+        width: 100vw;
+        height: calc(100vh - 62px);
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+      }
+      #content-frame,
+      #testiFrame {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background-color: #dedede;
+      }
+
+      /* Backdrop */
+      .search-backdrop {
+        position: fixed;
+        inset: 0;
+        background: #010409cc;
+        backdrop-filter: blur(8px);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .search-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Search Modal */
+      .search-modal {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -20px);
+        width: 90%;
+        max-width: 640px;
+        background: #2d333b;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        box-shadow: 0 16px 70px #00000080;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .search-modal.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+      }
+
+      /* Search Input Container */
+      .search-input-container {
+        padding: 16px;
+        border-bottom: 1px solid #30363d;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .search-modal-icon {
+        width: 20px;
+        height: 20px;
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+
+      .search-input {
+        flex: 1;
+        background: transparent;
+        border: 1.5px solid transparent;
+        outline: none;
+        font-size: 16px;
+        color: #c9d1d9;
+        padding: 10px 16px;
+        background-color: #353d46 !important;
+        border: 1px solid #3e4651 !important;
+      }
+
+      .search-input:focus {
+        border: 1.5px solid var(--text-link);
+      }
+
+      .search-input::placeholder {
+        color: #8b949e;
+      }
+
+      /* Search Results */
+      .search-results {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 8px;
+      }
+
+      .search-results::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      .search-results::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .search-results::-webkit-scrollbar-thumb {
+        background: #30363d;
+        border-radius: 4px;
+      }
+
+      .search-results::-webkit-scrollbar-thumb:hover {
+        background: #373e47;
+      }
+
+      /* Result Group */
+      .result-group {
+        margin-bottom: 16px;
+      }
+
+      .result-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .result-group-title {
+        font-size: 11px;
+        font-weight: 600;
+        color: #8b949e;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 4px 12px;
+        margin-bottom: 4px;
+      }
+
+      /* Result Item */
+      .result-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .result-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, #58a6ff1a, transparent);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+
+      .result-item:hover {
+        background: #161b22;
+      }
+
+      .result-item:hover::before {
+        transform: translateX(100%);
+      }
+
+      .result-icon {
+        width: 36px;
+        height: 36px;
+        background: #373e47;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.35s ease;
+      }
+
+      .result-item:hover .result-icon {
+        background: #30363d;
+        transform: scale(1.05);
+      }
+
+      .result-icon svg {
+        width: 20px;
+        height: 20px;
+        opacity: 0.8;
+      }
+
+      .result-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .result-title {
+        font-size: 14px;
+        color: #c9d1d9;
+        margin-bottom: 2px;
+        font-weight: 500;
+      }
+
+      .result-description {
+        font-size: 12px;
+        color: #8b949e;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .result-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .result-tag {
+        font-size: 11px;
+        padding: 2px 8px;
+        background: #373e47;
+        border: 1px solid #30363d;
+        border-radius: 4px;
+        color: #8b949e;
+        transition: all 0.35s ease;
+      }
+
+      .result-item:hover .result-tag {
+        border-color: #484f58;
+        color: #c9d1d9;
+      }
+
+      /* Footer */
+      .search-footer {
+        padding: 12px 16px;
+        background-color: var(--bg-hover);
+        border-top: 1px solid #30363d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #8b949e;
+      }
+
+      .footer-hints {
+        display: flex;
+        gap: 16px;
+      }
+
+      .footer-hint {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .key-hint {
+        background: #1f2428;
+        border: 1px solid #30363d;
+        border-radius: 3px;
+        padding: 1px 4px;
+        font-size: 10px;
+        font-weight: 500;
+      }
+
+      /* Focus state for entire modal */
+      .search-modal.focused .search-input-container {
+        border-color: #58a6ff;
+        /* box-shadow: 0 0 0 1px #58a6ff; */
+      }
+
+      /* Animation for result items on load */
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .search-modal.active .result-item {
+        animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+      }
+
+      .search-modal.active .result-item:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .search-modal.active .result-item:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .search-modal.active .result-item:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .search-modal.active .result-item:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .search-modal.active .result-item:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+
+      /* Pulse animation for search icon */
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.6;
+        }
+      }
+
+      .search-modal.active .search-modal-icon {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      /**
+*
+*
+*
+*
+*
+
+N E W E S T
+   Styles
+
+*
+*
+*
+*
+*
+**/
+
+      .sidebar-title {
+        font-size: 0.75rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        color: #c9d1d9; /* GitHub Dark Dimmed muted */
+        padding: 0.5rem 0.75rem;
+
+        text-align: right;
+        opacity: 0.65;
+        transition: opacity 0.65s ease-in-out;
+      }
+
+      .sidebar-link {
+        display: block;
+        font-size: 0.875rem;
+        color: #8b949e;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        transition:
+          background 0.15s ease-in-out,
+          color 0.15s ease-in-out;
+      }
+
+      .sidebar-link:hover {
+        background-color: #30363d;
+        color: #ffffff;
+      }
+
+      .scrollspy-title {
+        font-size: 0.75rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        color: #6e7681;
+        padding: 0.5rem 0.75rem;
+
+        text-align: right;
+        opacity: 0.65;
+        transition: opacity 0.65s ease-in-out;
+      }
+      aside:hover .scrollspy-title,
+      aside:hover .sidebar-title {
+        opacity: 1;
+        transition: opacity 0.65s ease-in-out;
+      }
+
+      .scrollspy-link {
+        display: block;
+        font-size: 0.875rem;
+        color: #8b949e;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        transition:
+          background 0.15s ease-in-out,
+          color 0.15s ease-in-out;
+      }
+
+      .scrollspy-link:hover {
+        background-color: #30363d;
+        color: #ffffff;
+      }
+      #subPages,
+      #onThisPage {
+        position: relative;
+        width: 100%;
+        height: 15rem;
+      }
+      #subPages .sidebar-title,
+      #onThisPage .scrollspy-title {
+        position: absolute;
+        right: 0;
+      }
+
+      svg {
+        width: 2.5rem; /*60px */
+        height: 2.5rem; /* 60px */
+      }
+
+      path {
+        fill: var(--textMuted);
+        transition: all 0.45s ease-in-out;
+      }
+
+      svg:hover path {
+        fill: var(--textLinkHover);
+        transform: scale(1.05);
+        transition: all 0.45s ease-in-out;
+      }
+    </style>
+
+    <style>
+      #offline-banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #b00020;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+        font-weight: 600;
+        font-family: sans-serif;
+        z-index: 9999;
+        display: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      #offline-banner.active {
+        display: block;
+      }
+    </style>
+    <div id="offline-banner">You are currently offline. Network connection required.</div>
+    <script>
+      (function () {
+        const banner = document.getElementById("offline-banner");
+
+        function updateStatus() {
+          if (!navigator.onLine) {
+            banner.classList.add("active");
+          } else {
+            banner.classList.remove("active");
+          }
+        }
+
+        window.addEventListener("online", updateStatus);
+        window.addEventListener("offline", updateStatus);
+
+        // Initial check
+        updateStatus();
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div
+      id="loadingWrapper"
+      style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 9999; visibility: hidden"
+    >
+      <div id="loadingStrip" style="height: 100%; background: #f62218; transition: width 0.3s"></div>
+    </div>
+
+    <nav id="top-navbar" class="navbar-container">
+      <div class="navbar-content">
+        <!-- Left Section -->
+        <div class="navbar-left">
+          <button id="leftSidebarTrigger" class="menu-button">
+            <svg
+              fill="#000000"
+              width="800px"
+              height="800px"
+              viewBox="-5 -7 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMinYMin"
+              class="jam jam-menu"
+            >
+              <path
+                d="M1 0h5a1 1 0 1 1 0 2H1a1 1 0 1 1 0-2zm7 8h5a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2zM1 4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"
+              />
+            </svg>
+          </button>
+          <a href="#" class="logo-link">
+            <i class="fab fa-github logo-icon"></i>
+          </a>
+        </div>
+
+        <div class="search-trigger" onclick="openSearch()">
+          <div class="search-container">
+            <!-- Normal Search Input -->
+            <input
+              id="mainSearch"
+              type="text"
+              placeholder="Search..."
+              class="py-1.5 px-4 w-48 text-sm rounded-md text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#58a6ff]"
+            />
+          </div>
+        </div>
+
+        <!-- Search Backdrop -->
+        <div class="search-backdrop" onclick="closeSearch()"></div>
+
+        <!-- Search Modal -->
+        <div class="search-modal">
+          <div class="search-input-container">
+            <svg class="search-modal-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+            <input type="text" class="search-input" placeholder="Search . . ." autofocus />
+          </div>
+
+          <div class="search-results" id="searchResults"></div>
+
+          <div class="search-footer">
+            <div class="footer-hints">
+              <div class="footer-hint">
+                <span class="key-hint">↑↓</span>
+                <span>Navigate</span>
+              </div>
+              <div class="footer-hint">
+                <span class="key-hint">Enter</span>
+                <span>Select</span>
+              </div>
+              <div class="footer-hint">
+                <span class="key-hint">Esc</span>
+                <span>Close</span>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const searchConfig = {
+              minQueryLength: 2,
+              snippetPadding: 50,
+              highlightClass: "search-highlight",
+              searchEndpoint: null,
+              pages: [
+                { url: "https://dev.wuaze.com/home/index.html", title: "Home" },
+                { url: "https://dev.wuaze.com/snippets/index.html", title: "Snippets" },
+                { url: "https://dev.wuaze.com/tutorials/index.html", title: "Tutorials" },
+                { url: "https://dev.wuaze.com/colours/index.html", title: "Colours" },
+                { url: "https://dev.wuaze.com/pwa/index.html", title: "PWA Guide" },
+                { url: "https://dev.wuaze.com/pwa/manifest/index.html", title: "PWA Guide: Step 1" },
+                // Add all your site's pages here
+              ],
+            };
+
+            const searchElements = {
+              trigger: document.querySelector(".search-trigger"),
+              backdrop: document.querySelector(".search-backdrop"),
+              modal: document.querySelector(".search-modal"),
+              input: document.querySelector(".search-input"),
+              results: document.getElementById("searchResults"),
+              close: document.querySelector(".search-backdrop"), // Close when clicking backdrop
+            };
+
+            // Check if all required elements exist
+            const missingElements = Object.entries(searchElements)
+              .filter(([key, element]) => !element)
+              .map(([key]) => key);
+
+            if (missingElements.length > 0) {
+              console.error("Missing search elements:", missingElements);
+              return; // Exit if required elements are missing
+            }
+
+            // State
+            const searchState = {
+              index: null,
+              currentQuery: "",
+              currentResults: [],
+            };
+
+            // Initialize search system
+            function initSearch() {
+              console.log("Initializing search system...");
+
+              // Event listeners
+              searchElements.trigger.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log("Search trigger clicked");
+                openSearch();
+              });
+
+              searchElements.backdrop.addEventListener("click", (e) => {
+                // Only close if clicking the backdrop itself, not its children
+                if (e.target === searchElements.backdrop) {
+                  console.log("Backdrop clicked");
+                  closeSearch();
+                }
+              });
+
+              searchElements.input.addEventListener("input", handleSearchInput);
+
+              // Keyboard shortcuts
+              document.addEventListener("keydown", (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+                  e.preventDefault();
+                  console.log("Keyboard shortcut triggered");
+                  openSearch();
+                }
+                if (e.key === "Escape" && searchElements.modal.classList.contains("active")) {
+                  console.log("Escape key pressed");
+                  closeSearch();
+                }
+              });
+
+              // Build search index if client-side only
+              if (!searchConfig.searchEndpoint) {
+                buildClientSideIndex();
+              }
+
+              console.log("Search system initialized");
+            }
+
+            // Open search modal
+            function openSearch() {
+              console.log("Opening search modal");
+              searchElements.backdrop.classList.add("active");
+              searchElements.modal.classList.add("active");
+
+              // Small delay to ensure modal is visible before focusing
+              setTimeout(() => {
+                searchElements.input.focus();
+              }, 100);
+            }
+
+            // Close search modal
+            function closeSearch() {
+              console.log("Closing search modal");
+              searchElements.backdrop.classList.remove("active");
+              searchElements.modal.classList.remove("active");
+              searchElements.input.value = "";
+              searchElements.results.innerHTML = "";
+              searchState.currentQuery = "";
+            }
+
+            // Handle search input
+            function handleSearchInput(event) {
+              const query = event.target.value.trim().toLowerCase();
+              searchState.currentQuery = query;
+
+              console.log("Search query:", query);
+
+              if (query.length < searchConfig.minQueryLength) {
+                searchElements.results.innerHTML = "";
+                return;
+              }
+
+              if (searchConfig.searchEndpoint) {
+                performServerSearch(query);
+              } else {
+                performClientSearch(query);
+              }
+            }
+
+            // Client-side search implementation
+            function buildClientSideIndex() {
+              console.log("Building client-side search index...");
+
+              searchState.index = {
+                pages: {},
+                terms: {},
+              };
+
+              // Index current page
+              const pageData = getCurrentPageData();
+              searchState.index.pages[window.location.pathname] = pageData;
+              addToTermsIndex(window.location.pathname, pageData);
+
+              // Index configured pages (if you want to expand this later)
+              // This is where you could fetch and index other pages
+              console.log("Search index built:", searchState.index);
+            }
+
+            function getCurrentPageData() {
+              return {
+                title: document.title,
+                sections: extractSections(document),
+                url: window.location.pathname,
+              };
+            }
+
+            function extractSections(doc) {
+              const sections = [];
+              const sectionElements = doc.querySelectorAll(
+                "section, article, main, [data-search-section], h1, h2, h3, h4, h5, h6"
+              );
+
+              sectionElements.forEach((element, index) => {
+                const id = element.id || generateSectionId(element, index);
+                let title = "";
+                let text = "";
+
+                if (element.matches("h1, h2, h3, h4, h5, h6")) {
+                  title = element.textContent;
+                  // Get text from the next few elements after the heading
+                  let nextElement = element.nextElementSibling;
+                  let textContent = "";
+                  let count = 0;
+
+                  while (nextElement && count < 3 && !nextElement.matches("h1, h2, h3, h4, h5, h6")) {
+                    textContent += nextElement.textContent + " ";
+                    nextElement = nextElement.nextElementSibling;
+                    count++;
+                  }
+                  text = textContent;
+                } else {
+                  title = element.querySelector("h1, h2, h3, h4, h5, h6, [data-search-title]")?.textContent || "";
+                  text = element.textContent;
+                }
+
+                if (text.trim()) {
+                  sections.push({
+                    id,
+                    title: title.trim(),
+                    text: text.replace(/\s+/g, " ").trim(),
+                  });
+                }
+              });
+
+              return sections;
+            }
+
+            function generateSectionId(element, index) {
+              const title = element.textContent || "";
+              const baseId = title
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/[^a-z0-9-]/g, "")
+                .substring(0, 30);
+
+              return baseId || `section-${index}`;
+            }
+
+            function addToTermsIndex(url, pageData) {
+              pageData.sections.forEach((section) => {
+                const allText = (section.title + " " + section.text).toLowerCase();
+                const words = allText.split(/\s+/).filter((word) => word.length >= searchConfig.minQueryLength);
+
+                words.forEach((word) => {
+                  if (!searchState.index.terms[word]) {
+                    searchState.index.terms[word] = [];
+                  }
+
+                  if (
+                    !searchState.index.terms[word].some((entry) => entry.url === url && entry.sectionId === section.id)
+                  ) {
+                    searchState.index.terms[word].push({
+                      url,
+                      sectionId: section.id,
+                      title: section.title,
+                    });
+                  }
+                });
+              });
+            }
+
+            function performClientSearch(query) {
+              console.log("Performing client search for:", query);
+
+              if (!searchState.index) {
+                searchElements.results.innerHTML =
+                  '<div class="result-item"><div class="result-content"><div class="result-title">Search index not ready</div></div></div>';
+                return;
+              }
+
+              const results = [];
+
+              // Find matches in current page
+              const currentPage = searchState.index.pages[window.location.pathname];
+              if (currentPage) {
+                currentPage.sections.forEach((section) => {
+                  const searchText = (section.title + " " + section.text).toLowerCase();
+                  const position = searchText.indexOf(query);
+
+                  if (position >= 0) {
+                    const snippetStart = Math.max(0, position - searchConfig.snippetPadding);
+                    const snippetEnd = Math.min(
+                      searchText.length,
+                      position + query.length + searchConfig.snippetPadding
+                    );
+                    const snippet = searchText.substring(snippetStart, snippetEnd);
+
+                    results.push({
+                      url: window.location.pathname,
+                      sectionId: section.id,
+                      title: section.title || currentPage.title,
+                      pageTitle: currentPage.title,
+                      snippet,
+                      query,
+                    });
+                  }
+                });
+              }
+
+              console.log("Search results:", results);
+              displaySearchResults(results);
+            }
+
+            function displaySearchResults(results) {
+              searchElements.results.innerHTML = "";
+
+              if (!results.length) {
+                searchElements.results.innerHTML = `
+        <div class="result-item">
+          <div class="result-content">
+            <div class="result-title">No results found</div>
+            <div class="result-description">Try different keywords</div>
+          </div>
+        </div>
+      `;
+                return;
+              }
+
+              // Display results
+              results.forEach((result, index) => {
+                const highlightedSnippet = highlightQueryInText(result.snippet, result.query);
+                const resultElement = document.createElement("div");
+                resultElement.className = "result-item";
+                resultElement.innerHTML = `
+        <div class="result-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+        </div>
+        <div class="result-content">
+          <div class="result-title">${escapeHtml(result.title)}</div>
+          <div class="result-description">...${highlightedSnippet}...</div>
+        </div>
+        <div class="result-meta">
+          <div class="result-tag">${index + 1}</div>
+        </div>
+      `;
+
+                resultElement.addEventListener("click", () => {
+                  navigateToSearchResult(result);
+                });
+
+                searchElements.results.appendChild(resultElement);
+              });
+            }
+
+            function highlightQueryInText(text, query) {
+              const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+              return escapeHtml(text).replace(
+                regex,
+                (match) => `<span class="${searchConfig.highlightClass}">${match}</span>`
+              );
+            }
+
+            function escapeHtml(text) {
+              const div = document.createElement("div");
+              div.textContent = text;
+              return div.innerHTML;
+            }
+
+            function navigateToSearchResult(result) {
+              console.log("Navigating to result:", result);
+              closeSearch();
+
+              if (result.url === window.location.pathname) {
+                // Scroll to section on current page
+                const section = document.getElementById(result.sectionId);
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth", block: "start" });
+                  // Highlight the section briefly
+                  section.style.backgroundColor = "rgba(255, 255, 0, 0.2)";
+                  setTimeout(() => {
+                    section.style.backgroundColor = "";
+                  }, 2000);
+                }
+              } else {
+                // Navigate to other page with hash
+                window.location.href = result.url + "#" + result.sectionId;
+              }
+            }
+
+            // Initialize the search system
+            try {
+              initSearch();
+            } catch (error) {
+              console.error("Error initializing search:", error);
+            }
+          });
+        </script>
+
+        <!-- Right Section -->
+        <div class="navbar-right">
+          <button class="nav-icon-btn" id="rightSidebarTrigger">
+            <!--License: MIT. Made by Iconsax: https://github.com/lusaxweb/iconsax-->
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2 7.81125V16.1913C2 17.6813 2.36 18.9212 3.05 19.8713C3.34 20.2913 3.71 20.6612 4.13 20.9513C4.95 21.5513 5.99 21.9012 7.22 21.9812V2.03125C3.94 2.24125 2 4.37125 2 7.81125Z"
+                fill="#292D32"
+              />
+              <path
+                d="M20.9507 4.13C20.6607 3.71 20.2907 3.34 19.8707 3.05C18.9207 2.36 17.6807 2 16.1907 2H8.7207V22H16.1907C19.8307 22 22.0007 19.83 22.0007 16.19V7.81C22.0007 6.32 21.6407 5.08 20.9507 4.13ZM15.5007 14.03C15.7907 14.32 15.7907 14.8 15.5007 15.09C15.3507 15.24 15.1607 15.31 14.9707 15.31C14.7807 15.31 14.5907 15.24 14.4407 15.09L11.8807 12.53C11.5907 12.24 11.5907 11.76 11.8807 11.47L14.4407 8.91C14.7307 8.62 15.2107 8.62 15.5007 8.91C15.7907 9.2 15.7907 9.68 15.5007 9.97L13.4807 12L15.5007 14.03Z"
+                fill="#292D32"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black"></div>
+
+    <!-- Mini Sidebar Container -->
+    <div
+      id="miniSidebar"
+      class="fixed left-0 top-0 h-screen w-16 bg-gray-900 border-r border-gray-800 flex flex-col items-center justify-center space-y-6"
+    >
+      <!-- Example Icon (use your preferred icon system, like Phosphor, Heroicons, or SVGs) -->
+      <button
+        class="leftTrigger sidebar-icon text-gray-400 hover:text-white transition-colors duration-200 text-xl"
+        aria-label="Home"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 12l2-2m0 0l7-7 7 7m-9 14V9.41M5 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3"
+          />
+        </svg>
+      </button>
+
+      <button
+        class="sidebar-icon text-gray-400 hover:text-white transition-colors duration-200 text-xl"
+        aria-label="Search"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+          />
+        </svg>
+      </button>
+
+      <button
+        class="sidebar-icon text-gray-400 hover:text-white transition-colors duration-200 text-xl"
+        aria-label="Library"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <!-- Add more icons as needed -->
+    </div>
+    <!-- Left Sidebar -->
+    <aside id="leftSidebar" class="sidebar left-sidebar">
+      <div class="sidebar-content" style="overflow-y: scroll">
+        <style>
+          #closeIconsWrap {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            z-index: 9999;
+            height: 100px;
+            width: 100%;
+            overflow: visible;
+
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition:
+              opacity 0.65s ease-in-out,
+              visibility 0.45s ease-in-out;
+          }
+          #closeIconsWrap.active {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transition:
+              opacity 0.65s ease-in-out,
+              visibility 0.45s ease-in-out;
+          }
+          .closeIcons {
+            fill: var(--border-main);
+            transition: all 0.45s ease-in-out;
+            transform: rotate(90deg);
+            width: 28px;
+            height: 28px;
+            transition: all 0.45s ease-in-out;
+          }
+          .closeIcons:hover {
+            fill: var(--border-secondary);
+            width: 35px;
+            height: 35px;
+            transition: all 0.45s ease-in-out;
+          }
+        </style>
+        <div id="closeIconsWrap">
+          <!-- Close to Mini -->
+          <svg
+            id="closeCompletely"
+            title="Close both"
+            class="firstClose icon global large closeIcons"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.75 6.75h-3a3 3 0 0 0-3 3v7.5a3 3 0 0 0 3 3h7.5a3 3 0 0 0 3-3v-7.5a3 3 0 0 0-3-3h-3V1.5a.75.75 0 0 0-1.5 0v5.25Zm0 0h1.5v5.69l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 1 1 1.06-1.06l1.72 1.72V6.75Z"
+              clip-rule="evenodd"
+            />
+            <path
+              d="M7.151 21.75a2.999 2.999 0 0 0 2.599 1.5h7.5a3 3 0 0 0 3-3v-7.5c0-1.11-.603-2.08-1.5-2.599v7.099a4.5 4.5 0 0 1-4.5 4.5H7.151Z"
+            />
+          </svg>
+
+          <!-- Close Completely -->
+          <svg
+            id="closeToMini"
+            title="Keep mini open"
+            class="secondClose icon global large closeIcons"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+          >
+            <path
+              d="M12 1.5a.75.75 0 0 1 .75.75V7.5h-1.5V2.25A.75.75 0 0 1 12 1.5ZM11.25 7.5v5.69l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V7.5h3.75a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h3.75Z"
+            />
+          </svg>
+        </div>
+
+        <!-- User Profile Section -->
+        <div class="profile-section">
+          <img src="https://dev.wuaze.com/banner.png" alt="Profile" class="profile-avatar" />
+          <div class="profile-info">
+            <h3 class="profile-name">GitCodr</h3>
+            <span class="profile-username">All things code.</span>
+          </div>
+          <button class="profile-status-btn">
+            <i class="far fa-smile"></i>
+            <span>Set status</span>
+          </button>
+        </div>
+        <style>
+          .white {
+            fill: rgba(245, 245, 245, 0.25);
+          }
+        </style>
+        <!-- Navigation Links -->
+
+        <!-- Nav -->
+        <nav id="sidebar-nav" class="relative space-y-8 pt-5 pb-10 sm:pt-7 px-4 sm:px-8 -my-8 lg:my-0">
+          <!-- List -->
+          <ul id="navLinks" class="space-y-3">
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./routes/intro.html"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300 font-semibold text-blue-600! dark:text-blue-500!"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-blue-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                  </svg>
+                </div>
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./routes/home.html"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-green-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+                    />
+                    <path d="m3.3 7 8.7 5 8.7-5" />
+                    <path d="M12 22V12" />
+                  </svg>
+                </div>
+                Getting Started
+                <span class="text-xs text-green-500 relative">
+                  <span class="flex absolute top-[5px] size-1.5">
+                    <span
+                      class="animate-ping absolute inline-flex size-full rounded-full bg-green-400 opacity-75 dark:bg-green-600"
+                    ></span>
+                    <span class="relative inline-flex rounded-full size-1.5 bg-green-500"></span>
+                  </span>
+                  <span class="ps-2.5">NEW</span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./routes/manifest.html"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-cyan-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="18" height="7" x="3" y="3" rx="1" />
+                    <rect width="9" height="7" x="3" y="14" rx="1" />
+                    <rect width="5" height="7" x="16" y="14" rx="1" />
+                  </svg>
+                </div>
+                Site Manifest
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./tutorials/"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-indigo-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                    <line x1="3" x2="21" y1="9" y2="9" />
+                    <line x1="9" x2="9" y1="21" y2="9" />
+                  </svg>
+                </div>
+                Tutorials
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="/routes/manifest.html"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-pink-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <path
+                      d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"
+                    />
+                  </svg>
+                </div>
+                Progressive Web Apps
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./routes/pwa/sw/"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-pink-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <path
+                      d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"
+                    />
+                  </svg>
+                </div>
+                Resources
+              </a>
+            </li>
+
+            <li>
+              <a
+                data-dynamic="true"
+                data-url="./svgLibrary/"
+                class="group flex items-center gap-x-2 text-sm font-semibold text-gray-300 hover:text-blue-600 focus:outline-hidden focus:text-blue-600 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
+                href=""
+              >
+                <div
+                  class="p-1.5 rounded-lg shadow-2xs group-hover:shadow-xs dark:border-neutral-800 dark:group-hover:border-neutral-700"
+                >
+                  <svg
+                    class="shrink-0 size-4 text-violet-600"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.3333 32C14.2773 32 16.6667 29.6106 16.6667 26.6666V21.3333H11.3333C8.38933 21.3333 6 23.7226 6 26.6666C6 29.6106 8.38933 32 11.3333 32Z"
+                      fill="#0ACF83"
+                    />
+                    <path
+                      d="M6 16C6 13.056 8.38933 10.6667 11.3333 10.6667H16.6667V21.3334H11.3333C8.38933 21.3334 6 18.944 6 16Z"
+                      fill="#A259FF"
+                    />
+                    <path
+                      d="M6 5.33333C6 2.38933 8.38933 0 11.3333 0H16.6667V10.6667H11.3333C8.38933 10.6667 6 8.27733 6 5.33333Z"
+                      fill="#F24E1E"
+                    />
+                    <path
+                      d="M16.6667 0H22C24.944 0 27.3334 2.38933 27.3334 5.33333C27.3334 8.27733 24.944 10.6667 22 10.6667H16.6667V0Z"
+                      fill="#FF7262"
+                    />
+                    <path
+                      d="M27.3334 16C27.3334 18.944 24.944 21.3334 22 21.3334C19.056 21.3334 16.6667 18.944 16.6667 16C16.6667 13.056 19.056 10.6667 22 10.6667C24.944 10.6667 27.3334 13.056 27.3334 16Z"
+                      fill="#1ABCFE"
+                    />
+                  </svg>
+                </div>
+                SVGs
+              </a>
+            </li>
+          </ul>
+          <!-- End List -->
+        </nav>
+
+        <div id="pwaNav" style="height: 50%; overflow-y: scroll">
+          <div id="pwa-guide-nav" class="guide-container hidden">
+            <div class="progress-box">
+              <div class="progress-labels">
+                <span class="progress-text">Guide Progress</span>
+                <span class="progress-percent" id="progress-percent">0%</span>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="guide-section">
+              <h3 class="guide-section-title">PWA Fundamentals</h3>
+              <div class="guide-links">
+                <a
+                  href="/pwa/docs/introduction/"
+                  data-url="/pwa/docs/introduction/"
+                  class="nav-item guide-link"
+                  data-progress="5"
+                >
+                  <span class="link-text">Introduction to PWAs</span>
+                </a>
+                <a
+                  href="/pwa/docs/manifest/"
+                  data-url="/pwa/docs/manifest/"
+                  class="nav-item guide-link"
+                  data-progress="15"
+                >
+                  <span class="link-text">Web App Manifest</span>
+                </a>
+                <a
+                  href="/pwa/docs/service-workers/"
+                  data-url="/pwa/docs/service-workers/"
+                  class="nav-item guide-link"
+                  data-progress="25"
+                >
+                  <span class="link-text">Service Workers</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="guide-section">
+              <h3 class="guide-section-title">Advanced Topics</h3>
+              <div class="guide-links">
+                <a href="/pwa/docs/caching/" class="guide-link" data-progress="40">
+                  <span class="link-text">Caching Strategies</span>
+                </a>
+                <a href="/pwa/docs/offline/" class="guide-link" data-progress="55">
+                  <span class="link-text">Offline Experience</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Sidebar -->
+    <aside id="rightSidebar" class="sidebar right-sidebar">
+      <div class="sidebar-content">
+        <div class="scrollspy-header">On this page</div>
+        <div id="rightSidebarScrollspy" class="scrollspy-list">
+          <!-- JavaScript injects buttons here dynamically -->
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-layout">
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- 
+        <iframe id="content-frame" src="./routes/home/" class="content-iframe"></iframe>
+  -->
+
+        <div
+          style="
+            border-radius: 10px;
+            width: 100%;
+            height: calc(100% - 6.25rem);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            pointer-events: auto;
+            overflow: hidden;
+            overflow-y: auto;
+          "
+          id="contentArea"
+        ></div>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        const Utils = {
+          debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+              clearTimeout(timeout);
+              timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+          },
+          throttle(func, limit) {
+            let inThrottle;
+            return function (...args) {
+              if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => (inThrottle = false), limit);
+              }
+            };
+          },
+          formatNumber(num) {
+            return num >= 1000 ? (num / 1000).toFixed(1) + "k" : num.toString();
+          },
+          escapeHtml(str) {
+            if (!str) return "";
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+          },
+          capitalizeWords(str) {
+            return str.replace(/\b\w/g, (l) => l.toUpperCase());
+          },
+          resolveUrl(relative, base) {
+            return new URL(relative, base).href;
+          },
+        };
+
+        class ScrollspyManager {
+          constructor() {
+            this.contentArea = document.getElementById("contentArea");
+            this.scrollspyList = document.getElementById("rightSidebarScrollspy");
+            this.sections = [];
+            this.activeId = null;
+            this.init();
+          }
+
+          init() {
+            if (!this.scrollspyList) {
+              console.warn("Scrollspy container not found");
+              return;
+            }
+            this.showPlaceholder();
+            window.addEventListener("message", this.handleMessage.bind(this));
+          }
+
+          handleMessage(event) {
+            if (event.origin !== location.origin) return;
+            if (!event.data || typeof event.data !== "object") return;
+
+            const { type, sections, sectionId } = event.data;
+
+            switch (type) {
+              case "pageSections":
+                this.sections = sections || [];
+                this.renderSections(this.sections);
+                break;
+              case "sectionInView":
+                if (sectionId) {
+                  this.setActiveItem(sectionId);
+                }
+                break;
+            }
+          }
+
+          showPlaceholder() {
+            this.scrollspyList.innerHTML = `<div class="scrollspy-placeholder">No page navigation available</div>`;
+          }
+
+          renderSections(sections) {
+            if (!sections || sections.length === 0) {
+              this.showPlaceholder();
+              return;
+            }
+
+            const ul = document.createElement("ul");
+            ul.className = "scrollspy-list";
+            ul.setAttribute("role", "list");
+
+            sections.forEach(({ id, title }) => {
+              const li = document.createElement("li");
+              li.className = "scrollspy-item";
+              li.setAttribute("role", "listitem");
+
+              const btn = document.createElement("button");
+              btn.textContent = title;
+              btn.dataset.id = id;
+              btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
+
+              btn.addEventListener("click", () => {
+                window.postMessage(
+                  {
+                    type: "scrollToSection",
+                    sectionId: id,
+                  },
+                  location.origin
+                );
+              });
+
+              li.appendChild(btn);
+              ul.appendChild(li);
+            });
+
+            this.scrollspyList.innerHTML = "";
+            this.scrollspyList.appendChild(ul);
+          }
+
+          setActiveItem(id) {
+            if (id === this.activeId) return;
+            this.activeId = id;
+
+            const items = this.scrollspyList.querySelectorAll(".scrollspy-item button");
+            items.forEach((btn) => {
+              const isActive = btn.dataset.id === id;
+              btn.classList.toggle("active", isActive);
+              btn.setAttribute("aria-current", isActive ? "location" : "false");
+            });
+          }
+
+          refresh() {
+            window.postMessage(
+              {
+                type: "requestSections",
+              },
+              location.origin
+            );
+          }
+        }
+
+        class AssetLoader {
+          constructor() {
+            this.loadedStylesheets = new Set();
+            this.loadedScripts = new Set();
+            this.pendingScripts = new Map();
+          }
+
+          injectLinkedStylesheetIntoShadow(href, shadowRoot) {
+            const normalized = this.normalizeUrl(href);
+            if (this.loadedStylesheets.has(normalized)) {
+              return Promise.resolve();
+            }
+            this.loadedStylesheets.add(normalized);
+
+            return new Promise((resolve, reject) => {
+              const link = document.createElement("link");
+              link.rel = "stylesheet";
+              link.href = normalized;
+              link.setAttribute("data-page-asset", "true");
+              link.onload = () => resolve();
+              link.onerror = () => {
+                console.warn("Failed to load stylesheet:", normalized);
+                resolve();
+              };
+              shadowRoot.appendChild(link);
+            });
+          }
+
+          injectExternalScript(src) {
+            const normalized = this.normalizeUrl(src);
+            if (this.loadedScripts.has(normalized)) {
+              return Promise.resolve();
+            }
+            if (this.pendingScripts.has(normalized)) {
+              return this.pendingScripts.get(normalized);
+            }
+            const promise = new Promise((resolve, reject) => {
+              const script = document.createElement("script");
+              script.src = normalized;
+              script.setAttribute("data-page-asset", "true");
+              script.onload = () => {
+                this.loadedScripts.add(normalized);
+                this.pendingScripts.delete(normalized);
+                resolve();
+              };
+              script.onerror = () => {
+                console.warn("Failed to load script:", normalized);
+                this.pendingScripts.delete(normalized);
+                resolve();
+              };
+              document.body.appendChild(script);
+            });
+            this.pendingScripts.set(normalized, promise);
+            return promise;
+          }
+
+          executeInlineScript(code) {
+            return new Promise((resolve) => {
+              try {
+                const script = document.createElement("script");
+                script.setAttribute("data-page-asset", "true");
+                script.textContent = code;
+                document.body.appendChild(script);
+              } catch (err) {
+                console.error("Inline script error:", err);
+              }
+              resolve();
+            });
+          }
+
+          normalizeUrl(url) {
+            try {
+              return new URL(url, window.location.href).href;
+            } catch (e) {
+              return url;
+            }
+          }
+
+          async processContent(shadowRoot, pageUrl) {
+            const linkedStylesheets = shadowRoot.querySelectorAll('link[rel="stylesheet"]');
+            const stylePromises = [];
+
+            linkedStylesheets.forEach((link) => {
+              const href = link.getAttribute("href");
+              if (href) {
+                const resolved = this.resolveRelative(href, pageUrl);
+                stylePromises.push(this.injectLinkedStylesheetIntoShadow(resolved, shadowRoot));
+              }
+              link.remove();
+            });
+
+            const inlineStyles = shadowRoot.querySelectorAll("style");
+            inlineStyles.forEach((style) => {
+              const newStyle = document.createElement("style");
+              newStyle.setAttribute("data-page-asset", "true");
+              Array.from(style.attributes).forEach((attr) => {
+                newStyle.setAttribute(attr.name, attr.value);
+              });
+              newStyle.textContent = style.textContent;
+              shadowRoot.appendChild(newStyle);
+              style.remove();
+            });
+
+            await Promise.all(stylePromises);
+
+            const scripts = Array.from(shadowRoot.querySelectorAll("script"));
+            const externalScripts = [];
+            const inlineScripts = [];
+
+            scripts.forEach((script) => {
+              if (script.src) {
+                const resolved = this.resolveRelative(script.src, pageUrl);
+                externalScripts.push(resolved);
+              } else if (script.textContent.trim()) {
+                inlineScripts.push(script.textContent);
+              }
+              script.remove();
+            });
+
+            for (const src of externalScripts) {
+              await this.injectExternalScript(src);
+            }
+
+            for (const code of inlineScripts) {
+              await this.executeInlineScript(code);
+            }
+          }
+
+          resolveRelative(url, pageUrl) {
+            if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("//")) {
+              return url;
+            }
+            try {
+              return new URL(url, pageUrl).href;
+            } catch (e) {
+              return url;
+            }
+          }
+
+          hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+              const char = str.charCodeAt(i);
+              hash = (hash << 5) - hash + char;
+              hash |= 0;
+            }
+            return "h" + Math.abs(hash).toString(36);
+          }
+        }
+
+        class AppRouter {
+          constructor() {
+            this.elements = this.cacheElements();
+            this.state = this.initialState();
+            this.baseUrl = window.location.origin;
+            this.assetLoader = new AssetLoader();
+            this.shadowRoots = new Map();
+            this.init();
+          }
+
+          cacheElements() {
+            return {
+              leftSidebar: document.getElementById("leftSidebar"),
+              rightSidebar: document.getElementById("rightSidebar"),
+              overlay: document.getElementById("overlay"),
+              mainArea: document.querySelector(".main-layout"),
+              leftSidebarTrigger: document.getElementById("leftSidebarTrigger"),
+              rightSidebarTrigger: document.getElementById("rightSidebarTrigger"),
+              closeCompletely: document.getElementById("closeCompletely"),
+              closeToMini: document.getElementById("closeToMini"),
+              closeIcons: document.getElementById("closeIconsWrap"),
+              loadingOverlay: document.getElementById("loading-overlay"),
+              loadingStrip: document.getElementById("loadingStrip"),
+              loadingWrapper: document.getElementById("loadingWrapper"),
+              pwaGuideLink: document.querySelector('[data-guide="pwa"]'),
+              pwaNav: document.getElementById("pwaNav"),
+              pwaGuideNav: document.getElementById("pwa-guide-nav"),
+              contentArea: document.getElementById("contentArea"),
+              searchInput: document.querySelector(".search-input"),
+              searchWrapper: document.querySelector(".search-wrapper"),
+              repoSearch: document.querySelector(".repo-search"),
+              repoItems: document.querySelectorAll(".repo-item"),
+              navLinks: document.querySelectorAll(".nav-link"),
+              starBtns: document.querySelectorAll(".star-btn"),
+              profileStatusBtn: document.querySelector(".profile-status-btn"),
+              notificationBtn: document.querySelector(".notification-btn"),
+              createBtn: document.querySelectorAll(".nav-icon-btn")[0],
+              userMenuBtn: (() => {
+                const btns = document.querySelectorAll(".nav-icon-btn");
+                return btns[btns.length - 1];
+              })(),
+              breadcrumb: document.querySelector(".breadcrumb"),
+              sidebarNav: document.getElementById("sidebar-nav"),
+              navLinksContainer: document.getElementById("navLinks"),
+            };
+          }
+
+          initialState() {
+            return {
+              isLeftSidebarOpen: false,
+              isRightSidebarOpen: false,
+              sidebarCollapsed: false,
+              currentPage: "home",
+              previousPage: sessionStorage.getItem("previousPage") || "",
+              notificationCount: 5,
+              searchHistory: JSON.parse(localStorage.getItem("searchHistory") || "[]"),
+              recentSearches: JSON.parse(localStorage.getItem("recentSearches") || "[]"),
+              activityFeed: [],
+              pwaProgress: parseInt(localStorage.getItem("pwaGuideProgress") || "0"),
+              repoSearchTimeout: null,
+              shouldBlockNavigation: false,
+              nextNavigationUrl: null,
+              searchSuggestions: [
+                "repository:awesome-project",
+                "user:johndoe",
+                "language:javascript",
+                "stars:>1000",
+                "created:>2024-01-01",
+              ],
+              currentDate: "2025-06-12",
+              currentUser: "ClockBlocked",
+            };
+          }
+
+          init() {
+            this.setupEventListeners();
+            this.setupKeyboardShortcuts();
+            this.setupTooltips();
+            this.initPWAProgressSystem();
+            this.animatePageLoad();
+            window.addEventListener("resize", Utils.debounce(this.adjustLayout.bind(this), 250));
+            this.initDynamicNAV();
+          }
+
+          createShadowContentArea() {
+            const contentArea = this.elements.contentArea;
+
+            let shadowRoot = this.shadowRoots.get(contentArea);
+
+            if (!shadowRoot) {
+              contentArea.innerHTML = "";
+
+              shadowRoot = contentArea.attachShadow({ mode: "open" });
+              this.shadowRoots.set(contentArea, shadowRoot);
+
+              const wrapper = document.createElement("div");
+              wrapper.className = "shadow-content-wrapper";
+              shadowRoot.appendChild(wrapper);
+            }
+
+            return shadowRoot;
+          }
+
+          clearShadowContent() {
+            const shadowRoot = this.shadowRoots.get(this.elements.contentArea);
+            if (shadowRoot) {
+              const wrapper = shadowRoot.querySelector(".shadow-content-wrapper");
+              if (wrapper) {
+                wrapper.innerHTML = "";
+              } else {
+                shadowRoot.innerHTML = "";
+              }
+            }
+          }
+
+          loadPage(url, element, addToHistory = true) {
+            this.startLoading();
+
+            document.querySelectorAll(".nav-link, .repo-item").forEach((el) => el.classList.remove("active"));
+            if (element && element.classList) {
+              element.classList.add("active");
+            }
+
+            fetch(url)
+              .then((response) => {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.text();
+              })
+              .then(async (html) => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+                const template = doc.querySelector("template");
+                if (!template) {
+                  throw new Error("No <template> found in child page");
+                }
+
+                const shadowRoot = this.createShadowContentArea();
+
+                this.clearShadowContent();
+
+                const content = template.content.cloneNode(true);
+                const wrapper = shadowRoot.querySelector(".shadow-content-wrapper") || shadowRoot;
+                wrapper.appendChild(content);
+
+                await this.assetLoader.processContent(shadowRoot, url);
+
+                this.reinitPreline();
+
+                this.state.currentPage = url;
+                this.updateBreadcrumb(url);
+                if (addToHistory) {
+                  this.addToHistoryState(url);
+                }
+
+                if (window.innerWidth <= 768) {
+                  this.closeLeftSidebar();
+                  this.closeRightSidebar();
+                }
+
+                this.completeLoading();
+              })
+              .catch((err) => {
+                console.error("Failed to load page:", err);
+                const shadowRoot = this.shadowRoots.get(this.elements.contentArea);
+                if (shadowRoot) {
+                  shadowRoot.innerHTML = `<div class="error">Failed to load page: ${err.message}</div>`;
+                }
+                this.completeLoading();
+              });
+          }
+
+          reinitPreline() {
+            if (typeof HSStaticMethods !== "undefined" && HSStaticMethods.autoInit) {
+              HSStaticMethods.autoInit();
+
+              const shadowRoot = this.shadowRoots.get(this.elements.contentArea);
+              if (shadowRoot) {
+                this.initShadowComponents(shadowRoot);
+              }
+            }
+          }
+
+          initShadowComponents(shadowRoot) {
+            try {
+              if (typeof window.HSAccordion !== "undefined") {
+                const accordions = shadowRoot.querySelectorAll(".hs-accordion");
+                accordions.forEach((accordion) => {
+                  new HSAccordion(accordion);
+                });
+              }
+
+              if (typeof window.HSTabs !== "undefined") {
+                const tabs = shadowRoot.querySelectorAll(".hs-tabs");
+                tabs.forEach((tab) => {
+                  new HSTabs(tab);
+                });
+              }
+
+              if (typeof window.HSTooltip !== "undefined") {
+                const tooltips = shadowRoot.querySelectorAll("[data-hs-tooltip]");
+                tooltips.forEach((tooltip) => {
+                  new HSTooltip(tooltip);
+                });
+              }
+
+              if (typeof window.HSStepper !== "undefined") {
+                const steppers = shadowRoot.querySelectorAll(".hs-stepper");
+                steppers.forEach((stepper) => {
+                  new HSStepper(stepper);
+                });
+              }
+
+              if (typeof window.HSCollapse !== "undefined") {
+                const collapses = shadowRoot.querySelectorAll(".hs-collapse");
+                collapses.forEach((collapse) => {
+                  new HSCollapse(collapse);
+                });
+              }
+            } catch (e) {
+              console.warn("Error initializing shadow DOM components:", e);
+            }
+          }
+
+          startLoading() {
+            if (!this.elements.loadingWrapper || !this.elements.loadingStrip) return;
+            this.elements.loadingWrapper.style.visibility = "visible";
+            this.elements.loadingStrip.style.width = "0%";
+
+            let progress = 0;
+            const interval = setInterval(() => {
+              progress += 10;
+              this.elements.loadingStrip.style.width = progress + "%";
+              if (progress >= 70) clearInterval(interval);
+            }, 50);
+          }
+
+          completeLoading() {
+            if (!this.elements.loadingWrapper || !this.elements.loadingStrip) return;
+            this.elements.loadingStrip.style.width = "100%";
+            setTimeout(() => {
+              this.elements.loadingWrapper.style.visibility = "hidden";
+              this.elements.loadingStrip.style.width = "0%";
+            }, 300);
+          }
+
+          toggleLeftSidebar() {
+            if (!this.elements.leftSidebar) return;
+            this.state.isLeftSidebarOpen = !this.state.isLeftSidebarOpen;
+            this.elements.leftSidebar.classList.toggle("open", this.state.isLeftSidebarOpen);
+
+            if (this.state.isLeftSidebarOpen) {
+              this.openOverlay();
+              if (this.elements.closeIcons) {
+                this.elements.closeIcons.classList.add("active");
+              }
+            } else {
+              this.closeOverlay();
+              if (this.elements.closeIcons) {
+                this.elements.closeIcons.classList.remove("active");
+              }
+            }
+          }
+
+          toggleRightSidebar() {
+            if (!this.elements.rightSidebar) return;
+            this.state.isRightSidebarOpen = !this.state.isRightSidebarOpen;
+            this.elements.rightSidebar.classList.toggle("open", this.state.isRightSidebarOpen);
+
+            if (this.state.isRightSidebarOpen) {
+              this.closeLeftSidebar();
+              this.openOverlay();
+            } else {
+              this.closeOverlay();
+            }
+          }
+
+          closeLeftSidebar() {
+            if (!this.elements.leftSidebar) return;
+            this.state.isLeftSidebarOpen = false;
+            this.elements.leftSidebar.classList.remove("open");
+            if (this.elements.closeIcons) {
+              this.elements.closeIcons.classList.remove("active");
+            }
+            this.closeOverlay();
+          }
+
+          closeRightSidebar() {
+            if (!this.elements.rightSidebar) return;
+            this.state.isRightSidebarOpen = false;
+            this.elements.rightSidebar.classList.remove("open");
+            this.closeOverlay();
+          }
+
+          openOverlay() {
+            if (this.elements.overlay) this.elements.overlay.classList.add("active");
+          }
+
+          closeOverlay() {
+            if (this.elements.overlay) this.elements.overlay.classList.remove("active");
+          }
+
+          toggleSidebar() {
+            this.state.sidebarCollapsed = !this.state.sidebarCollapsed;
+            if (window.innerWidth <= 768) {
+              document.getElementById("left-sidebar")?.classList.toggle("active");
+              document.body.classList.toggle("sidebar-open");
+            } else {
+              const leftSidebar = document.getElementById("left-sidebar");
+              if (leftSidebar) {
+                leftSidebar.style.width = this.state.sidebarCollapsed ? "60px" : "296px";
+              }
+              document.querySelectorAll(".sidebar-content").forEach((el) => el.classList.toggle("collapsed"));
+
+              if (this.state.sidebarCollapsed) {
+                document
+                  .querySelectorAll(".sidebar-nav span, .profile-info, .profile-status-btn span")
+                  .forEach((el) => (el.style.display = "none"));
+                document.querySelectorAll(".repo-search, .show-more-link").forEach((el) => (el.style.display = "none"));
+              } else {
+                setTimeout(() => {
+                  document
+                    .querySelectorAll(".sidebar-nav span, .profile-info, .profile-status-btn span")
+                    .forEach((el) => (el.style.display = ""));
+                  document.querySelectorAll(".repo-search, .show-more-link").forEach((el) => (el.style.display = ""));
+                }, 150);
+              }
+            }
+          }
+
+          setupEventListeners() {
+            if (this.elements.leftSidebarTrigger) {
+              this.elements.leftSidebarTrigger.addEventListener("click", this.toggleLeftSidebar.bind(this));
+            }
+            if (this.elements.rightSidebarTrigger) {
+              this.elements.rightSidebarTrigger.addEventListener("click", this.toggleRightSidebar.bind(this));
+            }
+            if (this.elements.closeCompletely) {
+              this.elements.closeCompletely.addEventListener("click", this.closeLeftSidebar.bind(this));
+            }
+            if (this.elements.closeToMini) {
+              this.elements.closeToMini.addEventListener("click", this.closeLeftSidebar.bind(this));
+            }
+            if (this.elements.overlay) {
+              this.elements.overlay.addEventListener("click", () => {
+                this.closeLeftSidebar();
+                this.closeRightSidebar();
+              });
+            }
+            if (this.elements.mainArea) {
+              this.elements.mainArea.addEventListener("click", () => {
+                if (window.innerWidth < 768) {
+                  this.closeLeftSidebar();
+                  this.closeRightSidebar();
+                }
+              });
+            }
+
+            document.querySelectorAll(".nav-link, .repo-item").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const page = el.dataset.page;
+                if (page) this.loadPage(page, el);
+              });
+            });
+
+            if (this.elements.searchInput) {
+              this.elements.searchInput.addEventListener("focus", () => {
+                this.elements.searchWrapper?.classList.add("focused");
+                this.showSearchSuggestions();
+              });
+              this.elements.searchInput.addEventListener("blur", () => {
+                this.elements.searchWrapper?.classList.remove("focused");
+                setTimeout(this.hideSearchSuggestions.bind(this), 200);
+              });
+              this.elements.searchInput.addEventListener(
+                "input",
+                Utils.debounce((e) => {
+                  this.performSearch(e.target.value);
+                }, 300)
+              );
+            }
+
+            if (this.elements.repoSearch) {
+              this.elements.repoSearch.addEventListener("input", (e) => {
+                const query = e.target.value.toLowerCase();
+                clearTimeout(this.state.repoSearchTimeout);
+                this.state.repoSearchTimeout = setTimeout(() => this.filterRepositories(query), 300);
+              });
+            }
+
+            this.elements.starBtns?.forEach((btn) => {
+              btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.toggleStar(btn);
+              });
+            });
+
+            if (this.elements.profileStatusBtn) {
+              this.elements.profileStatusBtn.addEventListener("click", this.showStatusModal.bind(this));
+            }
+            if (this.elements.notificationBtn) {
+              this.elements.notificationBtn.addEventListener("click", this.showNotifications.bind(this));
+            }
+            if (this.elements.createBtn) {
+              this.elements.createBtn.addEventListener("click", () => this.showCreateMenu(this.elements.createBtn));
+            }
+            if (this.elements.userMenuBtn) {
+              this.elements.userMenuBtn.addEventListener("click", () => this.showUserMenu(this.elements.userMenuBtn));
+            }
+
+            document.addEventListener("click", (e) => {
+              if (!e.target.closest(".dropdown-menu")) {
+                document.querySelectorAll(".dropdown-menu").forEach((el) => el.remove());
+              }
+            });
+          }
+
+          setupKeyboardShortcuts() {
+            document.addEventListener("keydown", (e) => {
+              if (e.target.matches("input:not(.search-input), textarea")) return;
+
+              if (e.key === "/" && !e.target.matches("input, textarea")) {
+                e.preventDefault();
+                this.elements.searchInput?.focus();
+              }
+
+              if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                  case "k":
+                    e.preventDefault();
+                    this.elements.searchInput?.focus();
+                    break;
+                  case "b":
+                    e.preventDefault();
+                    this.toggleSidebar();
+                    break;
+                  case "g":
+                    if (e.shiftKey) {
+                      e.preventDefault();
+                      this.loadPage("https://create.wuaze.com/routes/home.html", null);
+                    }
+                    break;
+                  case "p":
+                    if (e.shiftKey) {
+                      e.preventDefault();
+                      this.loadPage("projects.html", null);
+                    }
+                    break;
+                  case "i":
+                    if (e.shiftKey) {
+                      e.preventDefault();
+                      this.loadPage("issues.html", null);
+                    }
+                    break;
+                }
+              }
+
+              if (e.altKey) {
+                switch (e.key) {
+                  case "ArrowLeft":
+                    e.preventDefault();
+                    window.history.back();
+                    break;
+                  case "ArrowRight":
+                    e.preventDefault();
+                    window.history.forward();
+                    break;
+                }
+              }
+
+              if (e.key === "Escape") {
+                document.querySelectorAll(".dropdown-menu, .modal").forEach((el) => el.remove());
+                this.elements.searchInput?.blur();
+                if (this.state.isLeftSidebarOpen || this.state.isRightSidebarOpen) {
+                  this.closeLeftSidebar();
+                  this.closeRightSidebar();
+                }
+              }
+            });
+          }
+
+          updateBreadcrumb(page) {
+            const $breadcrumb = this.elements.breadcrumb;
+            if (!$breadcrumb) return;
+
+            $breadcrumb.innerHTML = "";
+
+            const segments = this.parsePagePath(page);
+            if (!segments || !segments.length) return;
+
+            const homeItem = document.createElement("a");
+            homeItem.className = "breadcrumb-item";
+            homeItem.href = "#";
+            homeItem.innerHTML = '<i class="fas fa-home"></i>';
+            homeItem.addEventListener("click", (e) => {
+              e.preventDefault();
+              this.loadPage("dashboard.html", null);
+            });
+            $breadcrumb.appendChild(homeItem);
+
+            let accumulatedPath = "";
+            segments.forEach((segment, index) => {
+              if (!segment) return;
+
+              accumulatedPath += segment.path || "";
+
+              if (index > 0) {
+                const separator = document.createElement("li");
+                separator.className = "breadcrumb-separator";
+                separator.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                $breadcrumb.appendChild(separator);
+              }
+
+              const item = document.createElement("span");
+              if (index === segments.length - 1) {
+                item.className = "breadcrumb-item active";
+                item.textContent = segment.name || "Untitled";
+                item.setAttribute("aria-current", "page");
+              } else {
+                const link = document.createElement("a");
+                link.href = accumulatedPath;
+                link.textContent = segment.name || "Untitled";
+                link.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  this.loadPage(accumulatedPath, null);
+                });
+                item.className = "breadcrumb-item";
+                item.appendChild(link);
+              }
+
+              $breadcrumb.appendChild(item);
+            });
+
+            this.adaptBreadcrumbForMobile();
+          }
+
+          parsePagePath(page) {
+            if (!page) return [];
+            const cleanPath = (page || "").replace(/.html$/, "").split(/[?#]/)[0];
+            const pageMap = {
+              dashboard: "Dashboard",
+              repositories: "Repositories",
+              projects: "Projects",
+              "pull-requests": "Pull Requests",
+              issues: "Issues",
+              settings: "Settings",
+            };
+
+            if (cleanPath.startsWith("repo/")) {
+              const parts = cleanPath.split("/").filter(Boolean);
+              if (parts.length >= 3) {
+                return [
+                  { name: "Repositories", path: "repositories.html" },
+                  { name: parts[1] || "Repo", path: `repo/${parts[1]}/` },
+                  { name: parts[2] || "Branch", path: cleanPath },
+                ];
+              }
+              return [
+                { name: "Repositories", path: "repositories.html" },
+                { name: parts[1] || "Repository", path: cleanPath },
+              ];
+            }
+
+            if (cleanPath.includes("/")) {
+              const parts = cleanPath.split("/").filter(Boolean);
+              return parts
+                .map((part, i) => ({
+                  name: pageMap[part] || Utils.capitalizeWords(part.replace(/-/g, " ")),
+                  path: parts.slice(0, i + 1).join("/") + ".html",
+                }))
+                .filter(Boolean);
+            }
+
+            return [
+              {
+                name: pageMap[cleanPath] || Utils.capitalizeWords(cleanPath.replace(/-/g, " ")),
+                path: page,
+              },
+            ];
+          }
+
+          adaptBreadcrumbForMobile() {
+            const $breadcrumb = this.elements.breadcrumb;
+            if (!$breadcrumb) return;
+
+            const $items = Array.from($breadcrumb.children).filter((el) => el.classList.contains("breadcrumb-item"));
+            const $separators = Array.from($breadcrumb.children).filter((el) =>
+              el.classList.contains("breadcrumb-separator")
+            );
+
+            if ($breadcrumb.offsetWidth < $breadcrumb.scrollWidth) {
+              $items.forEach((el, i) => {
+                if (i !== 0 && i !== $items.length - 1) el.classList.add("collapsed");
+              });
+              $separators.forEach((el, i) => {
+                if (i !== 0 && i !== $separators.length - 1) el.classList.add("collapsed");
+              });
+
+              if (!$breadcrumb.querySelector(".breadcrumb-collapsed-menu") && $items.length > 2) {
+                const $menu = document.createElement("div");
+                $menu.className = "breadcrumb-collapsed-menu";
+                $menu.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+
+                const $dropdown = document.createElement("div");
+                $dropdown.className = "breadcrumb-dropdown";
+                $items.forEach((el, i) => {
+                  if (i !== 0 && i !== $items.length - 1) {
+                    $dropdown.appendChild(el.cloneNode(true));
+                  }
+                });
+
+                if ($dropdown.children.length) {
+                  $menu.appendChild($dropdown);
+                  $breadcrumb.insertBefore($menu, $items[1]);
+
+                  $menu.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    $dropdown.style.display = $dropdown.style.display === "none" ? "block" : "none";
+                  });
+                  document.addEventListener("click", () => {
+                    $dropdown.style.display = "none";
+                  });
+                }
+              }
+            } else {
+              $items.forEach((el) => el.classList.remove("collapsed"));
+              $separators.forEach((el) => el.classList.remove("collapsed"));
+              $breadcrumb.querySelectorAll(".breadcrumb-collapsed-menu").forEach((el) => el.remove());
+            }
+          }
+
+          addToHistoryState(page) {
+            if (!page) return;
+            if (this.state.currentPage) {
+              sessionStorage.setItem("previousPage", this.state.currentPage);
+            }
+            this.state.currentPage = page;
+            this.state.previousPage = sessionStorage.getItem("previousPage") || "";
+
+            const title = this.getPageTitle(page);
+            const url = "?page=" + encodeURIComponent(page);
+            window.history.pushState({ page }, title, url);
+          }
+
+          getPageTitle(page) {
+            const pageName = page.split("/").pop().replace(".html", "");
+            const titleMap = {
+              dashboard: "Dashboard",
+              repositories: "Your Repositories",
+              projects: "Projects",
+              issues: "Issues",
+              pulls: "Pull Requests",
+              settings: "Settings",
+            };
+            return titleMap[pageName] || Utils.capitalizeWords(pageName.replace(/-/g, " "));
+          }
+
+          initDynamicNAV() {
+            if (!this.elements.sidebarNav || !this.elements.navLinksContainer) {
+              console.warn("Sidebar navigation container or navLinks element not found.");
+              return;
+            }
+
+            this.elements.navLinksContainer.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
+
+            this.elements.navLinksContainer.querySelectorAll('a[data-dynamic="true"]').forEach((navItem) => {
+              const linkPath = navItem.getAttribute("data-url");
+
+              navItem.addEventListener("click", (e) => {
+                e.preventDefault();
+                this.elements.navLinksContainer
+                  .querySelectorAll("a")
+                  .forEach((link) => link.classList.remove("active"));
+                navItem.classList.add("active");
+                this.loadPage(linkPath, null);
+              });
+            });
+
+            this.loadPage("https://create.wuaze.com/routes/home.html", null);
+          }
+
+          initPWAProgressSystem() {
+            if (!this.elements.pwaGuideLink) return;
+
+            this.elements.pwaGuideLink.addEventListener("click", (e) => {
+              e.preventDefault();
+              this.loadPage(this.elements.pwaGuideLink.href, null);
+              this.showPwaGuideNavigation();
+              setTimeout(this.toggleRightSidebar.bind(this), 350);
+            });
+
+            this.setupPwaNavInterception();
+            this.updateProgressDisplay();
+            this.setupGuideLinks();
+          }
+
+          setupPwaNavInterception() {
+            document.addEventListener("click", (e) => {
+              const link = e.target.closest("a[href]");
+              if (
+                link &&
+                !link.classList.contains("guide-link") &&
+                window.location.pathname.includes("/pwa/") &&
+                !localStorage.getItem("pwaProgressSaved")
+              ) {
+                e.preventDefault();
+                this.state.nextNavigationUrl = link.href;
+                this.state.shouldBlockNavigation = true;
+                this.showProgressModal();
+              }
+            });
+
+            window.addEventListener("popstate", (e) => {
+              if (window.location.pathname.includes("/pwa/") && !localStorage.getItem("pwaProgressSaved")) {
+                history.pushState(null, "", window.location.href);
+                this.state.shouldBlockNavigation = true;
+                this.showProgressModal();
+              }
+            });
+
+            document.addEventListener("submit", (e) => {
+              if (window.location.pathname.includes("/pwa/") && !localStorage.getItem("pwaProgressSaved")) {
+                e.preventDefault();
+                this.state.shouldBlockNavigation = true;
+                this.showProgressModal();
+              }
+            });
+          }
+
+          showProgressModal() {
+            const modal = document.createElement("div");
+            modal.className = "progress-modal";
+            modal.innerHTML = `
+        <div class="modal-content">
+          <h3 class="modal-title">Save Your Progress?</h3>
+          <p>You'll lose your current progress if you don't save before leaving.</p>
+          <div class="modal-buttons">
+            <button class="modal-btn modal-btn-save">Save Progress</button>
+            <button class="modal-btn modal-btn-discard">Discard</button>
+            <button class="modal-btn modal-btn-cancel">Cancel</button>
+          </div>
+        </div>
+      `;
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add("active"), 10);
+
+            modal.querySelector(".modal-btn-save").addEventListener("click", () => {
+              localStorage.setItem("pwaProgressSaved", "true");
+              this.hideModal(modal);
+              if (this.state.nextNavigationUrl) {
+                window.location.href = this.state.nextNavigationUrl;
+              }
+            });
+
+            modal.querySelector(".modal-btn-discard").addEventListener("click", () => {
+              localStorage.removeItem("pwaProgressSaved");
+              localStorage.removeItem("pwaGuideProgress");
+              this.hideModal(modal);
+              this.hidePwaGuideNavigation();
+              if (this.state.nextNavigationUrl) {
+                window.location.href = this.state.nextNavigationUrl;
+              }
+            });
+
+            modal.querySelector(".modal-btn-cancel").addEventListener("click", () => {
+              this.hideModal(modal);
+              this.state.shouldBlockNavigation = false;
+              this.state.nextNavigationUrl = null;
+            });
+          }
+
+          hideModal(modal) {
+            modal.classList.remove("active");
+            setTimeout(() => modal.remove(), 300);
+          }
+
+          showPwaGuideNavigation() {
+            if (!this.elements.pwaGuideNav || !this.elements.pwaNav) return;
+            this.elements.pwaGuideNav.classList.remove("hidden");
+            this.elements.pwaNav.innerHTML = "";
+            this.elements.pwaNav.appendChild(this.elements.pwaGuideNav);
+            this.setupGuideLinks();
+            this.setupGuideSearch();
+          }
+
+          hidePwaGuideNavigation() {
+            if (this.elements.pwaGuideNav) {
+              this.elements.pwaGuideNav.classList.add("hidden");
+            }
+          }
+
+          setupGuideLinks() {
+            document.querySelectorAll(".guide-link").forEach((link) => {
+              link.addEventListener("click", (e) => {
+                e.preventDefault();
+                document.querySelectorAll(".guide-link").forEach((l) => l.classList.remove("active"));
+                link.classList.add("active");
+
+                const href = link.getAttribute("href");
+                this.loadPage(href, null);
+
+                const totalGuides = document.querySelectorAll(".guide-link").length;
+                const completedGuides = document.querySelectorAll(".guide-link.completed").length + 1;
+                const progress = Math.floor((completedGuides / totalGuides) * 100);
+
+                localStorage.setItem("pwaGuideProgress", progress);
+                this.updateProgressDisplay();
+                link.classList.add("completed");
+              });
+            });
+          }
+
+          setupGuideSearch() {
+            const searchInput = document.getElementById("guide-search");
+            if (!searchInput) return;
+
+            searchInput.addEventListener("input", (e) => {
+              const term = e.target.value.toLowerCase();
+              document.querySelectorAll(".guide-link").forEach((link) => {
+                const text = link.textContent.toLowerCase();
+                link.style.display = text.includes(term) ? "flex" : "none";
+              });
+            });
+          }
+
+          updateProgressDisplay() {
+            const progress = parseInt(localStorage.getItem("pwaGuideProgress") || "0");
+            const bar = document.getElementById("progress-bar");
+            const label = document.getElementById("progress-percent");
+            if (bar && label) {
+              bar.style.width = progress + "%";
+              label.textContent = progress + "%";
+            }
+          }
+
+          showToast(message, type = "info", duration = 3000) {
+            const toast = document.createElement("div");
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.classList.add("show"), 100);
+            setTimeout(() => {
+              toast.classList.remove("show");
+              setTimeout(() => toast.remove(), 300);
+            }, duration);
+          }
+
+          setupTooltips() {
+            document.querySelectorAll("[title]").forEach((el) => {
+              const title = el.getAttribute("title");
+              el.removeAttribute("title");
+
+              el.addEventListener("mouseenter", () => {
+                const tooltip = document.createElement("div");
+                tooltip.className = "tooltip";
+                tooltip.textContent = title;
+                document.body.appendChild(tooltip);
+
+                const rect = el.getBoundingClientRect();
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + "px";
+                tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
+
+                setTimeout(() => tooltip.classList.add("show"), 10);
+
+                el.addEventListener(
+                  "mouseleave",
+                  () => {
+                    tooltip.classList.remove("show");
+                    setTimeout(() => tooltip.remove(), 200);
+                  },
+                  { once: true }
+                );
+              });
+            });
+          }
+
+          showSearchSuggestions() {}
+          hideSearchSuggestions() {}
+          performSearch(query) {}
+          filterRepositories(query) {}
+          toggleStar(btn) {}
+          showStatusModal() {}
+          showNotifications() {}
+          showCreateMenu(btn) {}
+          showUserMenu(btn) {}
+
+          adjustLayout() {
+            if (window.innerWidth <= 768) {
+              document.getElementById("left-sidebar")?.classList.remove("active");
+              this.state.sidebarCollapsed = false;
+            }
+            if (this.elements.breadcrumb) {
+              this.adaptBreadcrumbForMobile();
+            }
+          }
+
+          animatePageLoad() {
+            document.querySelectorAll(".sidebar, .main-content").forEach((el) => (el.style.opacity = "0"));
+            setTimeout(() => {
+              document.querySelectorAll(".sidebar").forEach((el) => (el.style.opacity = "1"));
+            }, 400);
+            setTimeout(() => {
+              document.querySelectorAll(".main-content").forEach((el) => (el.style.opacity = "1"));
+            }, 600);
+          }
+
+          destroy() {
+            this.shadowRoots.forEach((shadowRoot, element) => {
+            });
+            this.shadowRoots.clear();
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          window.AppRouter = new AppRouter();
+          window.AppScrollspy = new ScrollspyManager();
+        });
+      })();
+    </script>
+
+    <script id="debugger" src="https://cdn.jsdelivr.net/npm/eruda">
+      /**
+       *  E R U D A
+       */
+    </script>
+    <script>
+      eruda.init();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/preline@latest/dist/preline.js"></script>
+  </body>
+</html>
