@@ -2426,27 +2426,46 @@ N E W E S T
               return div.innerHTML;
             }
 
-            function navigateToSearchResult(result) {
-              console.log("Navigating to result:", result);
-              closeSearch();
+function navigateToSearchResult(result) {
+  console.log("Navigating to result:", result);
+  closeSearch();
 
-              if (result.url === window.location.pathname) {
-                // Scroll to section on current page
-                const section = document.getElementById(result.sectionId);
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth", block: "start" });
-                  // Highlight the section briefly
-                  section.style.backgroundColor = "rgba(255, 255, 0, 0.2)";
-                  setTimeout(() => {
-                    section.style.backgroundColor = "";
-                  }, 2000);
-                }
-              } else {
-                // Navigate to other page with hash
-                window.location.href = result.url + "#" + result.sectionId;
-              }
-            }
+  if (result.url === window.location.pathname) {
+    const section = document.getElementById(result.sectionId);
+    if (section) {
+      smoothScrollTo(section, 800);
+      section.style.backgroundColor = "rgba(255, 255, 0, 0.2)";
+      setTimeout(() => {
+        section.style.backgroundColor = "";
+      }, 2000);
+    }
+  } else {
+    window.location.href = result.url + "#" + result.sectionId;
+  }
+}
 
+function smoothScrollTo(element, duration = 600, offset = 0) {
+  if (!element) return;
+  const start = window.scrollY || document.documentElement.scrollTop;
+  const rect = element.getBoundingClientRect();
+  const end = rect.top + start + offset;
+  const change = end - start;
+  const startTime = performance.now();
+  const easeInOutCubic = t =>
+    t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const animateScroll = currentTime => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    window.scrollTo(0, start + change * ease);
+    if (progress < 1) {
+      window.requestAnimationFrame(animateScroll);
+    }
+  };
+  window.requestAnimationFrame(animateScroll);
+}
             // Initialize the search system
             try {
               initSearch();
