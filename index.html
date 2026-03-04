@@ -4282,6 +4282,24 @@ initDynamicNAV() {
       })();
     </script>
 
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('https://clockblocked.github.io/webApps/siteManifest/serviceWorker.js', { scope: '/' })
+      .then(registration => {
+        console.log('ServiceWorker registered with scope: ', registration.scope);
+        setInterval(() => registration.update(), 60 * 60 * 1000);
+      })
+      .catch(err => {
+        console.error('ServiceWorker registration failed:', err);
+      });
+  });
+}
+</script>
+
+
+    
     <script id="debugger" src="https://cdn.jsdelivr.net/npm/eruda">
       /**
        *  E R U D A
