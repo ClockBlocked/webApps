@@ -3045,178 +3045,170 @@ N E W E S T
           },
         };
 
-        class ScrollspyManager {
-          constructor() {
-            this.contentArea = document.getElementById("contentArea");
-            this.scrollspyList = document.getElementById("rightSidebarScrollspy");
-            this.sections = [];
-            this.activeId = null;
-            this.observer = null;
-            this.init();
-          }
+class ScrollspyManager {
+  constructor() {
+    this.contentArea = document.getElementById("contentArea");
+    this.scrollspyList = document.getElementById("rightSidebarScrollspy");
+    this.sections = [];
+    this.activeId = null;
+    this.observer = null;
+    this.init();
+  }
 
-          init() {
-            if (!this.scrollspyList) {
-              console.warn("Scrollspy container not found");
-              return;
-            }
-            this.showPlaceholder();
-            window.addEventListener("message", this.handleMessage.bind(this));
-          }
-
-          handleMessage(event) {
-            if (event.origin !== location.origin) return;
-            if (!event.data || typeof event.data !== "object") return;
-
-            const { type, sections, sectionId } = event.data;
-
-            switch (type) {
-              case "pageSections":
-                this.sections = sections || [];
-                this.renderSections(this.sections);
-                break;
-              case "sectionInView":
-                if (sectionId) {
-                  this.setActiveItem(sectionId);
-                }
-                break;
-            }
-          }
-
-          update(sections, contentArea) {
-            this.sections = sections || [];
-            if (contentArea) this.contentArea = contentArea;
-            this.activeId = null;
-            this.renderSections(this.sections);
-            this.setupIntersectionObserver();
-          }
-
-          setupIntersectionObserver() {
-            if (this.observer) {
-              this.observer.disconnect();
-              this.observer = null;
-            }
-            if (!this.contentArea) return;
-
-            this.observer = new IntersectionObserver(
-              (entries) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    this.setActiveItem(entry.target.id);
-                  }
-                });
-              },
-              {
-                root: this.contentArea,
-                threshold: 0.3,
-              }
-            );
-
-            this.contentArea.querySelectorAll("[data-type='scrollspy']").forEach((el) => {
-              this.observer.observe(el);
-            });
-          }
-
-          showPlaceholder() {
-            this.scrollspyList.innerHTML = `<div class="scrollspy-placeholder">No page navigation available</div>`;
-          }
-
-          renderSections(sections) {
-            if (!sections || sections.length === 0) {
-              this.showPlaceholder();
-              return;
-            }
-
-
-// Inside your class definition:
-smoothScrollTo(element, duration = 600, offset = 0) {
-  const start = window.scrollY || document.documentElement.scrollTop;
-  const rect = element.getBoundingClientRect();
-  const end = rect.top + start + offset;
-  const change = end - start;
-  const startTime = performance.now();
-
-  // Cubic ease-in-out
-  const easeInOutCubic = t => t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-  const animateScroll = currentTime => {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = easeInOutCubic(progress);
-
-    window.scrollTo(0, start + change * ease);
-
-    if (progress < 1) {
-      window.requestAnimationFrame(animateScroll);
+  init() {
+    if (!this.scrollspyList) {
+      console.warn("Scrollspy container not found");
+      return;
     }
-  };
+    this.showPlaceholder();
+    window.addEventListener("message", this.handleMessage.bind(this));
+  }
 
-  window.requestAnimationFrame(animateScroll);
-}
+  handleMessage(event) {
+    if (event.origin !== location.origin) return;
+    if (!event.data || typeof event.data !== "object") return;
 
+    const { type, sections, sectionId } = event.data;
+    switch (type) {
+      case "pageSections":
+        this.sections = sections || [];
+        this.renderSections(this.sections);
+        break;
+      case "sectionInView":
+        if (sectionId) this.setActiveItem(sectionId);
+        break;
+    }
+  }
 
-            const ul = document.createElement("ul");
-            ul.className = "scrollspy-list";
-            ul.setAttribute("role", "list");
+  update(sections, contentArea) {
+    this.sections = sections || [];
+    if (contentArea) this.contentArea = contentArea;
+    this.activeId = null;
+    this.renderSections(this.sections);
+    this.setupIntersectionObserver();
+  }
 
-            sections.forEach(({ id, title }) => {
-              const li = document.createElement("li");
-              li.className = "scrollspy-item";
-              li.setAttribute("role", "listitem");
-
-              const btn = document.createElement("button");
-              btn.textContent = title;
-              btn.dataset.id = id;
-              btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
-
-                btn.addEventListener("click", () => {
-                    if (window.AppRouter) {
-                    window.AppRouter.closeRightSidebar();
-                  } else {
-                    console.warn("AppRouter not yet initialized");
-                  }
-
-                
-                const contentArea = this.contentArea;
-                if (contentArea) {
-                  const target = contentArea.querySelector("#" + CSS.escape(id));
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }
-              });
-
-              li.appendChild(btn);
-              ul.appendChild(li);
-            });
-
-            this.scrollspyList.innerHTML = "";
-            this.scrollspyList.appendChild(ul);
+  setupIntersectionObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+    if (!this.contentArea) return;
+    this.observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.setActiveItem(entry.target.id);
           }
+        });
+      },
+      {
+        root: this.contentArea,
+        threshold: 0.3,
+      }
+    );
+    this.contentArea.querySelectorAll("[data-type='scrollspy']").forEach(el => {
+      this.observer.observe(el);
+    });
+  }
 
-          setActiveItem(id) {
-            if (id === this.activeId) return;
-            this.activeId = id;
+  showPlaceholder() {
+    this.scrollspyList.innerHTML = `<div class="scrollspy-placeholder">No page navigation available</div>`;
+  }
 
-            const items = this.scrollspyList.querySelectorAll(".scrollspy-item button");
-            items.forEach((btn) => {
-              const isActive = btn.dataset.id === id;
-              btn.classList.toggle("active", isActive);
-              btn.setAttribute("aria-current", isActive ? "location" : "false");
-            });
-          }
+  renderSections(sections) {
+    if (!sections || sections.length === 0) {
+      this.showPlaceholder();
+      return;
+    }
 
-          refresh() {
-            window.postMessage(
-              {
-                type: "requestSections",
-              },
-              location.origin
-            );
+    const ul = document.createElement("ul");
+    ul.className = "scrollspy-list";
+    ul.setAttribute("role", "list");
+
+    sections.forEach(({ id, title }) => {
+      const li = document.createElement("li");
+      li.className = "scrollspy-item";
+      li.setAttribute("role", "listitem");
+
+      const btn = document.createElement("button");
+      btn.textContent = title;
+      btn.dataset.id = id;
+      btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
+
+      btn.addEventListener("click", () => {
+        if (window.AppRouter) {
+          window.AppRouter.closeRightSidebar();
+        } else {
+          console.warn("AppRouter not yet initialized");
+        }
+        const contentArea = this.contentArea;
+        if (contentArea) {
+          const target = contentArea.querySelector("#" + CSS.escape(id));
+          if (target) {
+            this.smoothScrollTo(target, 800);
           }
         }
+      });
+
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+
+    this.scrollspyList.innerHTML = "";
+    this.scrollspyList.appendChild(ul);
+  }
+
+  smoothScrollTo(element, duration = 600, offset = 0) {
+    if (!element) return;
+    const start = window.scrollY || document.documentElement.scrollTop;
+    const rect = element.getBoundingClientRect();
+    const end = rect.top + start + offset;
+    const change = end - start;
+    const startTime = performance.now();
+
+    // Cubic ease-in-out
+    const easeInOutCubic = t =>
+      t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animateScroll = currentTime => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, start + change * ease);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(animateScroll);
+      }
+    };
+
+    window.requestAnimationFrame(animateScroll);
+  }
+
+  setActiveItem(id) {
+    if (id === this.activeId) return;
+    this.activeId = id;
+
+    const items = this.scrollspyList.querySelectorAll(".scrollspy-item button");
+    items.forEach(btn => {
+      const isActive = btn.dataset.id === id;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-current", isActive ? "location" : "false");
+    });
+  }
+
+  refresh() {
+    window.postMessage(
+      {
+        type: "requestSections",
+      },
+      location.origin
+    );
+  }
+}
 
         class AssetLoader {
           constructor() {
