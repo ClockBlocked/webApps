@@ -3178,34 +3178,31 @@ class ScrollspyManager {
     this.scrollspyList.appendChild(ul);
   }
 
-  smoothScrollTo(element, duration = 600, offset = 0) {
-    if (!element) return;
-    const start = window.scrollY || document.documentElement.scrollTop;
-    const rect = element.getBoundingClientRect();
-    const end = rect.top + start + offset;
-    const change = end - start;
-    const startTime = performance.now();
+smoothScrollTo(element, duration = 800, offset = 0) {
+  if (!element || !this.contentArea) return;
+  const container = this.contentArea;
+  const start = container.scrollTop;
+  const rect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const end = rect.top - containerRect.top + start + offset;
+  const change = end - start;
+  const startTime = performance.now();
+  const easeInOutCubic = t =>
+    t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    // Cubic ease-in-out
-    const easeInOutCubic = t =>
-      t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animateScroll = currentTime => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, start + change * ease);
-
-      if (progress < 1) {
-        window.requestAnimationFrame(animateScroll);
-      }
-    };
-
-    window.requestAnimationFrame(animateScroll);
-  }
+  const animateScroll = currentTime => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    container.scrollTop = start + change * ease;
+    if (progress < 1) {
+      window.requestAnimationFrame(animateScroll);
+    }
+  };
+  window.requestAnimationFrame(animateScroll);
+}
 
   setActiveItem(id) {
     if (id === this.activeId) return;
