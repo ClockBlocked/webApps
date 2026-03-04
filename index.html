@@ -2974,8 +2974,6 @@ N E W E S T
             this.activeId = null;
             this.observer = null;
             this.init();
-            
-            this.AppRouter = new AppRouter();
           }
 
           init() {
@@ -3064,8 +3062,13 @@ N E W E S T
               btn.dataset.id = id;
               btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
 
-              btn.addEventListener("click", () => {
-                this.AppRouter.closeRightSidebar();
+                btn.addEventListener("click", () => {
+                    if (window.AppRouter) {
+                    window.AppRouter.closeRightSidebar();
+                  } else {
+                    console.warn("AppRouter not yet initialized");
+                  }
+
                 
                 const contentArea = this.contentArea;
                 if (contentArea) {
