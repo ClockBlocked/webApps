@@ -98,7 +98,7 @@ body, html {
   padding-top: 3.5rem;
 }
 section {
-  border: 1px solid var(--dd-border-subtle);
+  border: 1px solid var(--dd-border);
 }
 .hero-section {
   min-height: calc(100vh - 5.5rem);
