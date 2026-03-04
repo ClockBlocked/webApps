@@ -90,6 +90,24 @@
       }
     </script>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('https://clockblocked.github.io/serviceWorker.js', { scope: '/' })
+      .then(registration => {
+        console.log('ServiceWorker registered with scope: ', registration.scope);
+        setInterval(() => registration.update(), 60 * 60 * 1000);
+      })
+      .catch(err => {
+        console.error('ServiceWorker registration failed:', err);
+      });
+  });
+}
+</script>
+
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-T2D6yVgQkQ3WgNRAeTG61Hr63l29h8JZ5nnHlKXRMzC7tSExn2AT+iMoN2cJ9gZt" crossorigin="anonymous"></script>
 
