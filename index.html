@@ -34,16 +34,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const iframe = document.getElementById("content-frame");
-
-        let pageToLoad = "https://create.wuaze.com/routes/intro.html";
-
-        const hashPath = window.location.hash;
-        if (hashPath && hashPath.startsWith("#/")) {
-          pageToLoad = hashPath.substring(2);
-        }
-
-        iframe.src = pageToLoad;
+        // Route loading is now handled by loadRoute() / initDynamicNAV()
       });
     </script>
 
@@ -1858,6 +1849,52 @@ N E W E S T
     </style>
 
     <style>
+      /* ======================== */
+      /*   B E N T O   G R I D   */
+      /* ======================== */
+      .bento-cell {
+        display: none;
+        position: relative;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-secondary);
+        border-radius: var(--radius-lg);
+        margin-bottom: 16px;
+        min-height: 200px;
+        overflow: hidden;
+      }
+      .bento-cell.active {
+        display: block;
+      }
+      .bento-overlay {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        backdrop-filter: blur(4px);
+      }
+      .bento-overlay.loading {
+        display: flex;
+      }
+      .bento-spinner {
+        width: 36px;
+        height: 36px;
+        border: 3px solid rgba(83, 155, 245, 0.2);
+        border-top-color: var(--accent-blue);
+        border-radius: 50%;
+        animation: bento-spin 0.75s linear infinite;
+      }
+      @keyframes bento-spin {
+        to { transform: rotate(360deg); }
+      }
+      .bento-content {
+        width: 100%;
+      }
+    </style>
+
+    <style>
       #offline-banner {
         position: fixed;
         top: 0;
@@ -1897,6 +1934,7 @@ N E W E S T
         updateStatus();
       })();
     </script>
+    <link rel="stylesheet" href="./routes/intro/styles.css" />
   </head>
 
   <body>
@@ -2828,10 +2866,23 @@ N E W E S T
             </div>
           </div>
         </div>
+        <div id="pwaRouteNav" style="padding: 16px 0;">
+          <p class="sidebar-title" style="padding: 8px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.075em; color: var(--text-secondary); font-weight: 600;">PWA Tutorial</p>
+          <a href="" class="nav-link" data-route="intro" onclick="event.preventDefault(); loadRoute('intro'); document.querySelectorAll('#pwaRouteNav .nav-link').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+            <i class="fas fa-book" style="width:16px; text-align:center;"></i>
+            Intro
+          </a>
+          <a href="" class="nav-link" data-route="manifest" onclick="event.preventDefault(); loadRoute('manifest'); document.querySelectorAll('#pwaRouteNav .nav-link').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+            <i class="fas fa-file-code" style="width:16px; text-align:center;"></i>
+            Manifest
+          </a>
+          <a href="" class="nav-link" data-route="sw" onclick="event.preventDefault(); loadRoute('sw'); document.querySelectorAll('#pwaRouteNav .nav-link').forEach(el => el.classList.remove('active')); this.classList.add('active');">
+            <i class="fas fa-cogs" style="width:16px; text-align:center;"></i>
+            Service Worker
+          </a>
+        </div>
       </div>
     </aside>
-
-    <!-- Right Sidebar -->
     <aside id="rightSidebar" class="sidebar right-sidebar">
       <div class="sidebar-content">
         <div class="scrollspy-header">On this page</div>
@@ -2863,7 +2914,18 @@ N E W E S T
             overflow-y: auto;
           "
           id="contentArea"
-        ></div>
+        >
+          <div class="bento-cell" data-dynamic="1"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="2"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="3"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="4"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="5"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="6"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="7"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="8"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="9"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+          <div class="bento-cell" data-dynamic="10"><div class="bento-overlay"><div class="bento-spinner"></div></div><div class="bento-content"></div></div>
+        </div>
       </main>
     </div>
 
@@ -2910,6 +2972,7 @@ N E W E S T
             this.scrollspyList = document.getElementById("rightSidebarScrollspy");
             this.sections = [];
             this.activeId = null;
+            this.observer = null;
             this.init();
           }
 
@@ -2941,6 +3004,40 @@ N E W E S T
             }
           }
 
+          update(sections, contentArea) {
+            this.sections = sections || [];
+            if (contentArea) this.contentArea = contentArea;
+            this.activeId = null;
+            this.renderSections(this.sections);
+            this.setupIntersectionObserver();
+          }
+
+          setupIntersectionObserver() {
+            if (this.observer) {
+              this.observer.disconnect();
+              this.observer = null;
+            }
+            if (!this.contentArea) return;
+
+            this.observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    this.setActiveItem(entry.target.id);
+                  }
+                });
+              },
+              {
+                root: this.contentArea,
+                threshold: 0.3,
+              }
+            );
+
+            this.contentArea.querySelectorAll("[data-type='scrollspy']").forEach((el) => {
+              this.observer.observe(el);
+            });
+          }
+
           showPlaceholder() {
             this.scrollspyList.innerHTML = `<div class="scrollspy-placeholder">No page navigation available</div>`;
           }
@@ -2966,13 +3063,13 @@ N E W E S T
               btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
 
               btn.addEventListener("click", () => {
-                window.postMessage(
-                  {
-                    type: "scrollToSection",
-                    sectionId: id,
-                  },
-                  location.origin
-                );
+                const contentArea = this.contentArea;
+                if (contentArea) {
+                  const target = contentArea.querySelector("#" + CSS.escape(id));
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }
               });
 
               li.appendChild(btn);
@@ -3813,27 +3910,25 @@ N E W E S T
           }
 
           initDynamicNAV() {
-            if (!this.elements.sidebarNav || !this.elements.navLinksContainer) {
-              console.warn("Sidebar navigation container or navLinks element not found.");
-              return;
-            }
-
-            this.elements.navLinksContainer.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
-
-            this.elements.navLinksContainer.querySelectorAll('a[data-dynamic="true"]').forEach((navItem) => {
-              const linkPath = navItem.getAttribute("data-url");
-
-              navItem.addEventListener("click", (e) => {
-                e.preventDefault();
-                this.elements.navLinksContainer
-                  .querySelectorAll("a")
-                  .forEach((link) => link.classList.remove("active"));
-                navItem.classList.add("active");
-                this.loadPage(linkPath, null);
+            if (this.elements.navLinksContainer) {
+              this.elements.navLinksContainer.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
+              this.elements.navLinksContainer.querySelectorAll('a[data-dynamic="true"]').forEach((navItem) => {
+                const linkPath = navItem.getAttribute("data-url");
+                navItem.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  this.elements.navLinksContainer
+                    .querySelectorAll("a")
+                    .forEach((link) => link.classList.remove("active"));
+                  navItem.classList.add("active");
+                });
               });
-            });
-
-            this.loadPage("https://create.wuaze.com/routes/home.html", null);
+            }
+            // Load default intro route
+            if (typeof loadRoute === "function") {
+              loadRoute("intro");
+              const firstLink = document.querySelector('#pwaRouteNav [data-route="intro"]');
+              if (firstLink) firstLink.classList.add("active");
+            }
           }
 
           initPWAProgressSystem() {
@@ -4069,9 +4164,106 @@ N E W E S T
           }
         }
 
+        const routes = {
+          intro: "./routes/intro/",
+          manifest: "./routes/manifest/",
+          sw: "./routes/sw/",
+        };
+
+        function loadRoute(routeName) {
+          const url = routes[routeName] + "index.html";
+          const loadingWrapper = document.getElementById("loadingWrapper");
+          const loadingStrip = document.getElementById("loadingStrip");
+          const contentArea = document.getElementById("contentArea");
+
+          if (!contentArea) return;
+
+          // Start progress bar
+          if (loadingWrapper && loadingStrip) {
+            loadingWrapper.style.visibility = "visible";
+            loadingStrip.style.width = "0%";
+            let progress = 0;
+            const iv = setInterval(() => {
+              progress += 10;
+              loadingStrip.style.width = progress + "%";
+              if (progress >= 70) clearInterval(iv);
+            }, 50);
+          }
+
+          fetch(url)
+            .then((r) => (r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))))
+            .then((html) => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, "text/html");
+              const templates = doc.querySelectorAll("template[data-dynamic]");
+
+              const templateMap = {};
+              templates.forEach((t) => {
+                templateMap[t.getAttribute("data-dynamic")] = t;
+              });
+
+              // Show cells that have content, hide others
+              const cells = contentArea.querySelectorAll(".bento-cell");
+              cells.forEach((cell) => {
+                const n = cell.getAttribute("data-dynamic");
+                if (templateMap[n]) {
+                  cell.classList.add("active");
+                  cell.querySelector(".bento-overlay").classList.add("loading");
+                } else {
+                  cell.classList.remove("active");
+                  cell.querySelector(".bento-content").innerHTML = "";
+                }
+              });
+
+              // Execute pageSections script from fetched page
+              doc.querySelectorAll("script").forEach((s) => {
+                if (s.textContent.includes("pageSections")) {
+                  try {
+                    (0, eval)(s.textContent);
+                  } catch (e) {
+                    console.warn("pageSections eval error:", e);
+                  }
+                }
+              });
+
+              // After 1.5s delay: inject content, remove loading overlays
+              setTimeout(() => {
+                cells.forEach((cell) => {
+                  const n = cell.getAttribute("data-dynamic");
+                  if (templateMap[n]) {
+                    const clone = templateMap[n].content.cloneNode(true);
+                    const contentDiv = cell.querySelector(".bento-content");
+                    contentDiv.innerHTML = "";
+                    contentDiv.appendChild(clone);
+                    cell.querySelector(".bento-overlay").classList.remove("loading");
+                  }
+                });
+
+                // Update scrollspy
+                if (window.pageSections && window.AppScrollspy) {
+                  window.AppScrollspy.update(window.pageSections, contentArea);
+                }
+
+                // Complete progress bar
+                if (loadingWrapper && loadingStrip) {
+                  loadingStrip.style.width = "100%";
+                  setTimeout(() => {
+                    loadingWrapper.style.visibility = "hidden";
+                    loadingStrip.style.width = "0%";
+                  }, 300);
+                }
+              }, 1500);
+            })
+            .catch((err) => {
+              console.error("loadRoute error:", err);
+              if (loadingWrapper) loadingWrapper.style.visibility = "hidden";
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
           window.AppRouter = new AppRouter();
           window.AppScrollspy = new ScrollspyManager();
+          window.loadRoute = loadRoute;
         });
       })();
     </script>

@@ -1,0 +1,386 @@
+<template data-dynamic="1">
+<section class="hero-section" data-type="scrollspy" id="1">
+  <div class="hero-header-badge">
+    <span class="hero-label">Web App Manifest</span>
+  </div>
+  <div class="hero-bg-wrapper">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-content-area">
+      <div class="hero-content-spacer">
+        <div class="hero-top-block">
+          <p class="hero-subtitle">Progressive Web Apps — Step 1</p>
+          <h1 class="hero-heading">
+            <span class="hero-heading-emphasis">The Web App</span>
+            Manifest
+          </h1>
+          <div class="hero-description-wrapper">
+            <p class="hero-description">The Web App Manifest is a JSON file that tells the browser how your app should behave when installed on a device. It controls the name, icons, colors, and display mode of your PWA.</p>
+            <p class="hero-description">Without a manifest, your site cannot be installed as a PWA. This file is the entry point to the installable web app experience.</p>
+          </div>
+          <div class="hero-cta-row">
+            <div class="btn-outline-wrapper">
+              <button class="btn-primary">
+                GET STARTED
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-sidebar">
+      <div class="tech-stack-row">
+        <div class="tech-stack-item">
+          <p class="tech-stack-title">manifest.json</p>
+          <p class="tech-stack-subtitle">The configuration file</p>
+        </div>
+        <div class="tech-stack-item--right">
+          <p class="tech-stack-title">&lt;link rel="manifest"&gt;</p>
+          <p class="tech-stack-subtitle">Reference in your HTML head</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-indicator-label">Scroll</span>
+    <div class="scroll-indicator-track">
+      <div class="scroll-indicator-dot"></div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="2">
+<section class="learn-section" data-type="scrollspy" id="2">
+  <div class="section-overlay"></div>
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Manifest structure</h2>
+      <p class="section-subtitle">The key fields that make your manifest work correctly across all platforms.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/></svg>
+        </div>
+        <h3 class="feature-title">name &amp; short_name</h3>
+        <p class="feature-description">The full app name and a shorter version for limited-space contexts like home screen icons.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 6m0-6-6 6"/></svg>
+        </div>
+        <h3 class="feature-title">icons</h3>
+        <p class="feature-description">Array of image objects with src, sizes, and type. Provide at least 192×192 and 512×512 PNG icons.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <h3 class="feature-title">start_url</h3>
+        <p class="feature-description">The URL that opens when a user launches the installed app. Usually "/" or the homepage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="feature-title">display</h3>
+        <p class="feature-description">Controls the browser UI: "standalone" (no browser bar), "fullscreen", "minimal-ui", or "browser".</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="feature-title">theme_color</h3>
+        <p class="feature-description">Colors the browser address bar and OS task switcher to match your app branding.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">background_color</h3>
+        <p class="feature-description">Sets the splash screen background while the app loads. Should match your app's initial background.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="3">
+<section class="https-section" data-type="scrollspy" id="3">
+  <div class="section-overlay">
+    <div class="section-gradient-bg"></div>
+  </div>
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Minimal manifest.json</h2>
+      <p class="section-subtitle">A complete example you can drop into your project right away.</p>
+    </div>
+    <div class="two-col-grid">
+      <div class="code-preview-box">
+        <span class="code-preview-text">manifest.json — root of project</span>
+      </div>
+      <div class="stacked-content">
+        <h3 class="subsection-title">Reference it in your HTML</h3>
+        <p class="subsection-text">Add a single &lt;link&gt; tag inside your &lt;head&gt; to connect the manifest to your site. The browser then reads the file to know how to install your app.</p>
+        <div class="btn-spacer">
+          <div class="btn-outline-wrapper">
+            <button class="btn-secondary">
+              VIEW EXAMPLE
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col-grid--wide">
+      <div class="stacked-content">
+        <h3 class="subsection-title">The JSON structure</h3>
+        <p class="subsection-text">Place this file at the root of your project and reference it with a link tag in your HTML head. Every field works together to create a coherent install experience.</p>
+        <div class="capability-grid">
+          <div class="capability-card">
+            <h4 class="capability-card-title">Validation</h4>
+            <p class="capability-card-text">Use Chrome DevTools → Application → Manifest to verify all fields are read correctly.</p>
+          </div>
+          <div class="capability-card">
+            <h4 class="capability-card-title">Installability</h4>
+            <p class="capability-card-text">Chrome requires name, icons (192+512), start_url, display, and a service worker before showing the install prompt.</p>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <h4 class="stat-value">2</h4>
+            <p class="stat-label">required icon sizes</p>
+          </div>
+          <div class="stat-item">
+            <h4 class="stat-value">1</h4>
+            <p class="stat-label">JSON file needed</p>
+          </div>
+          <div class="stat-item">
+            <h4 class="stat-value">4</h4>
+            <p class="stat-label">display modes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="4">
+<section class="requirements-section" data-type="scrollspy" id="4">
+  <div class="hero-header-badge">
+    <span class="hero-label">Icons</span>
+  </div>
+  <div class="section-overlay">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="section-container--wide">
+    <div class="section-header--centered">
+      <h2 class="section-title">
+        Configuring your
+        <span class="gradient-text">app icons</span>
+      </h2>
+      <p class="section-subtitle">Icons must be PNG files provided in multiple sizes. The browser picks the best fit for the context.</p>
+    </div>
+    <div class="requirements-content">
+      <div class="checklist">
+        <div class="checklist-item" style="animation-delay: 0.2s">
+          <div class="checklist-icon-wrapper checklist-icon-wrapper--border">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">192×192 PNG — Android home screen</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.25s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">512×512 PNG — Splash screen and app store</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.3s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">purpose: "maskable" for adaptive icons</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.35s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">Apple touch icon via &lt;link rel="apple-touch-icon"&gt;</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.4s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">favicon.ico for legacy browser support</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.45s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text">SVG icon with type "image/svg+xml" (optional)</span>
+        </div>
+      </div>
+      <div class="info-cards-wrapper">
+        <div class="info-cards-row">
+          <div class="info-card info-card--left">
+            <p class="info-card-title">Maskable icons</p>
+            <p class="info-card-text">Use maskable.app to test how your icon looks with Android adaptive icon shapes applied</p>
+          </div>
+          <div class="info-card info-card--center">
+            <p class="info-card-title">Safe zone</p>
+            <p class="info-card-text">Keep important content inside the central 80% of your maskable icon to avoid clipping</p>
+          </div>
+          <div class="info-card info-card--right">
+            <p class="info-card-title">Realfavicongenerator</p>
+            <p class="info-card-text">Use realfavicongenerator.net to generate all icon sizes and HTML snippets automatically</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="5">
+<section class="requirements-section" data-type="scrollspy" id="5">
+  <div class="hero-header-badge">
+    <span class="hero-label">Display Modes</span>
+  </div>
+  <div class="section-overlay">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="section-container--wide">
+    <div class="section-header--centered">
+      <h2 class="section-title">
+        Choosing a
+        <span class="gradient-text">display mode</span>
+      </h2>
+      <p class="section-subtitle">The display field controls how much browser chrome is shown when your app is launched from the home screen.</p>
+    </div>
+    <div class="requirements-content">
+      <div class="checklist">
+        <div class="checklist-item" style="animation-delay: 0.2s">
+          <div class="checklist-icon-wrapper checklist-icon-wrapper--border">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>standalone</strong> — No browser bar, looks like a native app (recommended)</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.25s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>fullscreen</strong> — Hides all browser and system UI (games, media apps)</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.3s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>minimal-ui</strong> — Shows only minimal navigation buttons</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.35s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>browser</strong> — Opens in regular browser tab (no installation benefit)</span>
+        </div>
+      </div>
+      <div class="info-cards-wrapper">
+        <div class="info-cards-row">
+          <div class="info-card info-card--left">
+            <p class="info-card-title">orientation</p>
+            <p class="info-card-text">Lock screen orientation with "portrait", "landscape", or "any" in the manifest</p>
+          </div>
+          <div class="info-card info-card--center">
+            <p class="info-card-title">scope</p>
+            <p class="info-card-text">Define which URLs are part of your app. URLs outside scope open in the browser</p>
+          </div>
+          <div class="info-card info-card--right">
+            <p class="info-card-title">lang &amp; dir</p>
+            <p class="info-card-text">Set the primary language and text direction for your app with "lang" and "dir" fields</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="6">
+<section class="faq-section" data-type="scrollspy" id="6">
+  <div class="faq-bg-decoration">
+    <div class="faq-glow-top"></div>
+    <div class="faq-glow-bottom"></div>
+  </div>
+  <div class="faq-grid-pattern"></div>
+  <div class="faq-container">
+    <div class="section-header--centered">
+      <h2 class="faq-title">FAQ.</h2>
+      <p class="faq-subtitle">Common manifest questions answered.</p>
+    </div>
+    <div class="faq-list" id="faq-list">
+      <div class="capability-grid" style="margin-top: 2rem;">
+        <div class="capability-card">
+          <h4 class="capability-card-title">Where does the manifest file go?</h4>
+          <p class="capability-card-text">Place manifest.json at the root of your web server. Reference it with &lt;link rel="manifest" href="/manifest.json"&gt; inside your HTML &lt;head&gt;.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Does every page need the link tag?</h4>
+          <p class="capability-card-text">Yes. Every HTML page should have the &lt;link rel="manifest"&gt; tag so the browser can discover the manifest regardless of which page the user lands on.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Why isn't my app installable?</h4>
+          <p class="capability-card-text">Check DevTools → Application → Manifest for errors. Common causes: missing icons (192/512), no service worker, not served over HTTPS, or invalid JSON syntax.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Can I update the manifest after install?</h4>
+          <p class="capability-card-text">Yes. Changes to manifest.json take effect when the browser refreshes the manifest, typically within 24 hours or when the service worker updates.</p>
+        </div>
+      </div>
+    </div>
+    <div class="faq-contact">
+      <h3 class="faq-contact-heading">Next step: add a service worker for offline support.</h3>
+    </div>
+  </div>
+</section>
+</template>
+
+<script>
+window.pageSections = [
+  { id: "1", title: "What is a manifest" },
+  { id: "2", title: "Manifest fields" },
+  { id: "3", title: "manifest.json example" },
+  { id: "4", title: "Icons setup" },
+  { id: "5", title: "Display modes" },
+  { id: "6", title: "FAQ" }
+];
+</script>
