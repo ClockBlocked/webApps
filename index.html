@@ -3384,49 +3384,15 @@ smoothScrollTo(element, duration = 800, offset = 0) {
         }
 
         class AppRouter {
-
-  constructor() {
-    if (AppRouter._instance) return AppRouter._instance;
-    AppRouter._instance = this;
-    
-    this.elements = this.cacheElements();
-    this.state = this.initialState();
-    this.baseUrl = window.location.origin;
-    this.assetLoader = new AssetLoader();
-    this.shadowRoots = new Map();
-    this.init();
-  }
-
-  initDynamicNAV() {
-    if (this.elements && this.elements.navLinksContainer) {
-      this.elements.navLinksContainer.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
-      this.elements.navLinksContainer.querySelectorAll('a[data-dynamic="true"]').forEach((navItem) => {
-        const linkPath = navItem.getAttribute("data-url");
-        navItem.addEventListener("click", (e) => {
-          e.preventDefault();
-
-          this.closeLeftSidebar();
-          this.closeRightSidebar();
-
-          this.elements.navLinksContainer
-            .querySelectorAll("a")
-            .forEach((link) => link.classList.remove("active"));
-          navItem.classList.add("active");
-
-          if (linkPath && typeof loadRoute === "function") {
-            loadRoute(linkPath);
+          constructor() {
+            this.AppRouter = new AppRouter();
+            this.elements = this.cacheElements();
+            this.state = this.initialState();
+            this.baseUrl = window.location.origin;
+            this.assetLoader = new AssetLoader();
+            this.shadowRoots = new Map();
+            this.init();
           }
-        });
-      });
-    }
-
-    if (typeof loadRoute === "function") {
-      loadRoute("intro");
-      const firstLink = document.querySelector('#pwaRouteNav [data-route="intro"]');
-      if (firstLink) firstLink.classList.add("active");
-    }
-  }
-
 
           cacheElements() {
             return {
@@ -4075,11 +4041,34 @@ smoothScrollTo(element, duration = 800, offset = 0) {
             return titleMap[pageName] || Utils.capitalizeWords(pageName.replace(/-/g, " "));
           }
 
+initDynamicNAV() {
+  if (this.elements.navLinksContainer) {
+    this.elements.navLinksContainer.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
+    this.elements.navLinksContainer.querySelectorAll('a[data-dynamic="true"]').forEach((navItem) => {
+      const linkPath = navItem.getAttribute("data-url");
+      navItem.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        this.toggleLeftSidebar.bind(this)
+        
+        this.elements.navLinksContainer
+          .querySelectorAll("a")
+          .forEach((link) => link.classList.remove("active"));
+        navItem.classList.add("active");
+        
+        if (linkPath && typeof loadRoute === "function") {
+          loadRoute(linkPath);
+        }
+      });
+    });
+  }
 
-
-
-
-
+  if (typeof loadRoute === "function") {
+    loadRoute("intro");
+    const firstLink = document.querySelector('#pwaRouteNav [data-route="intro"]');
+    if (firstLink) firstLink.classList.add("active");
+  }
+}
           initPWAProgressSystem() {
             if (!this.elements.pwaGuideLink) return;
 
