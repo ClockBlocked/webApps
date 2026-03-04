@@ -4048,14 +4048,15 @@ initDynamicNAV() {
       const linkPath = navItem.getAttribute("data-url");
       navItem.addEventListener("click", (e) => {
         e.preventDefault();
-        
-        this.toggleLeftSidebar.bind(this)
-        
+
+        this.closeLeftSidebar();
+        this.closeRightSidebar();
+
         this.elements.navLinksContainer
           .querySelectorAll("a")
           .forEach((link) => link.classList.remove("active"));
         navItem.classList.add("active");
-        
+
         if (linkPath && typeof loadRoute === "function") {
           loadRoute(linkPath);
         }
@@ -4068,8 +4069,7 @@ initDynamicNAV() {
     const firstLink = document.querySelector('#pwaRouteNav [data-route="intro"]');
     if (firstLink) firstLink.classList.add("active");
   }
-}
-          initPWAProgressSystem() {
+}          initPWAProgressSystem() {
             if (!this.elements.pwaGuideLink) return;
 
             this.elements.pwaGuideLink.addEventListener("click", (e) => {
