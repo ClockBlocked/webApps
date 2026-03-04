@@ -1,35 +1,5 @@
-
-<template>
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eyewear - KokonutUI - Pro</title>
-  <meta name="description" content="KokonutUI - Pro">
-  <meta name="application-name" content="Eyewear">
-  <link rel="author" href="https://x.com/dorian_baffier">
-  <meta name="author" content="Dorian Baffier">
-  <meta name="keywords" content="your keywords">
-  <meta name="creator" content="Dorian Baffier">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Eyewear">
-  <meta property="og:description" content="KokonutUI - Pro">
-  <meta property="og:url" content="https://kokonutui.pro">
-  <meta property="og:site_name" content="Eyewear">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:creator" content="@dorian_baffier">
-  <meta name="twitter:title" content="Eyewear">
-  <meta name="twitter:description" content="KokonutUI - Pro">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body data-theme="dark" class="body-dark-theme">
-  <main class="main-container">
-    <div class="content-wrapper">
-      <div id="header-placeholder"></div>
-
-      <section data-dynamic="first" class="hero-section" data-type="scrollspy" id="1">
+<template data-dynamic="1">
+<section class="hero-section" data-type="scrollspy" id="1">
         <div class="hero-header-badge">
           <span class="hero-label">Introductory</span>
         </div>
@@ -93,8 +63,10 @@
           </div>
         </div>
       </section>
+</template>
 
-      <section data-dynamic="second" class="learn-section" data-type="scrollspyl" id="2">
+<template data-dynamic="2">
+<section class="learn-section" data-type="scrollspy" id="2">
         <div class="section-overlay"></div>
         <div class="section-container">
           <div class="section-header">
@@ -152,8 +124,10 @@
           </div>
         </div>
       </section>
+</template>
 
-      <section data-dynamic="third" id="features" class="https-section" data-type="scrollspy" id="3">
+<template data-dynamic="3">
+<section class="https-section" data-type="scrollspy" id="3">
         <div class="section-overlay">
           <div class="section-gradient-bg"></div>
         </div>
@@ -214,8 +188,10 @@
           </div>
         </div>
       </section>
+</template>
 
-      <section data-dynamic="fourth" id="pricing" class="requirements-section" data-type="scrollspy" id="4">
+<template data-dynamic="4">
+<section class="requirements-section" data-type="scrollspy" id="4">
         <div class="hero-header-badge">
           <span class="hero-label">Requirements</span>
         </div>
@@ -300,8 +276,10 @@
           </div>
         </div>
       </section>
+</template>
 
-      <section id="faq" class="faq-section" data-type="scrollspy" id="5">
+<template data-dynamic="5">
+<section class="faq-section" data-type="scrollspy" id="5">
         <div class="faq-bg-decoration">
           <div class="faq-glow-top"></div>
           <div class="faq-glow-bottom"></div>
@@ -327,154 +305,14 @@
           </div>
         </div>
       </section>
-
-      <div id="footer-placeholder"></div>
-    </div>
-  </main>
-
-  <script>
-    (function() {
-      try {
-        var theme = localStorage.getItem('theme') || 'system';
-        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var resolved = theme === 'system' ? (systemDark ? 'dark' : 'light') : theme;
-        document.documentElement.classList.add(resolved);
-        document.documentElement.style.colorScheme = resolved;
-      } catch (e) {}
-    })();
-
-    // FAQ toggle functionality (if needed)
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        answer.classList.toggle('open');
-      });
-    });
-  </script>
-  
-  
-<script>
-const pageSections = [
-  {
-    id: "1",
-    title: "Web app basics",
-    icon: "fa-info-circle",
-    public: true,
-  },
-  {
-    id: "2",
-    title: "Core technologies",
-    icon: "fa-code",
-    public: true,
-  },
-  {
-    id: "3",
-    title: "Local setup",
-    icon: "fa-cogs",
-    public: true,
-  },
-  {
-    id: "4",
-    title: "Your checklist",
-    icon: "fa-check-circle",
-    public: true,
-  },
-  {
-    id: "5",
-    title: "Common Issues",
-    icon: "fa-check-circle",
-    public: true,
-  },
-];
-        window.addEventListener("message", (e) => {
-          if (e.data.type === "scrollToSection") {
-            const section = document.getElementById(e.data.sectionId);
-            if (section) {
-              section.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          } else if (e.data.type === "requestSections") {
-            window.parent.postMessage(
-              {
-                type: "pageSections",
-                sections: pageSections,
-              },
-              "*"
-            );
-          }
-        });
-
-        const sections = document.querySelectorAll('[data-type="scrollspy"]');
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                window.parent.postMessage(
-                  {
-                    type: "sectionInView",
-                    sectionId: entry.target.id,
-                  },
-                  "*"
-                );
-              }
-            });
-          },
-          {
-            threshold: [0.5],
-            rootMargin: "0px 0px 0px 0px",
-          }
-        );
-
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-
-
-
-
-
-
-
-  window.addEventListener("load", () => {
-
-////////////////////////////////////////////////////////////
-////////////////////////////  Event Listenerss   ///////////
-
-//  Message to child
-          window.parent.postMessage(
-            {
-              type: "pageSections",
-              sections: pageSections,
-            },
-            "*"
-          );
-
-//  Message from child
-          window.parent.postMessage(
-            {
-              type: "pageReady",
-              page: "create",
-            },
-            "*"
-          );
-
-//  Page scrolled (to)
-          if (sections.length > 0) {
-            setTimeout(() => {
-              window.parent.postMessage(
-                {
-                  type: "sectionInView",
-                  sectionId: sections[0].id,
-                },
-                "*"
-              );
-            }, 100);
-          }
-
-////////////////////////////////////////////////////////////
-</script>
-</body>
-</html>
 </template>
+
+<script>
+window.pageSections = [
+  { id: "1", title: "Web app basics" },
+  { id: "2", title: "Core technologies" },
+  { id: "3", title: "Local setup" },
+  { id: "4", title: "Your checklist" },
+  { id: "5", title: "Common Issues" }
+];
+</script>

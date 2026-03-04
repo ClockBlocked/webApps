@@ -1,0 +1,305 @@
+<template data-dynamic="1">
+<section class="hero-section" data-type="scrollspy" id="1">
+  <div class="hero-header-badge">
+    <span class="hero-label">Service Workers</span>
+  </div>
+  <div class="hero-bg-wrapper">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-content-area">
+      <div class="hero-content-spacer">
+        <div class="hero-top-block">
+          <p class="hero-subtitle">Progressive Web Apps — Step 2</p>
+          <h1 class="hero-heading">
+            <span class="hero-heading-emphasis">Service</span>
+            Workers
+          </h1>
+          <div class="hero-description-wrapper">
+            <p class="hero-description">A service worker is a JavaScript file that runs in the background, separate from the web page. It acts as a programmable network proxy between your app and the internet, enabling offline experiences and caching.</p>
+            <p class="hero-description">Once registered, the service worker intercepts every network request your page makes — giving you full control over how assets are fetched, cached, and served.</p>
+          </div>
+          <div class="hero-cta-row">
+            <div class="btn-outline-wrapper">
+              <button class="btn-primary">
+                LEARN MORE
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-sidebar">
+      <div class="tech-stack-row">
+        <div class="tech-stack-item">
+          <p class="tech-stack-title">sw.js</p>
+          <p class="tech-stack-subtitle">Your service worker file</p>
+        </div>
+        <div class="tech-stack-item--right">
+          <p class="tech-stack-title">navigator.serviceWorker</p>
+          <p class="tech-stack-subtitle">The registration API</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-indicator-label">Scroll</span>
+    <div class="scroll-indicator-track">
+      <div class="scroll-indicator-dot"></div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="2">
+<section class="learn-section" data-type="scrollspy" id="2">
+  <div class="section-overlay"></div>
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">The lifecycle</h2>
+      <p class="section-subtitle">Service workers go through three key phases before they can control pages.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+        </div>
+        <h3 class="feature-title">1. Install</h3>
+        <p class="feature-description">Triggered when the browser downloads the service worker for the first time. This is where you pre-cache static assets like HTML, CSS, and JS.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12A10 10 0 1 1 12 2"/><path d="m16 2 4 4-4 4"/><path d="M20 6H12"/></svg>
+        </div>
+        <h3 class="feature-title">2. Activate</h3>
+        <p class="feature-description">Fires after install when no other service worker is controlling the page. Use this phase to clean up old caches from previous versions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+        </div>
+        <h3 class="feature-title">3. Fetch</h3>
+        <p class="feature-description">Every network request from the controlled page fires a fetch event. Intercept it to serve cached responses or forward to the network.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <h3 class="feature-title">Waiting</h3>
+        <p class="feature-description">A new service worker waits until all controlled tabs are closed before activating, unless you call skipWaiting() during install.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <h3 class="feature-title">Redundant</h3>
+        <p class="feature-description">A service worker becomes redundant if install fails or it is superseded by a newer version. Redundant workers no longer control pages.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">Scope</h3>
+        <p class="feature-description">A service worker only controls pages within its scope. Place sw.js at the root to control the entire origin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="3">
+<section class="https-section" data-type="scrollspy" id="3">
+  <div class="section-overlay">
+    <div class="section-gradient-bg"></div>
+  </div>
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Registration</h2>
+      <p class="section-subtitle">Register the service worker from your main JavaScript file after the page loads.</p>
+    </div>
+    <div class="two-col-grid">
+      <div class="code-preview-box">
+        <span class="code-preview-text">main.js — register the service worker</span>
+      </div>
+      <div class="stacked-content">
+        <h3 class="subsection-title">Feature detect first</h3>
+        <p class="subsection-text">Always check for serviceWorker support in navigator before registering. This keeps your site working in browsers that don't support service workers.</p>
+        <div class="btn-spacer">
+          <div class="btn-outline-wrapper">
+            <button class="btn-secondary">
+              SEE THE CODE
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow-icon">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col-grid--wide">
+      <div class="stacked-content">
+        <h3 class="subsection-title">Registration snippet</h3>
+        <p class="subsection-text">Call register() inside a load event listener to avoid blocking the page's first render. The browser handles downloading and installing the worker.</p>
+        <div class="capability-grid">
+          <div class="capability-card">
+            <h4 class="capability-card-title">DevTools check</h4>
+            <p class="capability-card-text">Open Chrome DevTools → Application → Service Workers to see status, force update, and test offline mode.</p>
+          </div>
+          <div class="capability-card">
+            <h4 class="capability-card-title">Update on reload</h4>
+            <p class="capability-card-text">Enable "Update on reload" in DevTools during development so you always get the latest service worker version.</p>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <h4 class="stat-value">1</h4>
+            <p class="stat-label">file to add</p>
+          </div>
+          <div class="stat-item">
+            <h4 class="stat-value">3</h4>
+            <p class="stat-label">lines to register</p>
+          </div>
+          <div class="stat-item">
+            <h4 class="stat-value">0</h4>
+            <p class="stat-label">dependencies needed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="4">
+<section class="requirements-section" data-type="scrollspy" id="4">
+  <div class="hero-header-badge">
+    <span class="hero-label">Caching Strategies</span>
+  </div>
+  <div class="section-overlay">
+    <div class="hero-bg-gradient"></div>
+  </div>
+  <div class="section-container--wide">
+    <div class="section-header--centered">
+      <h2 class="section-title">
+        Choose the right
+        <span class="gradient-text">caching strategy</span>
+      </h2>
+      <p class="section-subtitle">Different resources need different strategies. Static assets, API calls, and HTML pages each have ideal approaches.</p>
+    </div>
+    <div class="requirements-content">
+      <div class="checklist">
+        <div class="checklist-item" style="animation-delay: 0.2s">
+          <div class="checklist-icon-wrapper checklist-icon-wrapper--border">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>Cache First</strong> — Serve from cache, fall back to network. Best for static assets (images, fonts, CSS).</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.25s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>Network First</strong> — Try network, fall back to cache. Best for HTML pages and frequently updated content.</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.3s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>Stale While Revalidate</strong> — Serve cache immediately, update cache in background. Best for non-critical assets.</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.35s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>Network Only</strong> — Always fetch from network. Use for analytics, non-GET requests.</span>
+        </div>
+        <div class="checklist-item" style="animation-delay: 0.4s">
+          <div class="checklist-icon-wrapper">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <span class="checklist-text"><strong>Cache Only</strong> — Serve from cache only. Useful for pre-cached app shell resources.</span>
+        </div>
+      </div>
+      <div class="info-cards-wrapper">
+        <div class="info-cards-row">
+          <div class="info-card info-card--left">
+            <p class="info-card-title">Cache versioning</p>
+            <p class="info-card-text">Use a version prefix like CACHE_V1 in cache names so old caches can be deleted during the activate event</p>
+          </div>
+          <div class="info-card info-card--center">
+            <p class="info-card-title">Cache size limits</p>
+            <p class="info-card-text">Browsers enforce storage quotas. Use the Cache Storage API wisely and delete unused caches in the activate event</p>
+          </div>
+          <div class="info-card info-card--right">
+            <p class="info-card-title">Workbox</p>
+            <p class="info-card-text">Google's Workbox library provides pre-built strategies so you don't have to write fetch event handlers from scratch</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</template>
+
+<template data-dynamic="5">
+<section class="faq-section" data-type="scrollspy" id="5">
+  <div class="faq-bg-decoration">
+    <div class="faq-glow-top"></div>
+    <div class="faq-glow-bottom"></div>
+  </div>
+  <div class="faq-grid-pattern"></div>
+  <div class="faq-container">
+    <div class="section-header--centered">
+      <h2 class="faq-title">Offline Fallback</h2>
+      <p class="faq-subtitle">Serve a custom offline page when the user is disconnected and the cache has no match.</p>
+    </div>
+    <div class="faq-list" id="faq-list">
+      <div class="capability-grid" style="margin-top: 2rem;">
+        <div class="capability-card">
+          <h4 class="capability-card-title">Pre-cache offline.html</h4>
+          <p class="capability-card-text">During the install event, add an offline.html page to your cache so it's always available even when the user has no connection.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Detect failed navigation</h4>
+          <p class="capability-card-text">In your fetch handler, catch navigation requests that fail both the cache lookup and network fetch, then respond with the cached offline.html.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Test in DevTools</h4>
+          <p class="capability-card-text">Use Chrome DevTools → Network → Offline checkbox to simulate no connection and verify your offline page is displayed correctly.</p>
+        </div>
+        <div class="capability-card">
+          <h4 class="capability-card-title">Background Sync</h4>
+          <p class="capability-card-text">Use the Background Sync API to queue failed requests and replay them automatically when the connection is restored.</p>
+        </div>
+      </div>
+    </div>
+    <div class="faq-contact">
+      <h3 class="faq-contact-heading">You now have the core building blocks of a PWA.</h3>
+    </div>
+  </div>
+</section>
+</template>
+
+<script>
+window.pageSections = [
+  { id: "1", title: "What is a service worker" },
+  { id: "2", title: "Lifecycle phases" },
+  { id: "3", title: "Registration" },
+  { id: "4", title: "Caching strategies" },
+  { id: "5", title: "Offline fallback" }
+];
+</script>
