@@ -4286,7 +4286,7 @@ initDynamicNAV() {
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('https://clockblocked.github.io/webApps/siteManifest/serviceWorker.js', { scope: '/' })
+    navigator.serviceWorker.register('https://clockblocked.github.io/serviceWorker.js', { scope: '/' })
       .then(registration => {
         console.log('ServiceWorker registered with scope: ', registration.scope);
         setInterval(() => registration.update(), 60 * 60 * 1000);
