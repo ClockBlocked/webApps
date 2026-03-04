@@ -3063,6 +3063,8 @@ N E W E S T
               btn.setAttribute("aria-current", id === this.activeId ? "location" : "false");
 
               btn.addEventListener("click", () => {
+                this.AppRouter.closeRightSidebar();
+                
                 const contentArea = this.contentArea;
                 if (contentArea) {
                   const target = contentArea.querySelector("#" + CSS.escape(id));
@@ -3368,6 +3370,7 @@ N E W E S T
           }
 
           loadPage(url, element, addToHistory = true) {
+            this.closeLeftSidebar();
             this.startLoading();
 
             document.querySelectorAll(".nav-link, .repo-item").forEach((el) => el.classList.remove("active"));
