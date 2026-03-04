@@ -2,86 +2,161 @@
 <html lang="en">
   
   
-  <head>
-    
-    <link rel="manifest" href="https://clockblocked.github.io/webApps/manifest.json" />
-    
-    
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <script>
-      (async function injectHeadFromTemplate() {
-        const response = await fetch("https://clockblocked.io/webApps/layout/");
-        if (!response.ok) {
-          console.error("Failed to load head template:", response.status);
-          return;
-        }
 
-        const htmlText = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, "text/html");
-        const template = doc.getElementById("head");
+<head>
 
-        if (!template) {
-          console.error('No <template id="head"> found in loaded document.');
-          return;
-        }
-
-        const content = template.content.cloneNode(true);
-
-        // Insert each child into <head>
-        for (const node of content.children) {
-          document.head.appendChild(node.cloneNode(true));
-        }
-
-        console.log("✅ Head template content successfully injected.");
-      })();
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Route loading is now handled by loadRoute() / initDynamicNAV()
-      });
-    </script>
-
+    <!-- ========================== -->
+    <!--  CHARACTER SET & VIEWPORT  -->
+    <!-- ========================== -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub Clone - Dark Dimmed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=yes, email=yes" />
 
-    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/pages.css" />
-    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/manifest.css" />
+    <!-- ============ -->
+    <!--  PAGE TITLE  -->
+    <!-- ============ -->
+    <title>GitDev</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- ====================== -->
+    <!--  SEO & DISCOVERABILITY -->
+    <!-- ====================== -->
+    <meta name="description" content="GitDev is a GitHub clone online library for all things related to coding. Create or share tutorials, snippets, external libraries, and much more, all for free." />
+    <meta name="keywords" content="GitDev, code, developers, web, design, weaver, coding, DEV, HTML, CSS, JavaScript, jQuery, PHP, Python, TailWind, Flowbite, Preline, BootStrap, libraries, snippets, tutorials, guides" />
+    <meta name="author" content="William Cole Hanson" />
+    <meta name="copyright" content="William Cole Hanson" />
+    <meta name="language" content="en" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="https://clockblocked.github.io/webApps/" />
 
+    <!-- ===================== -->
+    <!--  PWA & MOBILE CONFIG  -->
+    <!-- ===================== -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="GitDev" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="application-name" content="GitDev" />
+
+    <!-- ==================== -->
+    <!--  THEME & TILE COLORS -->
+    <!-- ==================== -->
+    <meta name="theme-color" content="#1C222B" />
+    <meta name="msapplication-TileColor" content="#1C222B" />
+    <meta name="background-color" content="#1C222B" />
+
+    <!-- ====================== -->
+    <!--  ICONS & FAVICON       -->
+    <!-- ====================== -->
+    <link rel="icon" type="image/png" href="https://create.wuaze.com/siteManifest/icons/ios/16.png" />
+    <link rel="apple-touch-icon" href="https://create.wuaze.com/siteManifest/icons/ios/512.png" sizes="512x512" />
+
+    <!-- ====================== -->
+    <!--  WEB APP MANIFEST      -->
+    <!-- ====================== -->
+    <link rel="manifest" href="https://clockblocked.github.io/webApps/manifest.json" />
+
+    <!-- ====================== -->
+    <!--  OPEN GRAPH (FACEBOOK) -->
+    <!-- ====================== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GitDev: Your code library for all your coding needs!" />
+    <meta property="og:description" content="GitDev is a GitHub clone online library for all things related to coding. Create or share tutorials, snippets, external libraries, and much more, all for free." />
+    <meta property="og:url" content="https://create.wuaze.com/" />
+    <meta property="og:image" content="https://create.wuaze.com/siteManifest/icons/banner.png" />
+    <meta property="og:site_name" content="GitDev" />
+    <!-- <meta property="fb:app_id" content="YOUR_FB_APP_ID_HERE" /> -->
+
+    <!-- ====================== -->
+    <!--  TWITTER CARD          -->
+    <!-- ====================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GitDev: Your code library for all your coding needs!" />
+    <meta name="twitter:description" content="GitDev is a GitHub clone online library for all things related to coding. Create or share tutorials, snippets, external libraries, and much more, all for free." />
+    <meta name="twitter:image" content="https://create.wuaze.com/siteManifest/icons/banner.png" />
+    <!-- <meta name="twitter:site" content="@YOUR_HANDLE_HERE" /> -->
+
+    <!-- ====================== -->
+    <!--  STRUCTURED DATA / SEO -->
+    <!-- ====================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "GitDev",
+        "url": "https://create.wuaze.com/",
+        "description": "GitDev is a GitHub clone online library for all things related to coding.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "William Cole Hanson"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!--  CSS FRAMEWORKS & CDN LIBRARIES  -->
+    <!-- ================================ -->
+
+    <!-- Tailwind CSS (v2 compiled + Play CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Preline UI -->
     <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css" />
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Highlight.js (GitHub Dark theme for code blocks) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" />
 
-    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/svg.css" />
+    <!-- ================== -->
+    <!--  ICON LIBRARIES    -->
+    <!-- ================== -->
 
-    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/fonts.css" />
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+    <!-- Phosphor Icons (all weights) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/thin/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css" />
+
+    <!-- Custom Icon Set -->
     <link rel="stylesheet" href="https://dev.wuaze.com/icons/css/all.min.css" />
+
+    <!-- ========================= -->
+    <!--  CUSTOM / PROJECT STYLES  -->
+    <!-- ========================= -->
+    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/pages.css" />
+    <link rel="stylesheet" href="https://create.wuaze.com/styleSheets/manifest.css" />
+    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/svg.css" />
+    <link rel="stylesheet" href="https://dev.wuaze.com/styleSheets/fonts.css" />
+    <link href="./siteManifest/SWStyles.css" rel="stylesheet" />
+
+    <!-- ========================= -->
+    <!--  JS LIBRARIES             -->
+    <!-- ========================= -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-T2D6yVgQkQ3WgNRAeTG61Hr63l29h8JZ5nnHlKXRMzC7tSExn2AT+iMoN2cJ9gZt" crossorigin="anonymous"></script>
+
+    <!-- jQuery UI To Top -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-to-top/1.2/jquery.ui.totop.min.js"></script>
+
+    <!-- ================================== -->
+    <!--  CACHE-BUSTING FOR STYLESHEETS     -->
+    <!-- ================================== -->
     <script>
-      // Add this to your HTML <head> section
-
       (function () {
-        // Get all link tags
         var links = document.getElementsByTagName("link");
-
-        // Loop through all link tags
         for (var i = 0; i < links.length; i++) {
           var link = links[i];
-
-          // Check if it's a stylesheet
           if (link.rel === "stylesheet") {
-            // Get current timestamp
             var timestamp = new Date().getTime();
-
-            // Check if URL already has query parameters
             if (link.href.indexOf("?") === -1) {
               link.href = link.href + "?v=" + timestamp;
             } else {
@@ -91,6 +166,7 @@
         }
       })();
     </script>
+
     <style>
       #rightSidebarScrollspy {
         margin: 0;
@@ -1938,10 +2014,7 @@ N E W E S T
       })();
     </script>
     <link rel="stylesheet" href="./routes/intro/styles.css" />
-  </head>
-
-
-
+</head>
 
   <body>
     <div
