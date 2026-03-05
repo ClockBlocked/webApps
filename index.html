@@ -446,59 +446,61 @@ html {
           "opsz" 18,
           "wght" 400;
       }
-
       /* ==================== */
       /*    ROOT VARIABLES    */
       /* ==================== */
       :root {
-        --bg-main: #2a313c;
-        --bg-body: #1c222b;
-        --bg-sections: #212830;
-        --bgCode: #0e1116;
-        --border-other: #2a313c;
-        --border-main: #434a55;
-        --color-header-bg: #161b22;
-        --color-border: #434a55;
-        --color-border-secondary: #30363d;
-        --color-text-primary: #c9d1d9;
-        --color-text-secondary: #8b949e;
-        --color-link: #58a6ff;
-        --color-btn-primary-bg: #238636;
-        --color-btn-primary-hover: #2ea043;
+        /* ============================================ */
+        /*  PAGE / SHELL BACKGROUNDS (Radiant-inspired) */
+        /* ============================================ */
+        --bg-main: #111827;
+        --bg-body: #0b1120;
+        --bg-sections: #0f172a;
+        --bgCode: #070d1a;
+        --border-other: #1e293b;
+        --border-main: #334155;
+        --color-header-bg: #070d1a;
+        --color-border: #334155;
+        --color-border-secondary: #1e293b;
+        --color-text-primary: #cbd5e1;
+        --color-text-secondary: #64748b;
+        --color-link: #38bdf8;
+        --color-btn-primary-bg: #059669;
+        --color-btn-primary-hover: #10b981;
         --color-btn-primary-text: #ffffff;
-        --color-repo-bg: #161b22;
-        --color-nav-item-active: #ffffff;
-        --color-nav-item: #8b949e;
-        --color-tag-bg: rgba(56, 139, 253, 0.15);
-        --color-tag-text: #58a6ff;
+        --color-repo-bg: #0f172a;
+        --color-nav-item-active: #f1f5f9;
+        --color-nav-item: #64748b;
+        --color-tag-bg: rgba(56, 189, 248, 0.12);
+        --color-tag-text: #38bdf8;
 
-        --color-nav-item: #9ca3af;
-        --color-nav-item-active: #f3f4f6;
-        --nav-bg: #1f2937;
-        --nav-hover-bg: rgba(55, 65, 81, 0.6);
-        --nav-active-bg: #1f2328;
-        --nav-border: #374151;
-        --nav-accent: #3b82f6;
+        /* Navigation */
+        --nav-bg: #111827;
+        --nav-hover-bg: rgba(30, 41, 59, 0.6);
+        --nav-active-bg: #0f172a;
+        --nav-border: #1e293b;
+        --nav-accent: #38bdf8;
 
-        --darkest: rgb(33, 34, 36);
-        --darker: rgb(45, 51, 59);
-        --dark: rgb(52, 59, 68);
-        --lightest: rgb(191, 193, 196);
-        --lighter: rgb(152, 155, 160);
-        --light: rgb(113, 117, 122);
+        /* Shade Scale */
+        --darkest: #070d1a;
+        --darker: #0b1120;
+        --dark: #111827;
+        --lightest: #e2e8f0;
+        --lighter: #94a3b8;
+        --light: #475569;
 
         /* Brand Colors */
-        --red: #f85149;
-        --blue: #58a6ff;
-        --green: #56d364;
-        --purple: #bc8cff;
-        --yellow: #e3b341;
+        --red: #f87171;
+        --blue: #38bdf8;
+        --green: #34d399;
+        --purple: #a78bfa;
+        --yellow: #fbbf24;
 
         /* Functional Colors */
-        --success: #3fb950;
-        --warning: #d29922;
-        --error: #f85149;
-        --info: #58a6ff;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --error: #f87171;
+        --info: #38bdf8;
 
         /* Spacing */
         --space-xs: 4px;
@@ -514,9 +516,9 @@ html {
         --radius-round: 50%;
 
         /* Shadows */
-        --shadow-sm: 0 2px 10px rgba(1, 4, 9, 0.5);
-        --shadow-md: 0 5px 15px rgba(1, 4, 9, 0.5);
-        --shadow-lg: 0 10px 30px rgba(1, 4, 9, 0.8);
+        --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.6);
+        --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.6);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.8);
 
         /* Transitions */
         --transition-fast: 0.2s;
@@ -560,28 +562,31 @@ html {
       }
 
       :root {
-        --bg-primary: #22272e;
-        --bg-secondary: #2d333b;
-        --bg-tertiary: #373e47;
-        --bg-hover: #444c56;
-        --border-primary: #444c56;
-        --border-secondary: #373e47;
-        --text-primary: #adbac7;
-        --text-secondary: #768390;
-        --text-tertiary: #636e7b;
-        --text-link: #539bf5;
-        --text-link-hover: #6cb6ff;
-        --accent-blue: #539bf5;
-        --accent-green: #57ab5a;
-        --accent-red: #e5534b;
-        --accent-yellow: #c69026;
-        --accent-purple: #b083f0;
-        --btn-bg: #373e47;
-        --btn-hover: #444c56;
-        --btn-border: #444c56;
-        --input-bg: #2d333b;
-        --input-border: #444c56;
-        --shadow: rgba(0, 0, 0, 0.3);
+        /* ============================================ */
+        /*  COMPONENT-LEVEL TOKENS (Radiant-inspired)   */
+        /* ============================================ */
+        --bg-primary: #0b1120;
+        --bg-secondary: #111827;
+        --bg-tertiary: #1e293b;
+        --bg-hover: #334155;
+        --border-primary: #334155;
+        --border-secondary: #1e293b;
+        --text-primary: #cbd5e1;
+        --text-secondary: #64748b;
+        --text-tertiary: #475569;
+        --text-link: #38bdf8;
+        --text-link-hover: #7dd3fc;
+        --accent-blue: #38bdf8;
+        --accent-green: #34d399;
+        --accent-red: #f87171;
+        --accent-yellow: #fbbf24;
+        --accent-purple: #a78bfa;
+        --btn-bg: #1e293b;
+        --btn-hover: #334155;
+        --btn-border: #334155;
+        --input-bg: #111827;
+        --input-border: #334155;
+        --shadow: rgba(0, 0, 0, 0.4);
       }
 
       * {
@@ -1934,49 +1939,49 @@ N E W E S T
     </style>
 
     <style>
-      /* ======================== */
-      /*   B E N T O   G R I D   */
-      /* ======================== */
-      .bento-cell {
-        display: none;
-        position: relative;
-        background: transparent;
-        border: none;
-        border-radius: var(--radius-lg);
-        margin-bottom: 16px;
-        min-height: 200px;
-        overflow: hidden;
-      }
-      .bento-cell.active {
-        display: block;
-      }
-      .bento-overlay {
-        display: none;
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.7);
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        backdrop-filter: blur(4px);
-      }
-      .bento-overlay.loading {
-        display: flex;
-      }
-      .bento-spinner {
-        width: 36px;
-        height: 36px;
-        border: 3px solid rgba(83, 155, 245, 0.2);
-        border-top-color: var(--accent-blue);
-        border-radius: 50%;
-        animation: bento-spin 0.75s linear infinite;
-      }
-      @keyframes bento-spin {
-        to { transform: rotate(360deg); }
-      }
-      .bento-content {
-        width: 100%;
-      }
+/* ================================== */
+/*  BENTO GRID — RADIANT-INSPIRED    */
+/* ================================== */
+.bento-cell {
+  display: none;
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 1rem;
+  margin-bottom: 16px;
+  min-height: 200px;
+  overflow: hidden;
+}
+.bento-cell.active {
+  display: block;
+}
+.bento-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 13, 26, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+}
+.bento-overlay.loading {
+  display: flex;
+}
+.bento-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(56, 189, 248, 0.15);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: bento-spin 0.75s linear infinite;
+}
+@keyframes bento-spin {
+  to { transform: rotate(360deg); }
+}
+.bento-content {
+  width: 100%;
+}
     </style>
 
     <style>
