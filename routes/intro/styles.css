@@ -1213,3 +1213,52 @@ background-image: linear-gradient(to bottom right, rgba(0,0,0,0.2), rgba(15,23,4
 .faq-answer { overflow: hidden; transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out; max-height: 0; opacity: 0; }
 .faq-answer.open { max-height: 300px; opacity: 1; }
 .pricing-feature { opacity: 0; transform: translateX(-5px); animation: fadeIn 0.3s forwards; }
+
+
+--background: #101727;
+
+--bento: #1e2a3a;
+--border: #2d3543;
+
+--innerSquares: #24303e; 
+
+
+/* use whatever variable names YOU have just make sure the correct colors popular them */
+--innerSquaresBorder: #333c4b;
+
+
+section,
+.bento-grid {
+  border-radius: 0px 0px 0px 0px;
+  border: none;
+  background: none;
+  background-color: none;
+  padding: 0;
+  margin: 0;
+}
+.bento-grid {
+  background: transparent !important;
+}
+section {
+  background: #1e2a3a;
+  border: 1px solid #2d3543;
+  padding: 1.5rem;
+}
+section:first-of-type {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  margin-top: 3rem;
+}
+section:last-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  
+  margin-bottom: 3rem;
+}
