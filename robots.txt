@@ -1,0 +1,9 @@
+# robots.txt for GitDev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://clockblocked.github.io/webApps/sitemap.xml
+
+# Crawl-delay (optional, for polite crawlers)
+Crawl-delay: 10
