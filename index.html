@@ -2237,13 +2237,43 @@ N E W E S T
 .bento-cell {
   display: none;
   position: relative;
-  background: transparent;
-  border: none;
-  border-radius: 1rem;
+  background: #1e2a3a;
+  border: 1px solid #2d3543;
   margin-bottom: 16px;
   min-height: 200px;
   overflow: hidden;
+  
+  padding: 2rem;
 }
+.bento-cell:first-of-type {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+  margin-top: 3rem;
+}
+.bento-cell:last-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  
+  margin-bottom: 3rem;
+}
+
+
+--background: #101727;
+
+--bento: #1e2a3a;
+--border: #2d3543;
+
+--innerSquares: #24303e; 
+--innerSquaresBorder: #333c4b;
+
+
 .bento-cell.active {
   display: block;
 }
