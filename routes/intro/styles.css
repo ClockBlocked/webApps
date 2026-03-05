@@ -1214,3 +1214,48 @@ background-image: linear-gradient(to bottom right, rgba(0,0,0,0.2), rgba(15,23,4
 .faq-answer.open { max-height: 300px; opacity: 1; }
 .pricing-feature { opacity: 0; transform: translateX(-5px); animation: fadeIn 0.3s forwards; }
 
+    section {
+    margin: 0;
+    padding: 0;
+    padding: 1.25rem !important;
+}
+
+
+section,
+.bento-cell {
+    border-radius: 0px 0px 0px 0px;
+    border: none;
+    background: none;
+    background-color: none;
+    padding: 0;
+    margin: 0;
+}
+.bento-cell {
+    background: transparent !important;
+}
+section {
+    background: #1e2a3a !important;
+    border: 1px solid #2d3543 !important;
+    padding: 1.5rem;
+}
+section:first-of-type {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    margin-top: 3rem;
+}
+section:last-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    margin-bottom: 3rem;
+}
+
+body {
+    background: #101727 !important;
