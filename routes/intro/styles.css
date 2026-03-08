@@ -1259,3 +1259,73 @@ section:last-of-type {
 
 body {
     background: #101727 !important;
+    
+    
+    
+    /* some more overrides */
+.feature-icon {
+    color: rgba(215, 215, 215, 0.35);
+}
+.feature-card {
+    background: #24303e;
+    border: 1px solid #333c4b;
+    padding: 1.25rem !important;
+    height: 125px;
+    max-height: 300px;
+    transition: height 0.35s ease;
+
+    will-change: height;
+}
+
+.feature-card:hover {
+    height: 200px;
+    transition: height 0.65s ease;
+    background-color: rgba(51, 60, 75, 0.65)
+}
+
+.feature-card p {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.feature-card:hover p {
+    opacity: 1;
+    transition: opacity 0.45s ease;
+}
+
+
+.feature-card:hover .fc--header,
+.feature-card:hover .fc--footer {}
+
+
+.hero-subtitle {
+    position: absolute;
+    top: 1rem;
+    right: 0.35rem;
+
+    color: #dfdfdf;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(16, 23, 39, 0.15);
+    opacity: 0.35;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 1rem;
+    letter-spacing: -0.15px;
+}
+.hero-label {
+    position: absolute;
+    right: 0;
+    width: 100%;
+}
+.hero-heading {
+    font-size: 1.25rem;
+    text-align: left;
+    font-weight: 200;
+    text-wrap: nowrap;
+    color: var(--text-tertiary);
+
+    & span {
+        font-size: inherit;
+        font-weight: 300;
+    }
+}
