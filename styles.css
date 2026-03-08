@@ -1029,7 +1029,9 @@ nav {
   min-height: 100vh;
   position: relative;
 }
-
+.main-layout, .layout {
+    width: 100%;
+}
 #leftSidebar {
   width: var(--sidebar-width);
   flex-shrink: 0;
