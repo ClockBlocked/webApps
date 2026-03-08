@@ -1053,6 +1053,76 @@ nav {
   border-top-left-radius: 15px;
 }
 
+.main-layout {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- DESKTOP / TABLET SIDEBAR LAYOUT (>768px) ---------- */
+@media (min-width: 769px) {
+  .layout {
+    padding-top: 62px; /* navbar height */
+  }
+
+  #leftSidebar {
+    position: sticky;
+    top: 62px;
+    height: calc(100vh - 62px);
+    transform: translateX(-100%);
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    border-right: none;
+    transition: transform 0.3s ease, width 0.3s ease, min-width 0.3s ease;
+  }
+
+  #leftSidebar.open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    overflow-y: auto;
+    overflow-x: visible;
+    border-right: 1px solid var(--border-secondary);
+  }
+
+  #rightSidebar {
+    position: sticky;
+    top: 62px;
+    height: calc(100vh - 62px);
+    width: 250px;
+    min-width: 250px;
+    padding: 1rem 0.75rem 1rem 0;
+    border-left: none;
+    background-color: transparent;
+  }
+
+  #rightSidebar .sidebar-content {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-secondary);
+    padding: 1rem;
+    max-height: calc(100vh - 62px - 2rem);
+    overflow-y: auto;
+  }
+
+  .main-layout {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: calc(100vh - 62px);
+    overflow: hidden;
+  }
+
+  .layout .main-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: auto;
+    z-index: 1;
+    overflow: hidden;
+  }
+}
+
 #miniSidebar {
   position: fixed;
   left: 0;

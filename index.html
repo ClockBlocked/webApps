@@ -195,6 +195,9 @@
       </button>
     </div>
 
+    <!-- Layout Wrapper for Sidebars + Main Content -->
+    <div class="layout">
+
     <!-- Left Sidebar -->
     <aside id="leftSidebar" class="sidebar left-sidebar" role="complementary" aria-label="Left sidebar navigation">
       <div class="sidebar-content" style="overflow-y: scroll">
@@ -414,6 +417,8 @@
         </div>
       </div>
     </aside>
+
+    </div><!-- /.layout -->
 
     <!-- Scroll Reading Progress Indicator -->
     <div id="scrollProgress" aria-hidden="true"></div>
@@ -995,6 +1000,20 @@ smoothScrollTo(element, duration = 800, offset = 0) {
             this.animatePageLoad();
             window.addEventListener("resize", Utils.debounce(this.adjustLayout.bind(this), 250));
             this.initDynamicNAV();
+            this.initDesktopSidebars();
+          }
+
+          /** On desktop/tablet, open the left sidebar by default */
+          initDesktopSidebars() {
+            if (window.innerWidth >= 769) {
+              if (this.elements.leftSidebar) {
+                this.elements.leftSidebar.classList.add("open");
+                this.state.isLeftSidebarOpen = true;
+                if (this.elements.closeIcons) {
+                  this.elements.closeIcons.classList.add("active");
+                }
+              }
+            }
           }
 
           createShadowContentArea() {
@@ -1159,18 +1178,22 @@ smoothScrollTo(element, duration = 800, offset = 0) {
             }, 300);
           }
 
+          isDesktop() {
+            return window.innerWidth >= 769;
+          }
+
           toggleLeftSidebar() {
             if (!this.elements.leftSidebar) return;
             this.state.isLeftSidebarOpen = !this.state.isLeftSidebarOpen;
             this.elements.leftSidebar.classList.toggle("open", this.state.isLeftSidebarOpen);
 
             if (this.state.isLeftSidebarOpen) {
-              this.openOverlay();
+              if (!this.isDesktop()) this.openOverlay();
               if (this.elements.closeIcons) {
                 this.elements.closeIcons.classList.add("active");
               }
             } else {
-              this.closeOverlay();
+              if (!this.isDesktop()) this.closeOverlay();
               if (this.elements.closeIcons) {
                 this.elements.closeIcons.classList.remove("active");
               }
@@ -1183,10 +1206,12 @@ smoothScrollTo(element, duration = 800, offset = 0) {
             this.elements.rightSidebar.classList.toggle("open", this.state.isRightSidebarOpen);
 
             if (this.state.isRightSidebarOpen) {
-              this.closeLeftSidebar();
-              this.openOverlay();
+              if (!this.isDesktop()) {
+                this.closeLeftSidebar();
+                this.openOverlay();
+              }
             } else {
-              this.closeOverlay();
+              if (!this.isDesktop()) this.closeOverlay();
             }
           }
 
@@ -1197,14 +1222,14 @@ smoothScrollTo(element, duration = 800, offset = 0) {
             if (this.elements.closeIcons) {
               this.elements.closeIcons.classList.remove("active");
             }
-            this.closeOverlay();
+            if (!this.isDesktop()) this.closeOverlay();
           }
 
           closeRightSidebar() {
             if (!this.elements.rightSidebar) return;
             this.state.isRightSidebarOpen = false;
             this.elements.rightSidebar.classList.remove("open");
-            this.closeOverlay();
+            if (!this.isDesktop()) this.closeOverlay();
           }
 
           openOverlay() {
@@ -1579,8 +1604,11 @@ initDynamicNAV() {
       navItem.addEventListener("click", (e) => {
         e.preventDefault();
 
-        this.closeLeftSidebar();
         this.closeRightSidebar();
+
+        if (!this.isDesktop()) {
+          this.closeLeftSidebar();
+        }
 
         this.elements.navLinksContainer
           .querySelectorAll("a")
@@ -1811,6 +1839,18 @@ initPWAProgressSystem() {
             if (window.innerWidth <= 768) {
               document.getElementById("left-sidebar")?.classList.remove("active");
               this.state.sidebarCollapsed = false;
+              /* Close sidebars and overlay when resizing to mobile */
+              this.closeOverlay();
+            } else {
+              /* On desktop, ensure left sidebar is open and overlay is hidden */
+              if (this.elements.leftSidebar && !this.state.isLeftSidebarOpen) {
+                this.elements.leftSidebar.classList.add("open");
+                this.state.isLeftSidebarOpen = true;
+                if (this.elements.closeIcons) {
+                  this.elements.closeIcons.classList.add("active");
+                }
+              }
+              this.closeOverlay();
             }
             if (this.elements.breadcrumb) {
               this.adaptBreadcrumbForMobile();
