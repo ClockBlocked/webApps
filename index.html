@@ -1005,7 +1005,7 @@ smoothScrollTo(element, duration = 800, offset = 0) {
 
           /** On desktop/tablet, open the left sidebar by default */
           initDesktopSidebars() {
-            if (window.innerWidth > 768) {
+            if (window.innerWidth >= 769) {
               if (this.elements.leftSidebar) {
                 this.elements.leftSidebar.classList.add("open");
                 this.state.isLeftSidebarOpen = true;
@@ -1179,7 +1179,7 @@ smoothScrollTo(element, duration = 800, offset = 0) {
           }
 
           isDesktop() {
-            return window.innerWidth > 768;
+            return window.innerWidth >= 769;
           }
 
           toggleLeftSidebar() {

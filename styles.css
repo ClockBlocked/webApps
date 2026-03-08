@@ -1105,10 +1105,10 @@ nav {
     overflow-y: auto;
   }
 
-  .main-content {
-    width: 100% !important;
-    position: relative !important;
-    height: calc(100vh - 62px) !important;
+  .layout .main-content {
+    width: 100%;
+    position: relative;
+    height: calc(100vh - 62px);
   }
 }
 
